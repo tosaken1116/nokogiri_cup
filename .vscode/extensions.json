@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "streetsidesoftware.code-spell-checker",
+      "jebbs.plantuml",
+      "clinyong.vscode-css-modules",
+      "rodrigovallades.es7-react-js-snippets",
+      "graphql.vscode-graphql",
+      "graphql.vscode-graphql-syntax",
+    ]
+  }
