@@ -1,11 +1,8 @@
-import { useAuthentication } from "./hooks";
-
 import { Box, Stack } from "@mui/material";
 import { useState } from "react";
 import Header from "./components/Header";
 import NowPage from "./components/NowPage";
-import { Sidebar } from "./components/sidebar";
-
+import Sidebar from "./components/sidebar";
 export default function Home() {
     const [nowPage, setNowPage] = useState("home");
     return (

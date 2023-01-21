@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import { useAuthentication } from "./hooks";
+import { useAuthentication } from "../Hooks/hooks";
 export default function Login() {
     const { login, logout, idToken } = useAuthentication();
 

@@ -9,8 +9,8 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import SearchIcon from "@mui/icons-material/Search";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { Grid, IconButton, Paper } from "@mui/material";
-import { NowPageProps } from "../type";
-export const Sidebar = ({ nowPage, setNowPage }: NowPageProps) => {
+import { NowPageProps } from "../../Types/type";
+export default function Sidebar({ nowPage, setNowPage }: NowPageProps) {
     return (
         <Paper sx={{ width: "5vw" }}>
             <Grid
@@ -71,4 +71,4 @@ export const Sidebar = ({ nowPage, setNowPage }: NowPageProps) => {
             </Grid>
         </Paper>
     );
-};
+}
