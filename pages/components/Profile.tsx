@@ -13,6 +13,7 @@ import ComputerIcon from "@mui/icons-material/Computer";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import React from "react";
 
 export default function Profile() {
@@ -20,7 +21,7 @@ export default function Profile() {
     <Box sx={{ display: "flex" }}>
       <Box sx={{ m: 2 }}>
         <Avatar sx={{ height: 150, width: 150 }}>
-          <WorkIcon />
+          <InsertPhotoIcon />
         </Avatar>
         <Box sx={{ mt: 2, display: "flex" }}>
           <Avatar sx={{ m: 0.5 }}>
