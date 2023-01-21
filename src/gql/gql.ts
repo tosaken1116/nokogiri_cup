@@ -13,8 +13,7 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
-    "\n        query test {\n            users {\n                email\n            }\n        }\n    ":
-        types.TestDocument,
+    "\n        mutation uploadArticle(\n            $title: String!\n            $caption: String!\n            $authorId: String!\n            $createdAt: timestamptz!\n        ) {\n            insertArticle(\n                objects: {\n                    title: $title\n                    caption: $caption\n                    authorId: $authorId\n                    createdAt: $createdAt\n                }\n            ) {\n                returning {\n                    id\n                }\n            }\n        }\n    ": types.UploadArticleDocument,
 };
 
 /**
@@ -34,9 +33,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(
-    source: "\n        query test {\n            users {\n                email\n            }\n        }\n    "
-): typeof documents["\n        query test {\n            users {\n                email\n            }\n        }\n    "];
+export function graphql(source: "\n        mutation uploadArticle(\n            $title: String!\n            $caption: String!\n            $authorId: String!\n            $createdAt: timestamptz!\n        ) {\n            insertArticle(\n                objects: {\n                    title: $title\n                    caption: $caption\n                    authorId: $authorId\n                    createdAt: $createdAt\n                }\n            ) {\n                returning {\n                    id\n                }\n            }\n        }\n    "): (typeof documents)["\n        mutation uploadArticle(\n            $title: String!\n            $caption: String!\n            $authorId: String!\n            $createdAt: timestamptz!\n        ) {\n            insertArticle(\n                objects: {\n                    title: $title\n                    caption: $caption\n                    authorId: $authorId\n                    createdAt: $createdAt\n                }\n            ) {\n                returning {\n                    id\n                }\n            }\n        }\n    "];
 
 export function graphql(source: string) {
     return (documents as any)[source] ?? {};
