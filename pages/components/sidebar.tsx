@@ -1,28 +1,24 @@
 import styled from '@emotion/styled'
-import { Avatar, Box, Button, Drawer, IconButton } from "@mui/material"
+import { Button, Stack } from "@mui/material"
 
-const users: string[] = [
-    "U", "S", "E", "R"
-];
-
-type thisProps = {
-    userDatas: {
-        Name: string,
-        Icon: string
-    }[]
-};
-
-
-const UserAvatar = styled(Avatar)`
+const IconBtn = styled(Button)`
     width: 64px;
     height: 64px;
-    cursor: pointer;
+    border-radius: 50%;
     margin: 6px;
+    background: #ddd;
+    :hover{
+        background: #ccc;
+    }
 `;
-export const Sidebar = (props: thisProps)=>{
+export const Sidebar = ()=>{
     return(
-        <Box boxShadow={5} sx={{zIndex: 1300, minHeight: "100vh", width: "fit-content" ,border: "2", padding: "2px"}}>
-            {props.userDatas.map((data)=><UserAvatar src={data.Icon} alt={data.Name} />)}
-        </Box>
+        <Stack boxShadow={5} sx={{ zIndex: 1300, minHeight: "100vh", width: "fit-content" ,border: "2", padding: "2px"}}>
+            <IconBtn variant='contained'/>
+            <IconBtn variant='contained'/>
+            <IconBtn variant='contained'/>
+            <IconBtn variant='contained'/>
+            <IconBtn variant='contained'/>
+        </Stack>
     )
 }
