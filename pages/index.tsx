@@ -5,14 +5,6 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
-  const testdocument = gql`
-    query testquery {
-      user {
-        userName
-        userMail
-      }
-    }
-  `;
   return (
     <div className={styles.container}>
       <Head>
