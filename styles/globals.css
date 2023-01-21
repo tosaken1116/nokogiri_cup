@@ -15,7 +15,11 @@ a {
     box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
+body {
+    margin: 0;
+}
+
+/* @media (prefers-color-scheme: dark) {
     html {
         color-scheme: dark;
     }
@@ -23,7 +27,7 @@ a {
         color: white;
         background: black;
     }
-}
+} */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
