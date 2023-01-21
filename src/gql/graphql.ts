@@ -21,6 +21,7 @@ export type Article = {
   authorId: Scalars['String'];
   caption: Scalars['String'];
   createdAt: Scalars['timestamptz'];
+  githubUrl?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   title: Scalars['String'];
 };
@@ -69,6 +70,7 @@ export type ArticleBoolExp = {
   authorId?: InputMaybe<StringComparisonExp>;
   caption?: InputMaybe<StringComparisonExp>;
   createdAt?: InputMaybe<TimestamptzComparisonExp>;
+  githubUrl?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<IntComparisonExp>;
   title?: InputMaybe<StringComparisonExp>;
 };
@@ -89,6 +91,7 @@ export type ArticleInsertInput = {
   authorId?: InputMaybe<Scalars['String']>;
   caption?: InputMaybe<Scalars['String']>;
   createdAt?: InputMaybe<Scalars['timestamptz']>;
+  githubUrl?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['Int']>;
   title?: InputMaybe<Scalars['String']>;
 };
@@ -99,6 +102,7 @@ export type ArticleMaxFields = {
   authorId?: Maybe<Scalars['String']>;
   caption?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
+  githubUrl?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
 };
@@ -109,6 +113,7 @@ export type ArticleMinFields = {
   authorId?: Maybe<Scalars['String']>;
   caption?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
+  githubUrl?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
 };
@@ -134,6 +139,7 @@ export type ArticleOrderBy = {
   authorId?: InputMaybe<OrderBy>;
   caption?: InputMaybe<OrderBy>;
   createdAt?: InputMaybe<OrderBy>;
+  githubUrl?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   title?: InputMaybe<OrderBy>;
 };
@@ -152,6 +158,8 @@ export enum ArticleSelectColumn {
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
+  GithubUrl = 'githubUrl',
+  /** column name */
   Id = 'id',
   /** column name */
   Title = 'title'
@@ -162,6 +170,7 @@ export type ArticleSetInput = {
   authorId?: InputMaybe<Scalars['String']>;
   caption?: InputMaybe<Scalars['String']>;
   createdAt?: InputMaybe<Scalars['timestamptz']>;
+  githubUrl?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['Int']>;
   title?: InputMaybe<Scalars['String']>;
 };
@@ -197,6 +206,7 @@ export type ArticleStreamCursorValueInput = {
   authorId?: InputMaybe<Scalars['String']>;
   caption?: InputMaybe<Scalars['String']>;
   createdAt?: InputMaybe<Scalars['timestamptz']>;
+  githubUrl?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['Int']>;
   title?: InputMaybe<Scalars['String']>;
 };
@@ -215,6 +225,8 @@ export enum ArticleUpdateColumn {
   Caption = 'caption',
   /** column name */
   CreatedAt = 'createdAt',
+  /** column name */
+  GithubUrl = 'githubUrl',
   /** column name */
   Id = 'id',
   /** column name */
@@ -1077,10 +1089,11 @@ export type UploadArticleMutationVariables = Exact<{
   caption: Scalars['String'];
   authorId: Scalars['String'];
   createdAt: Scalars['timestamptz'];
+  githubUrl: Scalars['String'];
 }>;
 
 
 export type UploadArticleMutation = { __typename?: 'mutation_root', insertArticle?: { __typename?: 'ArticleMutationResponse', returning: Array<{ __typename?: 'Article', id: number }> } | null };
 
 
-export const UploadArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"uploadArticle"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"caption"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"authorId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createdAt"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"timestamptz"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insertArticle"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"objects"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"caption"},"value":{"kind":"Variable","name":{"kind":"Name","value":"caption"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"authorId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"authorId"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"createdAt"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createdAt"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"returning"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<UploadArticleMutation, UploadArticleMutationVariables>;
+export const UploadArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"uploadArticle"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"caption"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"authorId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createdAt"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"timestamptz"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"githubUrl"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insertArticle"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"objects"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"caption"},"value":{"kind":"Variable","name":{"kind":"Name","value":"caption"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"authorId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"authorId"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"createdAt"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createdAt"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"githubUrl"},"value":{"kind":"Variable","name":{"kind":"Name","value":"githubUrl"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"returning"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<UploadArticleMutation, UploadArticleMutationVariables>;

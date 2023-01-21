@@ -6,6 +6,7 @@ export const useUploadArticle = () => {
             $caption: String!
             $authorId: String!
             $createdAt: timestamptz!
+            $githubUrl: String!
         ) {
             insertArticle(
                 objects: {
@@ -13,6 +14,7 @@ export const useUploadArticle = () => {
                     caption: $caption
                     authorId: $authorId
                     createdAt: $createdAt
+                    githubUrl: $githubUrl
                 }
             ) {
                 returning {
@@ -21,6 +23,6 @@ export const useUploadArticle = () => {
             }
         }
     `;
-    const [uploadArticle] = useMutation(uploadDocument);
-    return { uploadArticle };
+    const [uploadArticle, { loading }] = useMutation(uploadDocument);
+    return { uploadArticle, loading };
 };
