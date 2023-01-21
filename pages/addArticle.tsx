@@ -32,7 +32,9 @@ export default function AddArticle() {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
     const handleUpload = () => {
-        console.log(input);
+        if (input.title === "" || input.caption === "") {
+            return;
+        }
         uploadArticle({
             variables: {
                 title: input.title,
@@ -48,12 +50,13 @@ export default function AddArticle() {
         router.push("./");
     };
     return (
-        <Box>
+        <Box p={3}>
             <Stack
                 direction="row"
                 spacing={2}
+                pt={4}
                 sx={{
-                    height: "100vh",
+                    height: "80vh",
                 }}
             >
                 <Stack
