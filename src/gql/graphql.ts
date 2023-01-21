@@ -14,8 +14,32 @@ export type Scalars = {
   Float: number;
 };
 
+/** ordering argument of a cursor */
+export enum CursorOrdering {
+  /** ascending ordering of the cursor */
+  Asc = 'ASC',
+  /** descending ordering of the cursor */
+  Desc = 'DESC'
+}
+
+/** column ordering options */
+export enum OrderBy {
+  /** in ascending order, nulls last */
+  Asc = 'ASC',
+  /** in ascending order, nulls first */
+  AscNullsFirst = 'ASC_NULLS_FIRST',
+  /** in ascending order, nulls last */
+  AscNullsLast = 'ASC_NULLS_LAST',
+  /** in descending order, nulls first */
+  Desc = 'DESC',
+  /** in descending order, nulls first */
+  DescNullsFirst = 'DESC_NULLS_FIRST',
+  /** in descending order, nulls last */
+  DescNullsLast = 'DESC_NULLS_LAST'
+}
+
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
-export type String_Comparison_Exp = {
+export type StringComparisonExp = {
   _eq?: InputMaybe<Scalars['String']>;
   _gt?: InputMaybe<Scalars['String']>;
   _gte?: InputMaybe<Scalars['String']>;
@@ -24,7 +48,7 @@ export type String_Comparison_Exp = {
   _in?: InputMaybe<Array<Scalars['String']>>;
   /** does the column match the given POSIX regular expression, case insensitive */
   _iregex?: InputMaybe<Scalars['String']>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _isNull?: InputMaybe<Scalars['Boolean']>;
   /** does the column match the given pattern */
   _like?: InputMaybe<Scalars['String']>;
   _lt?: InputMaybe<Scalars['String']>;
@@ -47,237 +71,73 @@ export type String_Comparison_Exp = {
   _similar?: InputMaybe<Scalars['String']>;
 };
 
-/** ordering argument of a cursor */
-export enum Cursor_Ordering {
-  /** ascending ordering of the cursor */
-  Asc = 'ASC',
-  /** descending ordering of the cursor */
-  Desc = 'DESC'
-}
-
-/** mutation root */
-export type Mutation_Root = {
-  __typename?: 'mutation_root';
-  /** delete data from the table: "user" */
-  delete_user?: Maybe<User_Mutation_Response>;
-  /** delete single row from the table: "user" */
-  delete_user_by_pk?: Maybe<User>;
-  /** insert data into the table: "user" */
-  insert_user?: Maybe<User_Mutation_Response>;
-  /** insert a single row into the table: "user" */
-  insert_user_one?: Maybe<User>;
-  /** update data of the table: "user" */
-  update_user?: Maybe<User_Mutation_Response>;
-  /** update single row of the table: "user" */
-  update_user_by_pk?: Maybe<User>;
-  /** update multiples rows of table: "user" */
-  update_user_many?: Maybe<Array<Maybe<User_Mutation_Response>>>;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_UserArgs = {
-  where: User_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_User_By_PkArgs = {
-  user_mail: Scalars['String'];
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_UserArgs = {
-  objects: Array<User_Insert_Input>;
-  on_conflict?: InputMaybe<User_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_User_OneArgs = {
-  object: User_Insert_Input;
-  on_conflict?: InputMaybe<User_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_UserArgs = {
-  _set?: InputMaybe<User_Set_Input>;
-  where: User_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_User_By_PkArgs = {
-  _set?: InputMaybe<User_Set_Input>;
-  pk_columns: User_Pk_Columns_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_User_ManyArgs = {
-  updates: Array<User_Updates>;
-};
-
-/** column ordering options */
-export enum Order_By {
-  /** in ascending order, nulls last */
-  Asc = 'asc',
-  /** in ascending order, nulls first */
-  AscNullsFirst = 'asc_nulls_first',
-  /** in ascending order, nulls last */
-  AscNullsLast = 'asc_nulls_last',
-  /** in descending order, nulls first */
-  Desc = 'desc',
-  /** in descending order, nulls first */
-  DescNullsFirst = 'desc_nulls_first',
-  /** in descending order, nulls last */
-  DescNullsLast = 'desc_nulls_last'
-}
-
-export type Query_Root = {
-  __typename?: 'query_root';
-  /** fetch data from the table: "user" */
-  user: Array<User>;
-  /** fetch aggregated fields from the table: "user" */
-  user_aggregate: User_Aggregate;
-  /** fetch data from the table: "user" using primary key columns */
-  user_by_pk?: Maybe<User>;
-};
-
-
-export type Query_RootUserArgs = {
-  distinct_on?: InputMaybe<Array<User_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<User_Order_By>>;
-  where?: InputMaybe<User_Bool_Exp>;
-};
-
-
-export type Query_RootUser_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<User_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<User_Order_By>>;
-  where?: InputMaybe<User_Bool_Exp>;
-};
-
-
-export type Query_RootUser_By_PkArgs = {
-  user_mail: Scalars['String'];
-};
-
-export type Subscription_Root = {
-  __typename?: 'subscription_root';
-  /** fetch data from the table: "user" */
-  user: Array<User>;
-  /** fetch aggregated fields from the table: "user" */
-  user_aggregate: User_Aggregate;
-  /** fetch data from the table: "user" using primary key columns */
-  user_by_pk?: Maybe<User>;
-  /** fetch data from the table in a streaming manner: "user" */
-  user_stream: Array<User>;
-};
-
-
-export type Subscription_RootUserArgs = {
-  distinct_on?: InputMaybe<Array<User_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<User_Order_By>>;
-  where?: InputMaybe<User_Bool_Exp>;
-};
-
-
-export type Subscription_RootUser_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<User_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<User_Order_By>>;
-  where?: InputMaybe<User_Bool_Exp>;
-};
-
-
-export type Subscription_RootUser_By_PkArgs = {
-  user_mail: Scalars['String'];
-};
-
-
-export type Subscription_RootUser_StreamArgs = {
-  batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<User_Stream_Cursor_Input>>;
-  where?: InputMaybe<User_Bool_Exp>;
-};
-
 /** columns and relationships of "user" */
 export type User = {
-  __typename?: 'user';
-  user_mail: Scalars['String'];
-  user_name: Scalars['String'];
+  __typename?: 'User';
+  userMail: Scalars['String'];
+  userName: Scalars['String'];
 };
 
 /** aggregated selection of "user" */
-export type User_Aggregate = {
-  __typename?: 'user_aggregate';
-  aggregate?: Maybe<User_Aggregate_Fields>;
+export type UserAggregate = {
+  __typename?: 'UserAggregate';
+  aggregate?: Maybe<UserAggregateFields>;
   nodes: Array<User>;
 };
 
 /** aggregate fields of "user" */
-export type User_Aggregate_Fields = {
-  __typename?: 'user_aggregate_fields';
+export type UserAggregateFields = {
+  __typename?: 'UserAggregateFields';
   count: Scalars['Int'];
-  max?: Maybe<User_Max_Fields>;
-  min?: Maybe<User_Min_Fields>;
+  max?: Maybe<UserMaxFields>;
+  min?: Maybe<UserMinFields>;
 };
 
 
 /** aggregate fields of "user" */
-export type User_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<User_Select_Column>>;
+export type UserAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<UserSelectColumn>>;
   distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'. */
-export type User_Bool_Exp = {
-  _and?: InputMaybe<Array<User_Bool_Exp>>;
-  _not?: InputMaybe<User_Bool_Exp>;
-  _or?: InputMaybe<Array<User_Bool_Exp>>;
-  user_mail?: InputMaybe<String_Comparison_Exp>;
-  user_name?: InputMaybe<String_Comparison_Exp>;
+export type UserBoolExp = {
+  _and?: InputMaybe<Array<UserBoolExp>>;
+  _not?: InputMaybe<UserBoolExp>;
+  _or?: InputMaybe<Array<UserBoolExp>>;
+  userMail?: InputMaybe<StringComparisonExp>;
+  userName?: InputMaybe<StringComparisonExp>;
 };
 
 /** unique or primary key constraints on table "user" */
-export enum User_Constraint {
+export enum UserConstraint {
   /** unique or primary key constraint on columns "user_mail" */
   UserPkey = 'user_pkey'
 }
 
 /** input type for inserting data into table "user" */
-export type User_Insert_Input = {
-  user_mail?: InputMaybe<Scalars['String']>;
-  user_name?: InputMaybe<Scalars['String']>;
+export type UserInsertInput = {
+  userMail?: InputMaybe<Scalars['String']>;
+  userName?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
-export type User_Max_Fields = {
-  __typename?: 'user_max_fields';
-  user_mail?: Maybe<Scalars['String']>;
-  user_name?: Maybe<Scalars['String']>;
+export type UserMaxFields = {
+  __typename?: 'UserMaxFields';
+  userMail?: Maybe<Scalars['String']>;
+  userName?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
-export type User_Min_Fields = {
-  __typename?: 'user_min_fields';
-  user_mail?: Maybe<Scalars['String']>;
-  user_name?: Maybe<Scalars['String']>;
+export type UserMinFields = {
+  __typename?: 'UserMinFields';
+  userMail?: Maybe<Scalars['String']>;
+  userName?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "user" */
-export type User_Mutation_Response = {
-  __typename?: 'user_mutation_response';
+export type UserMutationResponse = {
+  __typename?: 'UserMutationResponse';
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
@@ -285,69 +145,210 @@ export type User_Mutation_Response = {
 };
 
 /** on_conflict condition type for table "user" */
-export type User_On_Conflict = {
-  constraint: User_Constraint;
-  update_columns?: Array<User_Update_Column>;
-  where?: InputMaybe<User_Bool_Exp>;
+export type UserOnConflict = {
+  constraint: UserConstraint;
+  update_columns?: Array<UserUpdateColumn>;
+  where?: InputMaybe<UserBoolExp>;
 };
 
 /** Ordering options when selecting data from "user". */
-export type User_Order_By = {
-  user_mail?: InputMaybe<Order_By>;
-  user_name?: InputMaybe<Order_By>;
+export type UserOrderBy = {
+  userMail?: InputMaybe<OrderBy>;
+  userName?: InputMaybe<OrderBy>;
 };
 
 /** primary key columns input for table: user */
-export type User_Pk_Columns_Input = {
-  user_mail: Scalars['String'];
+export type UserPkColumnsInput = {
+  userMail: Scalars['String'];
 };
 
 /** select columns of table "user" */
-export enum User_Select_Column {
+export enum UserSelectColumn {
   /** column name */
-  UserMail = 'user_mail',
+  UserMail = 'userMail',
   /** column name */
-  UserName = 'user_name'
+  UserName = 'userName'
 }
 
 /** input type for updating data in table "user" */
-export type User_Set_Input = {
-  user_mail?: InputMaybe<Scalars['String']>;
-  user_name?: InputMaybe<Scalars['String']>;
+export type UserSetInput = {
+  userMail?: InputMaybe<Scalars['String']>;
+  userName?: InputMaybe<Scalars['String']>;
 };
 
 /** Streaming cursor of the table "user" */
-export type User_Stream_Cursor_Input = {
+export type UserStreamCursorInput = {
   /** Stream column input with initial value */
-  initial_value: User_Stream_Cursor_Value_Input;
+  initialValue: UserStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
+  ordering?: InputMaybe<CursorOrdering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type User_Stream_Cursor_Value_Input = {
-  user_mail?: InputMaybe<Scalars['String']>;
-  user_name?: InputMaybe<Scalars['String']>;
+export type UserStreamCursorValueInput = {
+  userMail?: InputMaybe<Scalars['String']>;
+  userName?: InputMaybe<Scalars['String']>;
 };
 
 /** update columns of table "user" */
-export enum User_Update_Column {
+export enum UserUpdateColumn {
   /** column name */
-  UserMail = 'user_mail',
+  UserMail = 'userMail',
   /** column name */
-  UserName = 'user_name'
+  UserName = 'userName'
 }
 
-export type User_Updates = {
+export type UserUpdates = {
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<User_Set_Input>;
-  where: User_Bool_Exp;
+  _set?: InputMaybe<UserSetInput>;
+  /** filter the rows which have to be updated */
+  where: UserBoolExp;
 };
 
-export type GetuserQueryVariables = Exact<{ [key: string]: never; }>;
+/** mutation root */
+export type Mutation_Root = {
+  __typename?: 'mutation_root';
+  /** delete data from the table: "user" */
+  deleteUser?: Maybe<UserMutationResponse>;
+  /** delete single row from the table: "user" */
+  deleteUserByPk?: Maybe<User>;
+  /** insert data into the table: "user" */
+  insertUser?: Maybe<UserMutationResponse>;
+  /** insert a single row into the table: "user" */
+  insertUserOne?: Maybe<User>;
+  /** update data of the table: "user" */
+  updateUser?: Maybe<UserMutationResponse>;
+  /** update single row of the table: "user" */
+  updateUserByPk?: Maybe<User>;
+  /** update multiples rows of table: "user" */
+  updateUserMany?: Maybe<Array<Maybe<UserMutationResponse>>>;
+};
 
 
-export type GetuserQuery = { __typename?: 'query_root', user: Array<{ __typename?: 'user', user_name: string, user_mail: string }> };
+/** mutation root */
+export type Mutation_RootDeleteUserArgs = {
+  where: UserBoolExp;
+};
 
 
-export const GetuserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getuser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user_name"}},{"kind":"Field","name":{"kind":"Name","value":"user_mail"}}]}}]}}]} as unknown as DocumentNode<GetuserQuery, GetuserQueryVariables>;
+/** mutation root */
+export type Mutation_RootDeleteUserByPkArgs = {
+  userMail: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootInsertUserArgs = {
+  objects: Array<UserInsertInput>;
+  onConflict?: InputMaybe<UserOnConflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsertUserOneArgs = {
+  object: UserInsertInput;
+  onConflict?: InputMaybe<UserOnConflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdateUserArgs = {
+  _set?: InputMaybe<UserSetInput>;
+  where: UserBoolExp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdateUserByPkArgs = {
+  _set?: InputMaybe<UserSetInput>;
+  pk_columns: UserPkColumnsInput;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdateUserManyArgs = {
+  updates: Array<UserUpdates>;
+};
+
+export type Query_Root = {
+  __typename?: 'query_root';
+  /** fetch data from the table: "user" */
+  user: Array<User>;
+  /** fetch aggregated fields from the table: "user" */
+  userAggregate: UserAggregate;
+  /** fetch data from the table: "user" using primary key columns */
+  userByPk?: Maybe<User>;
+};
+
+
+export type Query_RootUserArgs = {
+  distinctOn?: InputMaybe<Array<UserSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<UserOrderBy>>;
+  where?: InputMaybe<UserBoolExp>;
+};
+
+
+export type Query_RootUserAggregateArgs = {
+  distinctOn?: InputMaybe<Array<UserSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<UserOrderBy>>;
+  where?: InputMaybe<UserBoolExp>;
+};
+
+
+export type Query_RootUserByPkArgs = {
+  userMail: Scalars['String'];
+};
+
+export type Subscription_Root = {
+  __typename?: 'subscription_root';
+  /** fetch data from the table: "user" */
+  user: Array<User>;
+  /** fetch aggregated fields from the table: "user" */
+  userAggregate: UserAggregate;
+  /** fetch data from the table: "user" using primary key columns */
+  userByPk?: Maybe<User>;
+  /** fetch data from the table in a streaming manner: "user" */
+  userStream: Array<User>;
+};
+
+
+export type Subscription_RootUserArgs = {
+  distinctOn?: InputMaybe<Array<UserSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<UserOrderBy>>;
+  where?: InputMaybe<UserBoolExp>;
+};
+
+
+export type Subscription_RootUserAggregateArgs = {
+  distinctOn?: InputMaybe<Array<UserSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<UserOrderBy>>;
+  where?: InputMaybe<UserBoolExp>;
+};
+
+
+export type Subscription_RootUserByPkArgs = {
+  userMail: Scalars['String'];
+};
+
+
+export type Subscription_RootUserStreamArgs = {
+  batchSize: Scalars['Int'];
+  cursor: Array<InputMaybe<UserStreamCursorInput>>;
+  where?: InputMaybe<UserBoolExp>;
+};
+
+export type TestqueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TestqueryQuery = { __typename?: 'query_root', user: Array<{ __typename?: 'User', userName: string, userMail: string }> };
+
+
+export const TestqueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"testquery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userName"}},{"kind":"Field","name":{"kind":"Name","value":"userMail"}}]}}]}}]} as unknown as DocumentNode<TestqueryQuery, TestqueryQueryVariables>;
