@@ -1,6 +1,9 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
+import { useAuthentication } from "./hooks";
 export default function Login() {
+    const { login, logout, idToken } = useAuthentication();
+
     const router = useRouter();
     return (
         <Box
@@ -22,11 +25,10 @@ export default function Login() {
             >
                 <Button
                     onClick={() => {
-                        console.log("sign up");
-                        router.push({
-                            pathname: "./",
-                            // query: { username: username}
-                        });
+                        login();
+                        if (idToken != "") {
+                            router.push("./");
+                        }
                     }}
                     variant="contained"
                     href="#contaeined-buttons"
