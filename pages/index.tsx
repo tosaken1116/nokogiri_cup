@@ -1,9 +1,17 @@
+import { Button } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
 import styles from "../styles/Home.module.css";
+import { Animal } from "./conponents/animal";
 
 const Home: NextPage = () => {
+    const [articleAmount, setArticleAmount] = useState(0);
+    const handleClick = ()=>{
+        setArticleAmount(articleAmount+1);
+        console.log(articleAmount);
+    }
     return (
         <div className={styles.container}>
             <Head>
@@ -14,8 +22,10 @@ const Home: NextPage = () => {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
             <main className={styles.main}>
+                <Animal articleAmount={articleAmount}/>
+                <Button onClick={handleClick} variant="contained">+</Button>
+                <h1 style={{zIndex: 10}}>Article:{articleAmount}</h1>
                 <h1 className={styles.title}>
                     Welcome to <a href="https://nextjs.org">Next.js!</a>
                 </h1>
