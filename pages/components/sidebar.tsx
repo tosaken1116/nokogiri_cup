@@ -32,14 +32,15 @@ export const Sidebar = ({ nowPage, setNowPage }: NowPageProps) => {
                     </IconButton>
                 </Grid>
                 <Grid item>
-                    <IconButton onClick={() => setNowPage("notification")}>
-                        {nowPage == "notification" ? (
-                            <NotificationsIcon />
+                    <IconButton onClick={() => setNowPage("search")}>
+                        {nowPage == "search" ? (
+                            <SearchIcon />
                         ) : (
-                            <NotificationsNoneOutlinedIcon />
+                            <SearchOutlinedIcon />
                         )}
                     </IconButton>
                 </Grid>
+
                 <Grid item>
                     <IconButton onClick={() => setNowPage("profile")}>
                         {nowPage == "profile" ? (
@@ -50,20 +51,20 @@ export const Sidebar = ({ nowPage, setNowPage }: NowPageProps) => {
                     </IconButton>
                 </Grid>
                 <Grid item>
+                    <IconButton onClick={() => setNowPage("notification")}>
+                        {nowPage == "notification" ? (
+                            <NotificationsIcon />
+                        ) : (
+                            <NotificationsNoneOutlinedIcon />
+                        )}
+                    </IconButton>
+                </Grid>
+                <Grid item>
                     <IconButton onClick={() => setNowPage("comment")}>
                         {nowPage == "comment" ? (
                             <InsertCommentIcon />
                         ) : (
                             <InsertCommentOutlinedIcon />
-                        )}
-                    </IconButton>
-                </Grid>
-                <Grid item>
-                    <IconButton onClick={() => setNowPage("search")}>
-                        {nowPage == "search" ? (
-                            <SearchIcon />
-                        ) : (
-                            <SearchOutlinedIcon />
                         )}
                     </IconButton>
                 </Grid>

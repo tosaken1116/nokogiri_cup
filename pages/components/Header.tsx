@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import Link from "next/link";
 
 const status = 1;
 export default function Header() {
@@ -34,14 +35,11 @@ export default function Header() {
                                 sx={{
                                     color: "grey",
                                     height: "8vh",
-
                                     ":hover": { background: "grey" },
                                     padding: 0,
                                 }}
                             >
-                                <Typography sx={{ color: "black" }}>
-                                    signin
-                                </Typography>
+                                <Link href="./Login">signin</Link>
                             </Button>
                             <Button
                                 variant="contained"
@@ -51,9 +49,7 @@ export default function Header() {
                                     ":hover": { background: "grey" },
                                 }}
                             >
-                                <Typography sx={{ color: "black" }}>
-                                    signup
-                                </Typography>
+                                <Link href="./Login">signup</Link>
                             </Button>
                         </Stack>
                     ) : (

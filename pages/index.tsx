@@ -7,7 +7,6 @@ import NowPage from "./components/NowPage";
 import { Sidebar } from "./components/sidebar";
 
 export default function Home() {
-    const { login, logout, idToken } = useAuthentication();
     const [nowPage, setNowPage] = useState("home");
     return (
         <Box>
