@@ -9,8 +9,8 @@ const status = 1;
 export default function Header() {
   return (
     <Box sx={{ flex: "auto", color: "text.disabled" }}>
-      <AppBar position="static" sx={"background-color:#EEEEEE"}>
-        <Stack direction="row">
+      <AppBar position="static">
+        <Stack direction="row" sx={{ bgcolor: "#EEEEEE" }}>
           <Toolbar>
             <Typography
               variant="h6"
@@ -21,19 +21,23 @@ export default function Header() {
             </Typography>
           </Toolbar>
           {status ? (
-            <Box>
-              <Stack direction="row">
-                <Button variant="contained" disabled>
+            <Stack direction="row">
+              <Button variant="contained" sx={{ bgcolor: "grey" }}>
+                <Typography sx={{ flexGrow: 1, color: "black" }}>
                   singin
-                </Button>
-                <Button variant="contained" disabled>
-                  signup
-                </Button>
-              </Stack>
-            </Box>
+                </Typography>
+              </Button>
+              <Button variant="contained" sx={{ bgcolor: "black" }}>
+                <Typography sx={{ flexGrow: 1, color: "black" }}>
+                  singup
+                </Typography>
+              </Button>
+            </Stack>
           ) : (
-            <Button variant="contained" disabled>
-              Username
+            <Button variant="contained">
+              <Typography sx={{ flexGrow: 1, color: "black" }}>
+                Username
+              </Typography>
             </Button>
           )}
         </Stack>
