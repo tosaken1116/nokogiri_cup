@@ -21,7 +21,7 @@ const Home: NextPage = () => {
             </Head>
             <body style={{margin: 0, minHeight: "100vh"}}>
             <header style={{backgroundColor: "red" , zIndex: 900}}><h1>a</h1></header>
-            <Sidebar userDatas={[{Name: "User", Icon: "null"}, {Name: "Image", Icon: UserIcon}]}/>
+            <Sidebar/>
             </body>
         </div>
     );
