@@ -22,13 +22,19 @@ export default function Header() {
           </Toolbar>
           {status ? (
             <Stack direction="row">
-              <Button variant="contained" sx={{ bgcolor: "grey" }}>
+              <Button
+                variant="contained"
+                sx={{ color: "grey", ":hover": { background: "grey" } }}
+              >
                 <Typography sx={{ flexGrow: 1, color: "black" }}>
                   singin
                 </Typography>
               </Button>
-              <Button variant="contained" sx={{ bgcolor: "black" }}>
-                <Typography sx={{ flexGrow: 1, color: "black" }}>
+              <Button
+                variant="contained"
+                sx={{ color: "#222222", ":hover": { background: "#222222" } }}
+              >
+                <Typography sx={{ flexGrow: 1, color: "grey" }}>
                   singup
                 </Typography>
               </Button>
