@@ -8,14 +8,30 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { ApolloProvider } from "@apollo/client";
+import SvgIcon from "@mui/material/SvgIcon";
 
 const NotionPage = () => {
   return (
     <div>
       <main>
         <Header />
-        <Box component="span" sx={{ p: 2, border: "1px dashed grey" }}>
-          <Typography>Notice All</Typography>
+        <Box component="span" sx={{ width: 1, bgcolor: "#EEEEEE" }}>
+          <Typography
+            align="center"
+            sx={{
+              color: "#333333",
+              bgcolor: "#DDDDDD",
+              textshadow: "1px 1px 3px",
+            }}
+          >
+            Notice All
+          </Typography>
+        </Box>
+        <Box
+          component="span"
+          sx={{ width: 1, height: 500, bgcolor: "#EEEEEE" }}
+        >
+          aaaaaa
         </Box>
       </main>
     </div>
