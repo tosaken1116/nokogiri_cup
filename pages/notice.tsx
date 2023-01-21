@@ -14,6 +14,9 @@ const NotionPage = () => {
     <div>
       <main>
         <Header />
+        <Box component="span" sx={{ p: 2, border: "1px dashed grey" }}>
+          <Typography>Notice All</Typography>
+        </Box>
       </main>
     </div>
   );
