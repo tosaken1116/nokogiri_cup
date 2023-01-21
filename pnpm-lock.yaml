@@ -7,6 +7,7 @@ specifiers:
   '@graphql-codegen/cli': ^2.16.4
   '@graphql-codegen/client-preset': 1.2.6
   '@graphql-codegen/introspection': 2.2.3
+  '@graphql-typed-document-node/core': ^3.1.1
   '@mui/material': ^5.11.5
   '@types/node': 18.11.18
   '@types/react': 18.0.26
@@ -30,6 +31,7 @@ dependencies:
   '@emotion/react': 11.10.5_kzbn2opkn2327fwg5yzwzya5o4
   '@emotion/styled': 11.10.5_qvatmowesywn4ye42qoh247szu
   '@graphql-codegen/cli': 2.16.4_ypnw7qtddur2thavhnwioh46ha
+  '@graphql-typed-document-node/core': 3.1.1_graphql@16.6.0
   '@mui/material': 5.11.5_lskpmcsdi7ipu6qpuapyu56ihm
   cross-fetch: 3.1.5
   dotenv: 16.0.3
