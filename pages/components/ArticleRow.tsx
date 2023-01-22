@@ -34,9 +34,7 @@ export default function ArticleRow({
                                 ></Image>
                                 <Typography>{authorId}</Typography>
                             </Stack>
-                            <Typography>
-                                投稿日:{createdAt.split("T")[0]}
-                            </Typography>
+                            <Typography>投稿日:{createdAt}</Typography>
                         </Stack>
                         <Link href={githubUrl ?? ""}>
                             <GitHubIcon />
