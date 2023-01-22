@@ -20,7 +20,7 @@ export default function Article() {
                 placeContent: "center",
             }}
         >
-            {data?.article.map((article) => (
+            {data?.article.map((article: any) => (
                 <Box
                     key={article.articleId}
                     sx={{
