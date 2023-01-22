@@ -20,7 +20,7 @@ export const useUploadArticle = () => {
             $authorId: String!
             $createdAt: timestamptz!
             $githubUrl: String!
-            $fileId: uuid!
+            $fileId: String!
         ) {
             insertArticle(
                 objects: {

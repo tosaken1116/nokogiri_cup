@@ -12,9 +12,8 @@ import {
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useImageUpload } from "../Hooks/hooks";
+import { useImageUpload, useUploadArticle } from "../Hooks/hooks";
 import MarkdownArticle from "./components/MarkdownArticle";
-import { useUploadArticle } from "../Hooks/hooks";
 export default function AddArticle() {
     const router = useRouter();
     const { uploadBlob, uploadFileId } = useImageUpload();
@@ -42,9 +41,6 @@ export default function AddArticle() {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
     const handleUpload = () => {
-        if (input.title == "" || input.caption == "") {
-            return;
-        }
         uploadArticle({
             variables: {
                 title: input.title,
@@ -52,7 +48,7 @@ export default function AddArticle() {
                 authorId: "2",
                 createdAt: input.createdAt,
                 githubUrl: input.githubUrl,
-                fileId: uploadFileId,
+                fileId: "",
             },
         });
 

@@ -6,7 +6,7 @@ import ArticleRow from "./ArticleRow";
 export default function Home() {
     const getHomeArticleDoc = gql`
         query test {
-            article(limit: 10, orderBy: { id: ASC }) {
+            article(limit: 10, orderBy: { id: DESC }) {
                 title
                 githubUrl
                 fileId

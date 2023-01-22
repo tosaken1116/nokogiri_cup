@@ -26,9 +26,7 @@ export default function Login() {
                 <Button
                     onClick={() => {
                         login();
-                        if (idToken != "") {
-                            router.push("./");
-                        }
+                        router.push("./");
                     }}
                     variant="contained"
                     href="#contaeined-buttons"
