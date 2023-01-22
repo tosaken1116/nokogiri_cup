@@ -1,3 +1,5 @@
+import { gql, useMutation } from "@apollo/client";
+import { BlobServiceClient, ContainerClient } from "@azure/storage-blob";
 import { initializeApp } from "firebase/app";
 import {
     getAuth,
@@ -7,6 +9,36 @@ import {
     signOut,
 } from "firebase/auth";
 import { useState } from "react";
+export const useUploadArticle = () => {
+    const uploadDocument = gql`
+        mutation uploadArticle(
+            $title: String!
+            $caption: String!
+            $authorId: String!
+            $createdAt: timestamptz!
+            $githubUrl: String!
+            $fileId: uuid!
+        ) {
+            insertArticle(
+                objects: {
+                    title: $title
+                    caption: $caption
+                    authorId: $authorId
+                    createdAt: $createdAt
+                    githubUrl: $githubUrl
+                    fileId: $fileId
+                }
+            ) {
+                returning {
+                    id
+                }
+            }
+        }
+    `;
+    const [uploadArticle, { loading }] = useMutation(uploadDocument);
+    return { uploadArticle, loading };
+};
+
 export const useAuthentication = () => {
     const firebaseConfig = {
         apiKey: process.env.NEXT_PUBLIC_APIKEY,
@@ -46,4 +78,28 @@ export const useAuthentication = () => {
         });
     };
     return { login, logout, idToken };
+};
+
+export const useImageUpload = () => {
+    const [uploadFileId, setUploadFileId] = useState("");
+    const uploadBlob = async (file: FileList) => {
+        var uuid = require("node-uuid");
+        setUploadFileId(uuid.v4());
+        const blobService = new BlobServiceClient(
+            String(process.env.NEXT_PUBLIC_BROB_SERVICE_URL)
+        );
+        const containerName = String(process.env.NEXT_PUBLIC_CONTAINER_NAME);
+        const containerClient: ContainerClient =
+            blobService.getContainerClient(containerName);
+        await containerClient.createIfNotExists({
+            access: "container",
+        });
+        const blobClient = containerClient.getBlockBlobClient(
+            uploadFileId + "." + file[0].name.split(".")[1]
+        );
+        const options = { blobHTTPHeaders: { blobContentType: file[0].type } };
+
+        await blobClient.uploadData(file[0], options);
+    };
+    return { uploadBlob, uploadFileId };
 };

@@ -10,10 +10,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { Grid, IconButton, Paper } from "@mui/material";
 import { NowPageProps } from "../../Types/type";
-import ProfilePopOver from "./ProfilePopover";
 export default function Sidebar({ nowPage, setNowPage }: NowPageProps) {
     return (
-        <Paper sx={{ width: "5vw" }}>
+        <Paper sx={{ width: "60px" }}>
             <Grid
                 container
                 spacing={5}
