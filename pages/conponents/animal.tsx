@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-
+import Image from "next/image"
 type Control = {
   start: () => void;
   stop: () => void;
@@ -178,8 +178,9 @@ export const Animal = ()=>{
     return(
         <>
         {isClient &&
-        <img src={animalImage}
-            style={{width: `${imageWid}px`, height: `${imageHi}px`, imageRendering: "pixelated",
+        <Image src={animalImage} alt="animal"
+            width={imageWid} height={imageHi}
+            style={{ imageRendering: "pixelated",
             position: "fixed", bottom: "50px", left: position, zIndex: 1200,
             transform: `rotate(${degree}deg) scale(${imageScale},1)`, transformOrigin:"center 80%"}}
         />}
