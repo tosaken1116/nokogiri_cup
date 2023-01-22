@@ -20,7 +20,7 @@ export default function Header() {
                                 width: "-webkit-fill-available",
                             }}
                         >
-                            Surportforio仮
+                            Supportfolio
                         </Typography>
                     </Box>
                     <Box flexGrow={1}></Box>
