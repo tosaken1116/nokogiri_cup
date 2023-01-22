@@ -1,6 +1,6 @@
 import { ApolloProvider } from "@apollo/client";
 import Noti from "./noti";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, List } from "@mui/material";
 import { useContext, useState, useRef, useEffect } from "react";
 import Header from "./Header";
 
@@ -20,7 +20,7 @@ const NotionPage = () => {
             variant="h5"
             sx={{
               color: "#333333",
-              bgcolor: "#DDDDDD",
+              bgcolor: "#EEEEEE",
               textshadow: "1px 1px 3px",
             }}
           >
@@ -29,9 +29,9 @@ const NotionPage = () => {
         </Box>
         <Box sx={{ width: 1, height: 200, bgcolor: "white" }}>
           <Typography variant="h6">
-            <ul>
+            <List>
               <Noti />
-            </ul>
+            </List>
           </Typography>
         </Box>
       </main>
