@@ -141,3 +141,15 @@ export const useSearchParams = () => {
         setMediaFilterParams: setSearchParams,
     };
 };
+
+export const getPortFolioByIdDoc = gql`
+    query getPortFolioById($userId: String!) {
+        article(where: { authorId: { _eq: $userId } }) {
+            fileId
+            githubUrl
+            title
+            createdAt
+            id
+        }
+    }
+`;

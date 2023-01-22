@@ -565,6 +565,188 @@ export type TimestamptzComparisonExp = {
   _nin?: InputMaybe<Array<Scalars['timestamptz']>>;
 };
 
+/** columns and relationships of "userProfile" */
+export type UserProfile = {
+  __typename?: 'UserProfile';
+  age: Scalars['String'];
+  career: Scalars['String'];
+  introduction: Scalars['String'];
+  language: Scalars['String'];
+  occupation: Scalars['String'];
+  userId: Scalars['String'];
+};
+
+/** aggregated selection of "userProfile" */
+export type UserProfileAggregate = {
+  __typename?: 'UserProfileAggregate';
+  aggregate?: Maybe<UserProfileAggregateFields>;
+  nodes: Array<UserProfile>;
+};
+
+/** aggregate fields of "userProfile" */
+export type UserProfileAggregateFields = {
+  __typename?: 'UserProfileAggregateFields';
+  count: Scalars['Int'];
+  max?: Maybe<UserProfileMaxFields>;
+  min?: Maybe<UserProfileMinFields>;
+};
+
+
+/** aggregate fields of "userProfile" */
+export type UserProfileAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<UserProfileSelectColumn>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "userProfile". All fields are combined with a logical 'AND'. */
+export type UserProfileBoolExp = {
+  _and?: InputMaybe<Array<UserProfileBoolExp>>;
+  _not?: InputMaybe<UserProfileBoolExp>;
+  _or?: InputMaybe<Array<UserProfileBoolExp>>;
+  age?: InputMaybe<StringComparisonExp>;
+  career?: InputMaybe<StringComparisonExp>;
+  introduction?: InputMaybe<StringComparisonExp>;
+  language?: InputMaybe<StringComparisonExp>;
+  occupation?: InputMaybe<StringComparisonExp>;
+  userId?: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "userProfile" */
+export enum UserProfileConstraint {
+  /** unique or primary key constraint on columns "userId" */
+  UserProfilePkey = 'userProfile_pkey'
+}
+
+/** input type for inserting data into table "userProfile" */
+export type UserProfileInsertInput = {
+  age?: InputMaybe<Scalars['String']>;
+  career?: InputMaybe<Scalars['String']>;
+  introduction?: InputMaybe<Scalars['String']>;
+  language?: InputMaybe<Scalars['String']>;
+  occupation?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type UserProfileMaxFields = {
+  __typename?: 'UserProfileMaxFields';
+  age?: Maybe<Scalars['String']>;
+  career?: Maybe<Scalars['String']>;
+  introduction?: Maybe<Scalars['String']>;
+  language?: Maybe<Scalars['String']>;
+  occupation?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type UserProfileMinFields = {
+  __typename?: 'UserProfileMinFields';
+  age?: Maybe<Scalars['String']>;
+  career?: Maybe<Scalars['String']>;
+  introduction?: Maybe<Scalars['String']>;
+  language?: Maybe<Scalars['String']>;
+  occupation?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "userProfile" */
+export type UserProfileMutationResponse = {
+  __typename?: 'UserProfileMutationResponse';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<UserProfile>;
+};
+
+/** on_conflict condition type for table "userProfile" */
+export type UserProfileOnConflict = {
+  constraint: UserProfileConstraint;
+  update_columns?: Array<UserProfileUpdateColumn>;
+  where?: InputMaybe<UserProfileBoolExp>;
+};
+
+/** Ordering options when selecting data from "userProfile". */
+export type UserProfileOrderBy = {
+  age?: InputMaybe<OrderBy>;
+  career?: InputMaybe<OrderBy>;
+  introduction?: InputMaybe<OrderBy>;
+  language?: InputMaybe<OrderBy>;
+  occupation?: InputMaybe<OrderBy>;
+  userId?: InputMaybe<OrderBy>;
+};
+
+/** primary key columns input for table: userProfile */
+export type UserProfilePkColumnsInput = {
+  userId: Scalars['String'];
+};
+
+/** select columns of table "userProfile" */
+export enum UserProfileSelectColumn {
+  /** column name */
+  Age = 'age',
+  /** column name */
+  Career = 'career',
+  /** column name */
+  Introduction = 'introduction',
+  /** column name */
+  Language = 'language',
+  /** column name */
+  Occupation = 'occupation',
+  /** column name */
+  UserId = 'userId'
+}
+
+/** input type for updating data in table "userProfile" */
+export type UserProfileSetInput = {
+  age?: InputMaybe<Scalars['String']>;
+  career?: InputMaybe<Scalars['String']>;
+  introduction?: InputMaybe<Scalars['String']>;
+  language?: InputMaybe<Scalars['String']>;
+  occupation?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['String']>;
+};
+
+/** Streaming cursor of the table "userProfile" */
+export type UserProfileStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: UserProfileStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type UserProfileStreamCursorValueInput = {
+  age?: InputMaybe<Scalars['String']>;
+  career?: InputMaybe<Scalars['String']>;
+  introduction?: InputMaybe<Scalars['String']>;
+  language?: InputMaybe<Scalars['String']>;
+  occupation?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['String']>;
+};
+
+/** update columns of table "userProfile" */
+export enum UserProfileUpdateColumn {
+  /** column name */
+  Age = 'age',
+  /** column name */
+  Career = 'career',
+  /** column name */
+  Introduction = 'introduction',
+  /** column name */
+  Language = 'language',
+  /** column name */
+  Occupation = 'occupation',
+  /** column name */
+  UserId = 'userId'
+}
+
+export type UserProfileUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<UserProfileSetInput>;
+  /** filter the rows which have to be updated */
+  where: UserProfileBoolExp;
+};
+
 /** columns and relationships of "users" */
 export type Users = {
   __typename?: 'Users';
@@ -723,6 +905,10 @@ export type Mutation_Root = {
   deleteImage?: Maybe<ImageMutationResponse>;
   /** delete single row from the table: "image" */
   deleteImageByPk?: Maybe<Image>;
+  /** delete data from the table: "userProfile" */
+  deleteUserProfile?: Maybe<UserProfileMutationResponse>;
+  /** delete single row from the table: "userProfile" */
+  deleteUserProfileByPk?: Maybe<UserProfile>;
   /** delete data from the table: "users" */
   deleteUsers?: Maybe<UsersMutationResponse>;
   /** delete single row from the table: "users" */
@@ -735,6 +921,10 @@ export type Mutation_Root = {
   insertImage?: Maybe<ImageMutationResponse>;
   /** insert a single row into the table: "image" */
   insertImageOne?: Maybe<Image>;
+  /** insert data into the table: "userProfile" */
+  insertUserProfile?: Maybe<UserProfileMutationResponse>;
+  /** insert a single row into the table: "userProfile" */
+  insertUserProfileOne?: Maybe<UserProfile>;
   /** insert data into the table: "users" */
   insertUsers?: Maybe<UsersMutationResponse>;
   /** insert a single row into the table: "users" */
@@ -751,6 +941,12 @@ export type Mutation_Root = {
   updateImageByPk?: Maybe<Image>;
   /** update multiples rows of table: "image" */
   updateImageMany?: Maybe<Array<Maybe<ImageMutationResponse>>>;
+  /** update data of the table: "userProfile" */
+  updateUserProfile?: Maybe<UserProfileMutationResponse>;
+  /** update single row of the table: "userProfile" */
+  updateUserProfileByPk?: Maybe<UserProfile>;
+  /** update multiples rows of table: "userProfile" */
+  updateUserProfileMany?: Maybe<Array<Maybe<UserProfileMutationResponse>>>;
   /** update data of the table: "users" */
   updateUsers?: Maybe<UsersMutationResponse>;
   /** update single row of the table: "users" */
@@ -781,6 +977,18 @@ export type Mutation_RootDeleteImageArgs = {
 /** mutation root */
 export type Mutation_RootDeleteImageByPkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDeleteUserProfileArgs = {
+  where: UserProfileBoolExp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDeleteUserProfileByPkArgs = {
+  userId: Scalars['String'];
 };
 
 
@@ -821,6 +1029,20 @@ export type Mutation_RootInsertImageArgs = {
 export type Mutation_RootInsertImageOneArgs = {
   object: ImageInsertInput;
   onConflict?: InputMaybe<ImageOnConflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsertUserProfileArgs = {
+  objects: Array<UserProfileInsertInput>;
+  onConflict?: InputMaybe<UserProfileOnConflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsertUserProfileOneArgs = {
+  object: UserProfileInsertInput;
+  onConflict?: InputMaybe<UserProfileOnConflict>;
 };
 
 
@@ -883,6 +1105,26 @@ export type Mutation_RootUpdateImageManyArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdateUserProfileArgs = {
+  _set?: InputMaybe<UserProfileSetInput>;
+  where: UserProfileBoolExp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdateUserProfileByPkArgs = {
+  _set?: InputMaybe<UserProfileSetInput>;
+  pk_columns: UserProfilePkColumnsInput;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdateUserProfileManyArgs = {
+  updates: Array<UserProfileUpdates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdateUsersArgs = {
   _set?: InputMaybe<UsersSetInput>;
   where: UsersBoolExp;
@@ -915,6 +1157,12 @@ export type Query_Root = {
   imageAggregate: ImageAggregate;
   /** fetch data from the table: "image" using primary key columns */
   imageByPk?: Maybe<Image>;
+  /** fetch data from the table: "userProfile" */
+  userProfile: Array<UserProfile>;
+  /** fetch aggregated fields from the table: "userProfile" */
+  userProfileAggregate: UserProfileAggregate;
+  /** fetch data from the table: "userProfile" using primary key columns */
+  userProfileByPk?: Maybe<UserProfile>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -970,6 +1218,29 @@ export type Query_RootImageByPkArgs = {
 };
 
 
+export type Query_RootUserProfileArgs = {
+  distinctOn?: InputMaybe<Array<UserProfileSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<UserProfileOrderBy>>;
+  where?: InputMaybe<UserProfileBoolExp>;
+};
+
+
+export type Query_RootUserProfileAggregateArgs = {
+  distinctOn?: InputMaybe<Array<UserProfileSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<UserProfileOrderBy>>;
+  where?: InputMaybe<UserProfileBoolExp>;
+};
+
+
+export type Query_RootUserProfileByPkArgs = {
+  userId: Scalars['String'];
+};
+
+
 export type Query_RootUsersArgs = {
   distinctOn?: InputMaybe<Array<UsersSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -1010,6 +1281,14 @@ export type Subscription_Root = {
   imageByPk?: Maybe<Image>;
   /** fetch data from the table in a streaming manner: "image" */
   imageStream: Array<Image>;
+  /** fetch data from the table: "userProfile" */
+  userProfile: Array<UserProfile>;
+  /** fetch aggregated fields from the table: "userProfile" */
+  userProfileAggregate: UserProfileAggregate;
+  /** fetch data from the table: "userProfile" using primary key columns */
+  userProfileByPk?: Maybe<UserProfile>;
+  /** fetch data from the table in a streaming manner: "userProfile" */
+  userProfileStream: Array<UserProfile>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -1081,6 +1360,36 @@ export type Subscription_RootImageStreamArgs = {
 };
 
 
+export type Subscription_RootUserProfileArgs = {
+  distinctOn?: InputMaybe<Array<UserProfileSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<UserProfileOrderBy>>;
+  where?: InputMaybe<UserProfileBoolExp>;
+};
+
+
+export type Subscription_RootUserProfileAggregateArgs = {
+  distinctOn?: InputMaybe<Array<UserProfileSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<UserProfileOrderBy>>;
+  where?: InputMaybe<UserProfileBoolExp>;
+};
+
+
+export type Subscription_RootUserProfileByPkArgs = {
+  userId: Scalars['String'];
+};
+
+
+export type Subscription_RootUserProfileStreamArgs = {
+  batchSize: Scalars['Int'];
+  cursor: Array<InputMaybe<UserProfileStreamCursorInput>>;
+  where?: InputMaybe<UserProfileBoolExp>;
+};
+
+
 export type Subscription_RootUsersArgs = {
   distinctOn?: InputMaybe<Array<UsersSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -1129,6 +1438,14 @@ export type TestQueryVariables = Exact<{
 
 export type TestQuery = { __typename?: 'query_root', article: Array<{ __typename?: 'Article', title: string, githubUrl?: string | null, fileId?: any | null, createdAt: any, caption: string, authorId: string }> };
 
+export type GetPortFolioByIdQueryVariables = Exact<{
+  userId: Scalars['String'];
+}>;
+
+
+export type GetPortFolioByIdQuery = { __typename?: 'query_root', article: Array<{ __typename?: 'Article', fileId?: any | null, githubUrl?: string | null, title: string, createdAt: any, id: number }> };
+
 
 export const UploadArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"uploadArticle"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"caption"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"authorId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createdAt"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"timestamptz"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"githubUrl"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"fileId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insertArticle"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"objects"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"caption"},"value":{"kind":"Variable","name":{"kind":"Name","value":"caption"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"authorId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"authorId"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"createdAt"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createdAt"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"githubUrl"},"value":{"kind":"Variable","name":{"kind":"Name","value":"githubUrl"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"fileId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"fileId"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"returning"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<UploadArticleMutation, UploadArticleMutationVariables>;
 export const TestDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"test"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"_ilike"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"article"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_ilike"},"value":{"kind":"Variable","name":{"kind":"Name","value":"_ilike"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"10"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"fileId"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"authorId"}}]}}]}}]} as unknown as DocumentNode<TestQuery, TestQueryVariables>;
+export const GetPortFolioByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getPortFolioById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"article"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"authorId"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fileId"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<GetPortFolioByIdQuery, GetPortFolioByIdQueryVariables>;

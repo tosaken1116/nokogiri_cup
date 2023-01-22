@@ -18,3 +18,8 @@ export type ArticleProps = {
 export type SearchWordProps = {
     searchWord: string;
 };
+
+export type PortfolioSegmentProps = Pick<
+    ArticleProps,
+    "title" | "githubUrl" | "fileId" | "createdAt"
+> & { articleId: string };
