@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useImageUpload } from "../Hooks/hooks";
 import MarkdownArticle from "./components/MarkdownArticle";
-import { useUploadArticle } from "./hooks";
+import { useUploadArticle } from "../Hooks/hooks";
 export default function AddArticle() {
     const router = useRouter();
     const { uploadBlob, uploadFileId } = useImageUpload();

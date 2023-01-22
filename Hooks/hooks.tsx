@@ -1,3 +1,4 @@
+import { gql, useMutation } from "@apollo/client";
 import { BlobServiceClient, ContainerClient } from "@azure/storage-blob";
 import { initializeApp } from "firebase/app";
 import {
@@ -8,6 +9,35 @@ import {
     signOut,
 } from "firebase/auth";
 import { useState } from "react";
+export const useUploadArticle = () => {
+    const uploadDocument = gql`
+        mutation uploadArticle(
+            $title: String!
+            $caption: String!
+            $authorId: String!
+            $createdAt: timestamptz!
+            $githubUrl: String!
+            $fileId: uuid!
+        ) {
+            insertArticle(
+                objects: {
+                    title: $title
+                    caption: $caption
+                    authorId: $authorId
+                    createdAt: $createdAt
+                    githubUrl: $githubUrl
+                    fileId: $fileId
+                }
+            ) {
+                returning {
+                    id
+                }
+            }
+        }
+    `;
+    const [uploadArticle, { loading }] = useMutation(uploadDocument);
+    return { uploadArticle, loading };
+};
 
 export const useAuthentication = () => {
     const firebaseConfig = {
