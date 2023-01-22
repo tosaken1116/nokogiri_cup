@@ -13,4 +13,8 @@ export type ArticleProps = {
     authorId: string;
     createdAt: string;
     githubUrl: string;
+    fileId?: string;
+};
+export type SearchWordProps = {
+    searchWord: string;
 };
