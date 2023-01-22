@@ -11,7 +11,7 @@ export type NotificationRowProps = {
     // icon:string
     noticeType: string;
 };
-export const Notification = () => {
+export default function Notification(){
     const notifications = [
         { name: "salto", noticeType: "like" },
         { name: "yamada", noticeType: "share" },
