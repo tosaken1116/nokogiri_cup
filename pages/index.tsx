@@ -1,8 +1,10 @@
+
 import { Box, Stack } from "@mui/material";
 import { useState } from "react";
 import Header from "./components/Header";
 import NowPage from "./components/NowPage";
 import Sidebar from "./components/sidebar";
+import { Animal } from "./conponents/animal";
 export default function Home() {
     const [nowPage, setNowPage] = useState("home");
     // const [anchorElement, setAnchorElement] =
@@ -16,6 +18,7 @@ export default function Home() {
         <Box>
             <Stack>
                 <Header />
+                <Animal/>
                 <Stack direction="row">
                     <Sidebar nowPage={nowPage} setNowPage={setNowPage} />
                     <NowPage nowPage={nowPage}></NowPage>
