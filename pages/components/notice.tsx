@@ -1,5 +1,4 @@
 import { ApolloProvider } from "@apollo/client";
-import Noti from "./noti";
 import { Box, Typography, List } from "@mui/material";
 import { useContext, useState, useRef, useEffect } from "react";
 import Header from "./Header";
@@ -8,8 +7,25 @@ import Header from "./Header";
 //   // eslint-disable-next-line react/jsx-key
 //   <li>{notion}</li>
 // ));
+export type NotificationRowProps = {
+  name: string;
+  // icon:string
+  notine: string;
+};
 
-const NotionPage = () => {
+const App = () => {
+  const notification = [
+    { name: "salto", notine: "like" },
+    { name: "yamada", notine: "share" },
+    { name: "suzuki", notine: "like" },
+  ];
+  return notification.map((notice, index) => {
+    // indexの追加
+    return <NotionPage name={notice.name} notine={notice.notine} key={index} />; // keyの追加
+  }); // keyの追加
+};
+
+const NotionPage = (props: NotificationRowProps) => {
   return (
     <div>
       <main>
@@ -29,9 +45,11 @@ const NotionPage = () => {
         </Box>
         <Box sx={{ width: 1, height: 200, bgcolor: "white" }}>
           <Typography variant="h6">
-            <List>
-              <Noti />
-            </List>
+            <ul>
+              <li className="border-2 border-y-gray-300 text-center">
+                {props.name}は{props.notine}を与えました！
+              </li>
+            </ul>
           </Typography>
         </Box>
       </main>
@@ -39,4 +57,4 @@ const NotionPage = () => {
   );
 };
 
-export default NotionPage;
+export default App;
