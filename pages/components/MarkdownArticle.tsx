@@ -4,13 +4,13 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import { ArticleProps } from "../../Types/type";
-const MarkdownArticle = ({
+export default function MarkdownArticle({
     title,
     caption,
     authorId,
     createdAt,
     githubUrl,
-}: ArticleProps) => {
+}: ArticleProps) {
     return (
         <Paper
             sx={{ width: "-webkit-fill-available" }}
@@ -20,7 +20,7 @@ const MarkdownArticle = ({
                 <Stack>
                     <Stack>
                         <Typography variant="h4">{title}</Typography>
-                        <Link href={githubUrl}>
+                        <Link href={githubUrl ?? ""}>
                             <GitHubIcon />
                         </Link>
                     </Stack>
@@ -36,5 +36,5 @@ const MarkdownArticle = ({
             </Stack>
         </Paper>
     );
-};
-export default MarkdownArticle;
+}
+MarkdownArticle;
