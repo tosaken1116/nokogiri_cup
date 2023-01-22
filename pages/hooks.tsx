@@ -7,6 +7,7 @@ export const useUploadArticle = () => {
             $authorId: String!
             $createdAt: timestamptz!
             $githubUrl: String!
+            $fileId: uuid!
         ) {
             insertArticle(
                 objects: {
@@ -15,6 +16,7 @@ export const useUploadArticle = () => {
                     authorId: $authorId
                     createdAt: $createdAt
                     githubUrl: $githubUrl
+                    fileId: $fileId
                 }
             ) {
                 returning {

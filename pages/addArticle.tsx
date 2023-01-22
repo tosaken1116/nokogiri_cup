@@ -1,6 +1,8 @@
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import {
     Box,
+    Button,
     IconButton,
     Paper,
     Stack,
@@ -9,22 +11,30 @@ import {
 } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
-
 import { useState } from "react";
+import { useImageUpload } from "../Hooks/hooks";
 import MarkdownArticle from "./components/MarkdownArticle";
 import { useUploadArticle } from "./hooks";
 export default function AddArticle() {
     const router = useRouter();
-
+    const { uploadBlob, uploadFileId } = useImageUpload();
     const { uploadArticle, loading } = useUploadArticle();
     const now = new Date();
     const today =
         now.getFullYear() + "/" + now.getMonth() + 1 + "/" + now.getDate();
+    const initialInputValue = {
+        title: "",
+        caption: "",
+        githubUrl: "",
+        createdAt: String(today),
+        fileId: "",
+    };
     const [input, setInput] = useState({
         title: "",
         caption: "",
         githubUrl: "",
         createdAt: String(today),
+        fileId: "",
     });
     const setData = (e: any) => {
         e.preventDefault();
@@ -32,7 +42,7 @@ export default function AddArticle() {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
     const handleUpload = () => {
-        if (input.title === "" || input.caption === "") {
+        if (input.title == "" || input.caption == "") {
             return;
         }
         uploadArticle({
@@ -42,11 +52,14 @@ export default function AddArticle() {
                 authorId: "2",
                 createdAt: input.createdAt,
                 githubUrl: input.githubUrl,
+                fileId: uploadFileId,
             },
         });
+
         if (loading) {
             return <CircularProgress />;
         }
+        setInput(initialInputValue);
         router.push("./");
     };
     return (
@@ -63,15 +76,35 @@ export default function AddArticle() {
                     sx={{ alignItems: "center", justifyContent: "center" }}
                     spacing={2}
                 >
-                    <Paper>
-                        <TextField
-                            label="title"
-                            sx={{ width: "300px" }}
-                            name="title"
-                            onChange={setData}
-                            size="small"
-                        ></TextField>
-                    </Paper>
+                    <Stack direction="row" sx={{ width: "300px" }}>
+                        <Paper>
+                            <TextField
+                                label="title"
+                                name="title"
+                                onChange={setData}
+                                size="small"
+                                required
+                            ></TextField>
+                        </Paper>
+
+                        <Box sx={{ alignSelf: "center" }}>
+                            <Button
+                                component="label"
+                                startIcon={<AddPhotoAlternateIcon />}
+                            >
+                                <input
+                                    type="file"
+                                    accept="image/png, image/jpeg"
+                                    hidden
+                                    onChange={(e) => {
+                                        if (e.target.files != null) {
+                                            uploadBlob(e.target.files);
+                                        }
+                                    }}
+                                />
+                            </Button>
+                        </Box>
+                    </Stack>
                     <Paper>
                         <TextField
                             label="githuburl"
@@ -83,6 +116,7 @@ export default function AddArticle() {
                     </Paper>
                     <Paper>
                         <TextareaAutosize
+                            required
                             className="markdown-form  w-[300px] "
                             onChange={setData}
                             name="caption"
