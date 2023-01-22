@@ -18,8 +18,11 @@ export default function ArticleRow({
                 <Image
                     width={100}
                     height={60}
-                    src={process.env.NEXT_PUBLIC_FILE_URL + fileId}
+                    src={
+                        "https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png"
+                    }
                     alt=""
+                    className="rounded-md"
                 ></Image>
                 <Stack spacing={2}>
                     <Typography variant="h5">{title}</Typography>
@@ -29,10 +32,13 @@ export default function ArticleRow({
                                 <Image
                                     width={32}
                                     height={16}
-                                    src=""
+                                    src="https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png"
                                     alt=""
+                                    className="rounded-full"
                                 ></Image>
-                                <Typography>{authorId}</Typography>
+                                <Typography sx={{ alignSelf: "center" }} px={1}>
+                                    {authorId}
+                                </Typography>
                             </Stack>
                             <Typography>投稿日:{createdAt}</Typography>
                         </Stack>
