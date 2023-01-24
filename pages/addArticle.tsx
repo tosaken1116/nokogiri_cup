@@ -103,9 +103,9 @@ export default function AddArticle() {
                     </Stack>
                     <Paper>
                         <TextField
-                            label="githuburl"
+                            label="githubUrl"
                             sx={{ width: "300px" }}
-                            name="githuburl"
+                            name="githubUrl"
                             onChange={setData}
                             size="small"
                         ></TextField>
