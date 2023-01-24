@@ -11,6 +11,7 @@ specifiers:
   '@graphql-typed-document-node/core': ^3.1.1
   '@mui/icons-material': ^5.11.0
   '@mui/material': ^5.11.5
+  '@types/js-cookie': ^3.0.2
   '@types/node': 18.11.18
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.10
@@ -44,6 +45,7 @@ dependencies:
   '@graphql-typed-document-node/core': 3.1.1_graphql@16.6.0
   '@mui/icons-material': 5.11.0_qf6ggnnrpsyhzwt6sk54rmqqzq
   '@mui/material': 5.11.5_lskpmcsdi7ipu6qpuapyu56ihm
+  '@types/js-cookie': 3.0.2
   AttachFile: link:@mui/icons-material/AttachFile
   cross-fetch: 3.1.5
   dotenv: 16.0.3
@@ -2591,6 +2593,10 @@ packages:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
     dependencies:
       '@types/unist': 2.0.6
+    dev: false
+
+  /@types/js-cookie/3.0.2:
+    resolution: {integrity: sha512-6+0ekgfusHftJNYpihfkMu8BWdeHs9EOJuGcSofErjstGPfPGEu9yTu4t460lTzzAMl2cM5zngQJqPMHbbnvYA==}
     dev: false
 
   /@types/js-yaml/4.0.5:
