@@ -9,6 +9,7 @@ import {
     signInWithPopup,
     signOut,
 } from "firebase/auth";
+import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { SearchWordProps } from "../Types/type";
@@ -18,7 +19,7 @@ export const useUploadArticle = () => {
             $title: String!
             $caption: String!
             $authorId: String!
-            $createdAt: timestamptz!
+            $createdAt: timestamp!
             $githubUrl: String!
             $fileId: String!
         ) {
@@ -56,14 +57,20 @@ export const useAuthentication = () => {
     const [idToken, setIdToken] = useState("");
 
     const app = initializeApp(firebaseConfig);
+    const { setLocalStorage } = useLocalStorage();
     const auth = getAuth(app);
     const login = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider);
+        console.log(auth);
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 user.getIdToken().then((token) => {
+                    console.log(token);
                     setIdToken(token);
+                    console.log("in");
+                    setLocalStorage({ authToken: token });
+                    console.log("in");
                 });
             }
         });
@@ -177,4 +184,14 @@ export const useArticle = () => {
         article: data?.article[0],
         loading,
     };
+};
+export const useLocalStorage = () => {
+    const getLocalStorage = (key: string) => {
+        console.log(Cookies.get(key));
+        return Cookies.get(key);
+    };
+    const setLocalStorage = (setValue: object) => {
+        Cookies.set(Object.keys(setValue)[0], Object.values(setValue)[0]);
+    };
+    return { getLocalStorage, setLocalStorage };
 };

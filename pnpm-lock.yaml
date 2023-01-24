@@ -11,6 +11,7 @@ specifiers:
   '@graphql-typed-document-node/core': ^3.1.1
   '@mui/icons-material': ^5.11.0
   '@mui/material': ^5.11.5
+  '@types/js-cookie': ^3.0.2
   '@types/node': 18.11.18
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.10
@@ -23,6 +24,7 @@ specifiers:
   firebase: ^9.16.0
   firebase-functions: ^4.2.0
   graphql: ^16.6.0
+  js-cookie: ^3.0.1
   next: 13.1.2
   node-uuid: ^1.4.8
   postcss: ^8.4.21
@@ -43,12 +45,14 @@ dependencies:
   '@graphql-typed-document-node/core': 3.1.1_graphql@16.6.0
   '@mui/icons-material': 5.11.0_qf6ggnnrpsyhzwt6sk54rmqqzq
   '@mui/material': 5.11.5_lskpmcsdi7ipu6qpuapyu56ihm
+  '@types/js-cookie': 3.0.2
   AttachFile: link:@mui/icons-material/AttachFile
   cross-fetch: 3.1.5
   dotenv: 16.0.3
   firebase: 9.16.0
   firebase-functions: 4.2.0
   graphql: 16.6.0
+  js-cookie: 3.0.1
   next: 13.1.2_biqbaboplfbrettd7655fr4n2y
   node-uuid: 1.4.8
   react: 18.2.0
@@ -2591,6 +2595,10 @@ packages:
       '@types/unist': 2.0.6
     dev: false
 
+  /@types/js-cookie/3.0.2:
+    resolution: {integrity: sha512-6+0ekgfusHftJNYpihfkMu8BWdeHs9EOJuGcSofErjstGPfPGEu9yTu4t460lTzzAMl2cM5zngQJqPMHbbnvYA==}
+    dev: false
+
   /@types/js-yaml/4.0.5:
     resolution: {integrity: sha512-FhpRzf927MNQdRZP0J5DLIdTXhjLYzeUTmLAu69mnVksLH9CJY3IuSeEgbKUki7GQZm0WqDkGzyxju2EZGD2wA==}
     dev: false
@@ -5087,6 +5095,11 @@ packages:
       ws: '*'
     dependencies:
       ws: 8.12.0
+    dev: false
+
+  /js-cookie/3.0.1:
+    resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
+    engines: {node: '>=12'}
     dev: false
 
   /js-sdsl/4.2.0:
