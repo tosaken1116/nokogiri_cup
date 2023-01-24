@@ -153,3 +153,28 @@ export const getPortFolioByIdDoc = gql`
         }
     }
 `;
+const getArticleByIdDoc = gql`
+    query getArticleById($articleId: Int!) {
+        article(where: { id: { _eq: $articleId } }, limit: 1) {
+            authorId
+            caption
+            createdAt
+            fileId
+            githubUrl
+            id
+            title
+        }
+    }
+`;
+export const useArticle = () => {
+    const router = useRouter();
+    const articleId = router.query.articleId;
+    const { data, loading } = useQuery(getArticleByIdDoc, {
+        variables: { articleId: articleId },
+    });
+    console.log(data);
+    return {
+        article: data?.article[0],
+        loading,
+    };
+};
