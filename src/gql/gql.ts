@@ -16,6 +16,7 @@ const documents = {
     "\n        mutation uploadArticle(\n            $title: String!\n            $caption: String!\n            $authorId: String!\n            $createdAt: timestamptz!\n            $githubUrl: String!\n            $fileId: String!\n        ) {\n            insertArticle(\n                objects: {\n                    title: $title\n                    caption: $caption\n                    authorId: $authorId\n                    createdAt: $createdAt\n                    githubUrl: $githubUrl\n                    fileId: $fileId\n                }\n            ) {\n                returning {\n                    id\n                }\n            }\n        }\n    ": types.UploadArticleDocument,
     "\n    query test($_ilike: String!) {\n        article(where: { title: { _ilike: $_ilike } }, limit: 10) {\n            title\n            githubUrl\n            fileId\n            createdAt\n            caption\n            authorId\n        }\n    }\n": types.TestDocument,
     "\n    query getPortFolioById($userId: String!) {\n        article(where: { authorId: { _eq: $userId } }) {\n            fileId\n            githubUrl\n            title\n            createdAt\n            id\n        }\n    }\n": types.GetPortFolioByIdDocument,
+    "\n    query getArticleById($articleId: Int!) {\n        article(where: { id: { _eq: $articleId } }, limit: 1) {\n            authorId\n            caption\n            createdAt\n            fileId\n            githubUrl\n            id\n            title\n        }\n    }\n": types.GetArticleByIdDocument,
 };
 
 /**
@@ -44,6 +45,10 @@ export function graphql(source: "\n    query test($_ilike: String!) {\n        a
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n    query getPortFolioById($userId: String!) {\n        article(where: { authorId: { _eq: $userId } }) {\n            fileId\n            githubUrl\n            title\n            createdAt\n            id\n        }\n    }\n"): (typeof documents)["\n    query getPortFolioById($userId: String!) {\n        article(where: { authorId: { _eq: $userId } }) {\n            fileId\n            githubUrl\n            title\n            createdAt\n            id\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    query getArticleById($articleId: Int!) {\n        article(where: { id: { _eq: $articleId } }, limit: 1) {\n            authorId\n            caption\n            createdAt\n            fileId\n            githubUrl\n            id\n            title\n        }\n    }\n"): (typeof documents)["\n    query getArticleById($articleId: Int!) {\n        article(where: { id: { _eq: $articleId } }, limit: 1) {\n            authorId\n            caption\n            createdAt\n            fileId\n            githubUrl\n            id\n            title\n        }\n    }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
