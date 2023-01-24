@@ -23,6 +23,7 @@ specifiers:
   firebase: ^9.16.0
   firebase-functions: ^4.2.0
   graphql: ^16.6.0
+  js-cookie: ^3.0.1
   next: 13.1.2
   node-uuid: ^1.4.8
   postcss: ^8.4.21
@@ -49,6 +50,7 @@ dependencies:
   firebase: 9.16.0
   firebase-functions: 4.2.0
   graphql: 16.6.0
+  js-cookie: 3.0.1
   next: 13.1.2_biqbaboplfbrettd7655fr4n2y
   node-uuid: 1.4.8
   react: 18.2.0
@@ -5087,6 +5089,11 @@ packages:
       ws: '*'
     dependencies:
       ws: 8.12.0
+    dev: false
+
+  /js-cookie/3.0.1:
+    resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
+    engines: {node: '>=12'}
     dev: false
 
   /js-sdsl/4.2.0:
