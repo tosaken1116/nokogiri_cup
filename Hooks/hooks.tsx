@@ -11,8 +11,8 @@ import {
 } from "firebase/auth";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import { SearchWordProps } from "../Types/type";
+import { useEffect, useState } from "react";
+import { DebounceExecuteProps, SearchWordProps } from "../Types/type";
 export const useUploadArticle = () => {
     const uploadDocument = gql`
         mutation uploadArticle(
@@ -62,15 +62,11 @@ export const useAuthentication = () => {
     const login = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider);
-        console.log(auth);
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 user.getIdToken().then((token) => {
-                    console.log(token);
                     setIdToken(token);
-                    console.log("in");
                     setLocalStorage({ authToken: token });
-                    console.log("in");
                 });
             }
         });
@@ -126,10 +122,16 @@ const getSearchResultDoc = gql`
 `;
 export const useSearch = () => {
     const router = useRouter();
-    const searchWord = router.query.searchWord;
-    const { data } = useQuery(getSearchResultDoc, {
-        variables: { _ilike: searchWord },
+    const searchWord = String(router.query.searchWord);
+    const { debouncedKeyword } = useDebounceSearch({
+        keyword: searchWord,
+        timeOutMillSec: 1000,
     });
+    console.log(debouncedKeyword);
+    const { data } = useQuery(getSearchResultDoc, {
+        variables: { _ilike: debouncedKeyword },
+    });
+    console.log(data);
     return {
         article: data?.article,
     };
@@ -179,7 +181,6 @@ export const useArticle = () => {
     const { data, loading } = useQuery(getArticleByIdDoc, {
         variables: { articleId: articleId },
     });
-    console.log(data);
     return {
         article: data?.article[0],
         loading,
@@ -187,11 +188,25 @@ export const useArticle = () => {
 };
 export const useLocalStorage = () => {
     const getLocalStorage = (key: string) => {
-        console.log(Cookies.get(key));
         return Cookies.get(key);
     };
     const setLocalStorage = (setValue: object) => {
         Cookies.set(Object.keys(setValue)[0], Object.values(setValue)[0]);
     };
     return { getLocalStorage, setLocalStorage };
+};
+export const useDebounceSearch = ({
+    keyword,
+    timeOutMillSec,
+}: DebounceExecuteProps) => {
+    const [debouncedKeyword, setDebouncedKeyword] = useState(keyword);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedKeyword(keyword);
+        }, timeOutMillSec);
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [keyword, timeOutMillSec]);
+    return { debouncedKeyword };
 };

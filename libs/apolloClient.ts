@@ -28,6 +28,5 @@ export const initializeApollo = (authToken?: string) => {
     const _apolloClient = apolloClient ?? createApolloClient(authToken);
     if (typeof window === "undefined") return _apolloClient;
     if (!apolloClient) apolloClient = _apolloClient;
-    console.log(_apolloClient);
     return _apolloClient;
 };

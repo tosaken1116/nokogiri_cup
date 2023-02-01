@@ -1,10 +1,14 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, Stack, TextField } from "@mui/material";
 import { useState } from "react";
-import { useSearchParams } from "../../Hooks/hooks";
+import { useDebounceSearch, useSearchParams } from "../../Hooks/hooks";
 import { NowPageProps } from "../../Types/type";
 export default function SubHeader({ nowPage }: Pick<NowPageProps, "nowPage">) {
     const [searchWord, setSearchWord] = useState("");
+    const { debouncedKeyword } = useDebounceSearch({
+        keyword: searchWord,
+        timeOutMillSec: 1000,
+    });
     const { setMediaFilterParams } = useSearchParams();
     const handleSearchWord = (e: React.ChangeEvent<HTMLInputElement>) => {
         setMediaFilterParams({ searchWord: e.target.value });

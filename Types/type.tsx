@@ -23,3 +23,7 @@ export type PortfolioSegmentProps = Pick<
     ArticleProps,
     "title" | "githubUrl" | "fileId" | "createdAt"
 > & { articleId: string };
+export type DebounceExecuteProps = {
+    keyword: string;
+    timeOutMillSec: number;
+};
