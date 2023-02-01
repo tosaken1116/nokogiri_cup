@@ -39,7 +39,6 @@ export default function Login() {
 
                 <Button
                     onClick={() => {
-                        console.log("sign in");
                         router.push({
                             pathname: "./",
                             // query: { username: username}
