@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getPortFolioByIdDoc } from "../../Hooks/hooks";
 
-export default function Article() {
+export default function Articles() {
     const { data } = useQuery(getPortFolioByIdDoc, {
         variables: { userId: "2" },
     });
