@@ -1,26 +1,16 @@
-import { gql, useQuery } from "@apollo/client";
 import { Box, List, ListItem } from "@mui/material";
-import { ArticleProps } from "../../Types/type";
-import ArticleRow from "./ArticleRow";
+import { useSearch } from "../Hooks/hooks";
+import { ArticleProps } from "../Types/type";
+import ArticleRow from "./components/ArticleRow";
+import SubHeader from "./components/SubHeader";
 
-export default function Home() {
-    const getHomeArticleDoc = gql`
-        query test {
-            article(limit: 10, orderBy: { id: DESC }) {
-                title
-                githubUrl
-                fileId
-                createdAt
-                caption
-                authorId
-            }
-        }
-    `;
-    const { data } = useQuery(getHomeArticleDoc);
+export default function Search() {
+    const { article } = useSearch();
     return (
         <Box>
+            <SubHeader></SubHeader>
             <List sx={{ maxHeight: "70vh", overflow: "auto" }}>
-                {data?.article?.map(
+                {article?.map(
                     (
                         {
                             createdAt,

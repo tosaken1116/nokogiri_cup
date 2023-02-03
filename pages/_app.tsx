@@ -4,13 +4,16 @@ import { useLocalStorage } from "../Hooks/hooks";
 import { initializeApollo } from "../libs/apolloClient";
 import "../styles/globals.css";
 import "../styles/markdown.css";
+import Layout from "./components/Layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const { getLocalStorage } = useLocalStorage();
     const client = initializeApollo(getLocalStorage("authToken"));
     return (
         <ApolloProvider client={client}>
-            <Component {...pageProps} />
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
         </ApolloProvider>
     );
 }

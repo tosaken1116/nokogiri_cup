@@ -1,14 +1,11 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, Stack, TextField } from "@mui/material";
+import { useRouter } from "next/router";
 import { useState } from "react";
-import { useDebounceSearch, useSearchParams } from "../../Hooks/hooks";
-import { NowPageProps } from "../../Types/type";
-export default function SubHeader({ nowPage }: Pick<NowPageProps, "nowPage">) {
+import { useSearchParams } from "../../Hooks/hooks";
+export default function SubHeader() {
+    const router = useRouter();
     const [searchWord, setSearchWord] = useState("");
-    const { debouncedKeyword } = useDebounceSearch({
-        keyword: searchWord,
-        timeOutMillSec: 1000,
-    });
     const { setMediaFilterParams } = useSearchParams();
     const handleSearchWord = (e: React.ChangeEvent<HTMLInputElement>) => {
         setMediaFilterParams({ searchWord: e.target.value });
@@ -17,9 +14,7 @@ export default function SubHeader({ nowPage }: Pick<NowPageProps, "nowPage">) {
         <Box>
             <Stack p={2}>
                 <Box>
-                    {nowPage == "home" ? (
-                        <></>
-                    ) : nowPage == "search" ? (
+                    {router.pathname == "/Search" ? (
                         <Box>
                             <TextField
                                 label="検索"

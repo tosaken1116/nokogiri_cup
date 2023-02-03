@@ -1,16 +1,26 @@
-import { Box, Divider, List, ListItem } from "@mui/material";
-import { useSearch } from "../../Hooks/hooks";
-import { ArticleProps, NowPageProps } from "../../Types/type";
-import ArticleRow from "./ArticleRow";
-import SubHeader from "./SubHeader";
+import { gql, useQuery } from "@apollo/client";
+import { Box, List, ListItem } from "@mui/material";
+import { ArticleProps } from "../Types/type";
+import ArticleRow from "./components/ArticleRow";
 
-export default function Search({ nowPage }: Pick<NowPageProps, "nowPage">) {
-    const { article } = useSearch();
+export default function Home() {
+    const getHomeArticleDoc = gql`
+        query test {
+            article(limit: 10, orderBy: { id: DESC }) {
+                title
+                githubUrl
+                fileId
+                createdAt
+                caption
+                authorId
+            }
+        }
+    `;
+    const { data } = useQuery(getHomeArticleDoc);
     return (
         <Box>
-            <SubHeader nowPage={nowPage}></SubHeader>
             <List sx={{ maxHeight: "70vh", overflow: "auto" }}>
-                {article?.map(
+                {data?.article?.map(
                     (
                         {
                             createdAt,

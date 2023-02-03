@@ -8,10 +8,12 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { Box, Grid, IconButton, Paper, Slide } from "@mui/material";
+import { Box, Grid, Paper, Slide } from "@mui/material";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
-import { NowPageProps } from "../../Types/type";
-export default function Sidebar({ nowPage, setNowPage }: NowPageProps) {
+export default function Sidebar() {
+    const router = useRouter();
     const [isHover, setIsHover] = useState(false);
     return (
         <Box
@@ -38,52 +40,50 @@ export default function Sidebar({ nowPage, setNowPage }: NowPageProps) {
                         }}
                     >
                         <Grid item>
-                            <IconButton onClick={() => setNowPage("home")}>
-                                {nowPage == "home" ? (
+                            <Link href="Home">
+                                {router.pathname == "/Home" ? (
                                     <HomeIcon />
                                 ) : (
                                     <HomeOutlinedIcon />
                                 )}
-                            </IconButton>
+                            </Link>
                         </Grid>
                         <Grid item>
-                            <IconButton onClick={() => setNowPage("search")}>
-                                {nowPage == "search" ? (
+                            <Link href="Search">
+                                {router.pathname == "/Search" ? (
                                     <SearchIcon />
                                 ) : (
                                     <SearchOutlinedIcon />
                                 )}
-                            </IconButton>
+                            </Link>
                         </Grid>
 
                         <Grid item>
-                            <IconButton onClick={() => setNowPage("profile")}>
-                                {nowPage == "profile" ? (
+                            <Link href="/Profile">
+                                {router.pathname == "/Profile" ? (
                                     <AccountCircleIcon />
                                 ) : (
                                     <AccountCircleOutlinedIcon />
                                 )}
-                            </IconButton>
+                            </Link>
                         </Grid>
                         <Grid item>
-                            <IconButton
-                                onClick={() => setNowPage("notification")}
-                            >
-                                {nowPage == "notification" ? (
+                            <Link href="/Notifications">
+                                {router.pathname == "/Notifications" ? (
                                     <NotificationsIcon />
                                 ) : (
                                     <NotificationsNoneOutlinedIcon />
                                 )}
-                            </IconButton>
+                            </Link>
                         </Grid>
                         <Grid item>
-                            <IconButton onClick={() => setNowPage("comment")}>
-                                {nowPage == "comment" ? (
+                            <Link href="./Comment">
+                                {router.pathname == "/Comment" ? (
                                     <InsertCommentIcon />
                                 ) : (
                                     <InsertCommentOutlinedIcon />
                                 )}
-                            </IconButton>
+                            </Link>
                         </Grid>
                     </Grid>
                 </Paper>
