@@ -77,8 +77,8 @@ export default function Sidebar() {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="./Comment">
-                                {router.pathname == "/Comment" ? (
+                            <Link href="./Comments">
+                                {router.pathname == "/Comments" ? (
                                     <InsertCommentIcon />
                                 ) : (
                                     <InsertCommentOutlinedIcon />
