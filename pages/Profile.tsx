@@ -2,7 +2,6 @@ import AttachFileIcon from "@mui/icons-material/AttachFile";
 import CodeIcon from "@mui/icons-material/Code";
 import ComputerIcon from "@mui/icons-material/Computer";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import WorkIcon from "@mui/icons-material/Work";
 import {
@@ -14,14 +13,16 @@ import {
     ListItemText,
 } from "@mui/material";
 import React from "react";
+import Icon from "./components/Icon";
 
 export default function Profile() {
     return (
         <Box sx={{ display: "flex" }}>
             <Box sx={{ m: 2 }}>
-                <Avatar sx={{ height: 150, width: 150 }}>
-                    <InsertPhotoIcon />
-                </Avatar>
+                <Icon
+                    iconPath="https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png"
+                    size="xl"
+                />
                 <Box sx={{ mt: 2, display: "flex" }}>
                     <Avatar sx={{ m: 0.5 }}>
                         <GitHubIcon />

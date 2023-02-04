@@ -3,6 +3,7 @@ import { Box, Divider, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { ArticleProps } from "../../Types/type";
+import Icon from "./Icon";
 
 export default function ArticleRow({
     createdAt,
@@ -29,13 +30,10 @@ export default function ArticleRow({
                     <Stack direction="row">
                         <Stack>
                             <Stack direction="row">
-                                <Image
-                                    width={32}
-                                    height={16}
-                                    src="https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png"
-                                    alt=""
-                                    className="rounded-full"
-                                ></Image>
+                                <Icon
+                                    iconPath="https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png"
+                                    size="medium"
+                                />
                                 <Typography sx={{ alignSelf: "center" }} px={1}>
                                     {authorId}
                                 </Typography>

@@ -1,5 +1,5 @@
 import { Box, Divider, List, ListItem, Stack, Typography } from "@mui/material";
-import Image from "next/image";
+import Icon from "./components/Icon";
 type CommentRowProps = {
     iconPath: string;
     comment: string;
@@ -86,13 +86,14 @@ const CommentRow = ({
     return (
         <Box sx={{ width: "100%" }}>
             <Stack direction="row" p={2}>
-                <Image
-                    src={iconPath}
-                    alt={iconPath}
-                    width={64}
-                    height={64}
-                    className="rounded-full"
-                ></Image>
+                <Box sx={{ alignSelf: "center" }}>
+                    <Icon
+                        iconPath={
+                            "https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png"
+                        }
+                        size="l"
+                    />
+                </Box>
                 <Stack ml={2}>
                     <Typography>{userName}</Typography>
                     <Typography>{comment}</Typography>
