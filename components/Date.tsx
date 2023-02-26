@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { format, parseISO } from "date-fns";
 import { utcToZonedTime } from "date-fns-tz";
-import { TimeProps } from "../../Types/type";
+import { TimeProps } from "../Types/type";
 const Date = ({ dateString }: TimeProps) => {
     const date = parseISO(dateString);
     return (

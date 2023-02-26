@@ -127,11 +127,9 @@ export const useSearch = () => {
         keyword: searchWord,
         timeOutMillSec: 1000,
     });
-    console.log(debouncedKeyword);
     const { data } = useQuery(getSearchResultDoc, {
         variables: { _ilike: debouncedKeyword },
     });
-    console.log(data);
     return {
         article: data?.article,
     };

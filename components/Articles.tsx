@@ -3,7 +3,7 @@ import { GitHub } from "@mui/icons-material";
 import { Box, CardContent, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { getPortFolioByIdDoc } from "../../Hooks/hooks";
+import { getPortFolioByIdDoc } from "../Hooks/hooks";
 
 export default function Articles() {
     const { data } = useQuery(getPortFolioByIdDoc, {

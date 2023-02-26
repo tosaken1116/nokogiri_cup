@@ -12,8 +12,8 @@ import {
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import MarkdownArticle from "../components/MarkdownArticle";
 import { useImageUpload, useUploadArticle } from "../Hooks/hooks";
-import MarkdownArticle from "./components/MarkdownArticle";
 export default function AddArticle() {
     const router = useRouter();
     const { uploadBlob, uploadFileId } = useImageUpload();
