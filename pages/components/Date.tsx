@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import { format, parseISO } from "date-fns";
 import { utcToZonedTime } from "date-fns-tz";
 import { TimeProps } from "../../Types/type";
-export const Date = ({ dateString }: TimeProps) => {
+const Date = ({ dateString }: TimeProps) => {
     const date = parseISO(dateString);
     return (
         <Typography variant="caption" sx={{ placeSelf: "center" }}>
@@ -10,3 +10,4 @@ export const Date = ({ dateString }: TimeProps) => {
         </Typography>
     );
 };
+export default Date;

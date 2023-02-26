@@ -3,7 +3,7 @@ import { Box, Divider, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { ArticleProps } from "../../Types/type";
-import { Date } from "./Date";
+import Date from "./Date";
 import Icon from "./Icon";
 
 export default function ArticleRow({
