@@ -18,6 +18,8 @@ specifiers:
   AttachFile: link:@mui/icons-material/AttachFile
   autoprefixer: ^10.4.13
   cross-fetch: ^3.1.5
+  date-fns: ^2.29.3
+  date-fns-tz: ^2.0.0
   dotenv: ^16.0.3
   eslint: 8.31.0
   eslint-config-next: 13.1.2
@@ -48,6 +50,8 @@ dependencies:
   '@types/js-cookie': 3.0.2
   AttachFile: link:@mui/icons-material/AttachFile
   cross-fetch: 3.1.5
+  date-fns: 2.29.3
+  date-fns-tz: 2.0.0_date-fns@2.29.3
   dotenv: 16.0.3
   firebase: 9.16.0
   firebase-functions: 4.2.0
@@ -3514,6 +3518,19 @@ packages:
 
   /dataloader/2.1.0:
     resolution: {integrity: sha512-qTcEYLen3r7ojZNgVUaRggOI+KM7jrKxXeSHhogh/TWxYMeONEMqY+hmkobiYQozsGIyg9OYVzO4ZIfoB4I0pQ==}
+    dev: false
+
+  /date-fns-tz/2.0.0_date-fns@2.29.3:
+    resolution: {integrity: sha512-OAtcLdB9vxSXTWHdT8b398ARImVwQMyjfYGkKD2zaGpHseG2UPHbHjXELReErZFxWdSLph3c2zOaaTyHfOhERQ==}
+    peerDependencies:
+      date-fns: '>=2.0.0'
+    dependencies:
+      date-fns: 2.29.3
+    dev: false
+
+  /date-fns/2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
     dev: false
 
   /debounce/1.2.1:

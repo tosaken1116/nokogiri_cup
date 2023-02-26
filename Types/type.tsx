@@ -22,3 +22,6 @@ export type DebounceExecuteProps = {
     keyword: string;
     timeOutMillSec: number;
 };
+export type TimeProps = {
+    dateString: string;
+};
