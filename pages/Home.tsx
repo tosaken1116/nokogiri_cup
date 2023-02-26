@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { Box, List, ListItem } from "@mui/material";
+import ArticleRow from "../components/ArticleRow";
 import { ArticleProps } from "../Types/type";
-import ArticleRow from "./components/ArticleRow";
 
 export default function Home() {
     const getHomeArticleDoc = gql`

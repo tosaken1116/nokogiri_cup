@@ -1,8 +1,8 @@
 import { Box, List, ListItem } from "@mui/material";
+import ArticleRow from "../components/ArticleRow";
+import SubHeader from "../components/SubHeader";
 import { useSearch } from "../Hooks/hooks";
 import { ArticleProps } from "../Types/type";
-import ArticleRow from "./components/ArticleRow";
-import SubHeader from "./components/SubHeader";
 
 export default function Search() {
     const { article } = useSearch();
