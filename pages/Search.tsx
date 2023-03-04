@@ -10,28 +10,11 @@ export default function Search() {
         <Box>
             <SubHeader></SubHeader>
             <List sx={{ maxHeight: "70vh", overflow: "auto" }}>
-                {article?.map(
-                    (
-                        {
-                            createdAt,
-                            title,
-                            githubUrl,
-                            authorId,
-                            caption,
-                        }: ArticleProps,
-                        index: number
-                    ) => (
-                        <ListItem key={index}>
-                            <ArticleRow
-                                createdAt={createdAt}
-                                title={title}
-                                githubUrl={githubUrl}
-                                authorId={authorId}
-                                caption={caption}
-                            />
-                        </ListItem>
-                    )
-                )}
+                {article?.map((articleProps: ArticleProps, index: number) => (
+                    <ListItem key={index}>
+                        <ArticleRow {...articleProps} />
+                    </ListItem>
+                ))}
             </List>
         </Box>
     );

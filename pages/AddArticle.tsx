@@ -19,8 +19,11 @@ export default function AddArticle() {
     const { uploadBlob, uploadFileId } = useImageUpload();
     const { uploadArticle, loading } = useUploadArticle();
     const now = new Date();
-    const today =
-        now.getFullYear() + "/" + now.getMonth() + 1 + "/" + now.getDate();
+    const today = `${now.getFullYear()}-${("0" + (now.getMonth() + 1)).slice(
+        -2
+    )}-${("0" + now.getDate()).slice(-2)} ${("0" + now.getHours()).slice(
+        -2
+    )}:${("0" + now.getMinutes()).slice(-2)}`;
     const initialInputValue = {
         title: "",
         caption: "",
@@ -35,6 +38,7 @@ export default function AddArticle() {
         createdAt: String(today),
         fileId: "",
     });
+    console.log(input);
     const setData = (e: any) => {
         e.preventDefault();
 
@@ -136,6 +140,7 @@ export default function AddArticle() {
                     caption={input.caption}
                     createdAt={input.createdAt}
                     authorId={"1"}
+                    articleId=""
                 ></MarkdownArticle>
             </Stack>
         </Box>
