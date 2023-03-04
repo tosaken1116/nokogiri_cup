@@ -1,6 +1,5 @@
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { Box, Paper, Stack, Typography } from "@mui/material";
-import Link from "next/link";
+import { Box, IconButton, Paper, Stack, Typography } from "@mui/material";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import { ArticleProps } from "../../Types/type";
@@ -19,11 +18,16 @@ export default function MarkdownArticle({
         >
             <Stack p={2}>
                 <Stack>
-                    <Stack>
-                        <Typography variant="h4">{title}</Typography>
-                        <Link href={githubUrl ?? ""}>
+                    <Stack direction="row">
+                        <Typography variant="h4" flexGrow={1}>
+                            {title}
+                        </Typography>
+                        <IconButton
+                            href={githubUrl ?? ""}
+                            disabled={githubUrl == ""}
+                        >
                             <GitHubIcon />
-                        </Link>
+                        </IconButton>
                     </Stack>
                     <Stack spacing={1} direction="row">
                         <Box sx={{ flexGrow: 1 }}></Box>
