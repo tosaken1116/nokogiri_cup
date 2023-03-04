@@ -10,7 +10,7 @@ import "../styles/markdown.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const { getLocalStorage } = useLocalStorage();
-    const client = initializeApollo(getLocalStorage("authToken"));
+    const client = initializeApollo(getLocalStorage("authToken") ?? "");
     const theme = createMuiTheme();
     return (
         <ApolloProvider client={client}>

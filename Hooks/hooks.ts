@@ -9,7 +9,6 @@ import {
     signInWithPopup,
     signOut,
 } from "firebase/auth";
-import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { DebounceExecuteProps, SearchWordProps } from "../Types/type";
@@ -199,10 +198,17 @@ export const useArticle = () => {
 };
 export const useLocalStorage = () => {
     const getLocalStorage = (key: string) => {
-        return Cookies.get(key);
+        if (typeof window !== "undefined") {
+            const value = localStorage.getItem(key);
+            return value;
+        }
+        return null;
     };
     const setLocalStorage = (setValue: object) => {
-        Cookies.set(Object.keys(setValue)[0], Object.values(setValue)[0]);
+        localStorage.setItem(
+            Object.keys(setValue)[0],
+            Object.values(setValue)[0]
+        );
     };
     return { getLocalStorage, setLocalStorage };
 };
