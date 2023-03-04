@@ -128,7 +128,9 @@ export const useSearch = () => {
         timeOutMillSec: 1000,
     });
     const { data } = useQuery(getSearchResultDoc, {
-        variables: { _ilike: debouncedKeyword },
+        variables: {
+            _ilike: debouncedKeyword == "" ? "" : `%${debouncedKeyword}%`,
+        },
     });
     return {
         article: data?.article,
