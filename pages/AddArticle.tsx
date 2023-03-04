@@ -21,9 +21,9 @@ export default function AddArticle() {
     const now = new Date();
     const today = `${now.getFullYear()}-${("0" + (now.getMonth() + 1)).slice(
         -2
-    )}-${("0" + now.getDate()).slice(
+    )}-${("0" + now.getDate()).slice(-2)} ${("0" + now.getHours()).slice(
         -2
-    )} ${now.getHours()}:${now.getMinutes()}`;
+    )}:${("0" + now.getMinutes()).slice(-2)}`;
     const initialInputValue = {
         title: "",
         caption: "",
@@ -38,6 +38,7 @@ export default function AddArticle() {
         createdAt: String(today),
         fileId: "",
     });
+    console.log(input);
     const setData = (e: any) => {
         e.preventDefault();
 
