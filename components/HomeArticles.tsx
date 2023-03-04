@@ -1,11 +1,13 @@
 import { gql, useQuery } from "@apollo/client";
 import { List, ListItem } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
+import { ArticleProps } from "../Types/type";
 import ArticleRow from "./ArticleRow";
 
-function HomeArticles({ data }) {
+function HomeArticles({ articles }: { articles: ArticleProps[] }) {
     return (
         <List sx={{ maxHeight: "70vh", overflow: "auto" }}>
-            {data?.article?.map((articleProps, index: number) => (
+            {articles?.map((articleProps, index: number) => (
                 <ListItem key={index}>
                     <ArticleRow {...articleProps} />
                 </ListItem>
@@ -28,6 +30,10 @@ export default function ArticlesWrapper() {
             }
         }
     `;
-    const { data } = useQuery(getHomeArticleDoc);
-    return <HomeArticles data={data} />;
+    const { data, loading } = useQuery(getHomeArticleDoc);
+
+    if (loading) {
+        return <CircularProgress />;
+    }
+    return <HomeArticles articles={data?.article} />;
 }

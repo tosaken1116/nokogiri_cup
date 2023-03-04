@@ -19,13 +19,16 @@ export default function AddArticle() {
     const { uploadBlob, uploadFileId } = useImageUpload();
     const { uploadArticle, loading } = useUploadArticle();
     const now = new Date();
-    const today =
-        now.getFullYear() + "/" + now.getMonth() + 1 + "/" + now.getDate();
+    const today = `${now.getFullYear()}-${("0" + (now.getMonth() + 1)).slice(
+        -2
+    )}-${("0" + now.getDate()).slice(
+        -2
+    )} ${now.getHours()}:${now.getMinutes()}`;
     const initialInputValue = {
         title: "",
         caption: "",
         githubUrl: "",
-        createdAt: String(today),
+        createdAt: String(now),
         fileId: "",
     };
     const [input, setInput] = useState({
@@ -136,6 +139,7 @@ export default function AddArticle() {
                     caption={input.caption}
                     createdAt={input.createdAt}
                     authorId={"1"}
+                    articleId=""
                 ></MarkdownArticle>
             </Stack>
         </Box>

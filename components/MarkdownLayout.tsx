@@ -8,7 +8,6 @@ export default function MarkdownLayout() {
     if (loading) {
         return <CircularProgress></CircularProgress>;
     }
-    console.log(article);
     if (article == undefined) {
         return <></>;
     }
