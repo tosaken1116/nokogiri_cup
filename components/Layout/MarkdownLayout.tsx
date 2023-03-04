@@ -1,6 +1,6 @@
 import { CircularProgress, Modal, useMediaQuery } from "@mui/material";
-import { useArticle } from "../Hooks/hooks";
-import MarkdownArticle from "./MarkdownArticle";
+import { useArticle } from "../../Hooks/hooks";
+import MarkdownArticle from "../Article/MarkdownArticle";
 
 export default function MarkdownLayout() {
     const { article, loading, modalOpen, closeArticle } = useArticle();

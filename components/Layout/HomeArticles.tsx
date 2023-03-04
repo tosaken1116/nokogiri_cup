@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import { List, ListItem } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
-import { ArticleProps } from "../Types/type";
-import ArticleRow from "./ArticleRow";
+import { ArticleProps } from "../../Types/type";
+import ArticleRow from "../Article/ArticleRow";
 
 function HomeArticles({ articles }: { articles: ArticleProps[] }) {
     return (

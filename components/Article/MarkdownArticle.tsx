@@ -3,8 +3,8 @@ import { Box, Paper, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
-import { ArticleProps } from "../Types/type";
-import Date from "./Date";
+import { ArticleProps } from "../../Types/type";
+import Date from "../common/Date";
 export default function MarkdownArticle({
     title,
     caption,

@@ -2,7 +2,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, Stack, TextField } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useSearchParams } from "../Hooks/hooks";
+import { useSearchParams } from "../../Hooks/hooks";
 export default function SubHeader() {
     const router = useRouter();
     const [searchWord, setSearchWord] = useState("");

@@ -1,7 +1,7 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Stack } from "@mui/material";
 import Link from "next/link";
-import Header from "./Header";
+import Header from "../Header/Header";
 import Sidebar from "./Sidebar";
 type LayoutProps = {
     children: React.ReactNode;

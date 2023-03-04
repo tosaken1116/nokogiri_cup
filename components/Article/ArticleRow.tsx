@@ -2,10 +2,10 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import { Box, Button, Divider, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { useArticle } from "../Hooks/hooks";
-import { ArticleProps } from "../Types/type";
-import Date from "./Date";
-import Icon from "./Icon";
+import { useArticle } from "../../Hooks/hooks";
+import { ArticleProps } from "../../Types/type";
+import Date from "../common/Date";
+import Icon from "../common/Icon";
 
 export default function ArticleRow({
     createdAt,

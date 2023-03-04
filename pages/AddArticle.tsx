@@ -12,7 +12,7 @@ import {
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import MarkdownArticle from "../components/MarkdownArticle";
+import MarkdownArticle from "../components/Article/MarkdownArticle";
 import { useImageUpload, useUploadArticle } from "../Hooks/hooks";
 export default function AddArticle() {
     const router = useRouter();

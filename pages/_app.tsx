@@ -1,6 +1,6 @@
 import { ApolloProvider } from "@apollo/client";
 import type { AppProps } from "next/app";
-import Layout from "../components/Layout";
+import Layout from "../components/Layout/Layout";
 import { useLocalStorage } from "../Hooks/hooks";
 import { initializeApollo } from "../libs/apolloClient";
 import "../styles/globals.css";
