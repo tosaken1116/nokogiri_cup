@@ -13,18 +13,16 @@ const createApolloClient = (authToken?: string) => {
         link: new HttpLink({
             uri: "https://flowing-squid-27.hasura.app/v1/graphql",
             headers: {
-                "x-hasura-admin-secret":
-                    process.env.NEXT_PUBLIC_HASURA_GRAPHQL_ADMIN_SECRET,
-                authorization:
-                    authToken && authToken !== "undefined"
-                        ? `Bearer ${authToken}`
-                        : "",
+                // "x-hasura-admin-secret":
+                //     process.env.NEXT_PUBLIC_HASURA_GRAPHQL_ADMIN_SECRET,
+                authorization: `Bearer ${authToken}`,
+                // authorization: authToken != null ? `Bearer ${authToken}` : "",
             },
         }),
         cache: new InMemoryCache(),
     });
 };
-export const initializeApollo = (authToken?: string) => {
+export const initializeApollo = (authToken: string) => {
     const _apolloClient = apolloClient ?? createApolloClient(authToken);
     if (typeof window === "undefined") return _apolloClient;
     if (!apolloClient) apolloClient = _apolloClient;

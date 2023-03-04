@@ -38,7 +38,6 @@ export default function AddArticle() {
         createdAt: String(today),
         fileId: "",
     });
-    console.log(input);
     const setData = (e: any) => {
         e.preventDefault();
 
