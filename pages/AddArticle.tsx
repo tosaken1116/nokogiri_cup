@@ -28,7 +28,7 @@ export default function AddArticle() {
         title: "",
         caption: "",
         githubUrl: "",
-        createdAt: String(now),
+        createdAt: String(today),
         fileId: "",
     };
     const [input, setInput] = useState({
