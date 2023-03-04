@@ -18,7 +18,10 @@ export default function ArticleRow({
 }: ArticleProps) {
     const { setArticleParams } = useArticle();
     return (
-        <Button onClick={() => setArticleParams(articleId)}>
+        <Button
+            onClick={() => setArticleParams(articleId)}
+            sx={{ textTransform: "none" }}
+        >
             <Box>
                 <Stack direction="row" p={2} spacing={3}>
                     <Image
