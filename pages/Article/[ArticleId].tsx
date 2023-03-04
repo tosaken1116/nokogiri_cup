@@ -1,5 +1,5 @@
 import CircularProgress from "@mui/material/CircularProgress";
-import MarkdownArticle from "../../components/MarkdownArticle";
+import MarkdownArticle from "../../components/Article/MarkdownArticle";
 import { useArticle } from "../../Hooks/hooks";
 
 export default function Article() {

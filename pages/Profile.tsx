@@ -13,7 +13,7 @@ import {
     ListItemText,
 } from "@mui/material";
 import React from "react";
-import Icon from "../components/Icon";
+import Icon from "../components/common/Icon";
 
 export default function Profile() {
     return (

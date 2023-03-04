@@ -1,5 +1,5 @@
 import { Box, Divider, List, ListItem, Stack, Typography } from "@mui/material";
-import Icon from "../components/Icon";
+import Icon from "../components/common/Icon";
 type CommentRowProps = {
     iconPath: string;
     comment: string;

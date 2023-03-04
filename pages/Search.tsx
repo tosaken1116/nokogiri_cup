@@ -1,6 +1,6 @@
 import { Box, List, ListItem } from "@mui/material";
-import ArticleRow from "../components/ArticleRow";
-import SubHeader from "../components/SubHeader";
+import ArticleRow from "../components/Article/ArticleRow";
+import SubHeader from "../components/Header/SubHeader";
 import { useSearch } from "../Hooks/hooks";
 import { ArticleProps } from "../Types/type";
 
