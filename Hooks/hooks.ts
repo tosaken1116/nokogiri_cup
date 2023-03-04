@@ -19,7 +19,7 @@ export const useUploadArticle = () => {
             $title: String!
             $caption: String!
             $authorId: String!
-            $createdAt: timestamp!
+            $createdAt: timestamptz!
             $githubUrl: String!
             $fileId: String!
         ) {
@@ -161,8 +161,8 @@ export const getPortFolioByIdDoc = gql`
     }
 `;
 const getArticleByIdDoc = gql`
-    query getArticleById($articleId: Int!) {
-        article(where: { id: { _eq: $articleId } }, limit: 1) {
+    query getArticleById($articleId: uuid!) {
+        article(where: { articleId: { _eq: $articleId } }, limit: 1) {
             authorId
             caption
             createdAt
@@ -179,8 +179,19 @@ export const useArticle = () => {
     const { data, loading } = useQuery(getArticleByIdDoc, {
         variables: { articleId: articleId },
     });
+    const closeArticle = () => {
+        router.replace({ query: { ...router.query, ["articleId"]: null } });
+    };
+    const setArticleParams = (articleId: string) => {
+        router.replace({
+            query: { ...router.query, ["articleId"]: articleId },
+        });
+    };
     return {
         article: data?.article[0],
+        modalOpen: Boolean(articleId),
+        setArticleParams,
+        closeArticle,
         loading,
     };
 };

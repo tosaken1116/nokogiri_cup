@@ -9,13 +9,7 @@ export default function Article() {
     }
     return (
         <>
-            <MarkdownArticle
-                title={article.title}
-                authorId={article.authorId}
-                caption={article.caption}
-                githubUrl={article.githubUrl}
-                createdAt={article.createdAt}
-            ></MarkdownArticle>
+            <MarkdownArticle {...article}></MarkdownArticle>
         </>
     );
 }

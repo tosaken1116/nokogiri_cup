@@ -4,6 +4,7 @@ export type ProfilePopOverProps = {
 };
 export type ArticleProps = {
     title: string;
+    articleId: string;
     caption: string;
     authorId: string;
     createdAt: string;

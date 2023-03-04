@@ -19,7 +19,7 @@ export default function Layout({ children }: LayoutProps) {
                 <Header></Header>
                 <Stack direction="row">
                     <Sidebar></Sidebar>
-                    {children}
+                    <Box flexGrow={2}>{children}</Box>
                 </Stack>
             </Stack>
         </Box>

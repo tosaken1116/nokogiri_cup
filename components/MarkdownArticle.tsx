@@ -4,6 +4,7 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import { ArticleProps } from "../Types/type";
+import Date from "./Date";
 export default function MarkdownArticle({
     title,
     caption,
@@ -26,7 +27,7 @@ export default function MarkdownArticle({
                     </Stack>
                     <Stack spacing={1} direction="row">
                         <Box sx={{ flexGrow: 1 }}></Box>
-                        <Typography variant="caption">{createdAt}</Typography>
+                        <Date dateString={createdAt}></Date>
                         <Typography variant="caption">{authorId}</Typography>
                     </Stack>
                 </Stack>

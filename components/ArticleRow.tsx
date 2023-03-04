@@ -1,7 +1,8 @@
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { Box, Divider, Stack, Typography } from "@mui/material";
+import { Box, Button, Divider, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { useArticle } from "../Hooks/hooks";
 import { ArticleProps } from "../Types/type";
 import Date from "./Date";
 import Icon from "./Icon";
@@ -11,43 +12,50 @@ export default function ArticleRow({
     title,
     githubUrl,
     authorId,
+    articleId,
     caption,
     fileId = "",
 }: ArticleProps) {
+    const { setArticleParams } = useArticle();
     return (
-        <Box>
-            <Stack direction="row" p={2} spacing={3}>
-                <Image
-                    width={100}
-                    height={60}
-                    src={
-                        "https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png"
-                    }
-                    alt=""
-                    className="rounded-md"
-                ></Image>
-                <Stack spacing={2}>
-                    <Typography variant="h5">{title}</Typography>
-                    <Stack direction="row">
-                        <Stack>
-                            <Stack direction="row">
-                                <Icon
-                                    iconPath="https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png"
-                                    size="medium"
-                                />
-                                <Typography sx={{ alignSelf: "center" }} px={1}>
-                                    {authorId}
-                                </Typography>
+        <Button onClick={() => setArticleParams(articleId)}>
+            <Box>
+                <Stack direction="row" p={2} spacing={3}>
+                    <Image
+                        width={100}
+                        height={60}
+                        src={
+                            "https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png"
+                        }
+                        alt=""
+                        className="rounded-md"
+                    ></Image>
+                    <Stack spacing={2}>
+                        <Typography variant="h5">{title}</Typography>
+                        <Stack direction="row">
+                            <Stack>
+                                <Stack direction="row">
+                                    <Icon
+                                        iconPath="https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png"
+                                        size="medium"
+                                    />
+                                    <Typography
+                                        sx={{ alignSelf: "center" }}
+                                        px={1}
+                                    >
+                                        {authorId}
+                                    </Typography>
+                                </Stack>
+                                <Date dateString={createdAt}></Date>
                             </Stack>
-                            <Date dateString={createdAt}></Date>
+                            <Link href={githubUrl ?? ""}>
+                                <GitHubIcon />
+                            </Link>
                         </Stack>
-                        <Link href={githubUrl ?? ""}>
-                            <GitHubIcon />
-                        </Link>
                     </Stack>
                 </Stack>
-            </Stack>
-            <Divider variant="fullWidth" />
-        </Box>
+                <Divider variant="fullWidth" />
+            </Box>
+        </Button>
     );
 }
