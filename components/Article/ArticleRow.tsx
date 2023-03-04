@@ -1,7 +1,13 @@
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { Box, Button, Divider, Stack, Typography } from "@mui/material";
+import {
+    Box,
+    Button,
+    Divider,
+    IconButton,
+    Stack,
+    Typography,
+} from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
 import { useArticle } from "../../Hooks/hooks";
 import { ArticleProps } from "../../Types/type";
 import Date from "../common/Date";
@@ -51,9 +57,12 @@ export default function ArticleRow({
                                 </Stack>
                                 <Date dateString={createdAt}></Date>
                             </Stack>
-                            <Link href={githubUrl ?? ""}>
+                            <IconButton
+                                href={githubUrl ?? ""}
+                                disabled={githubUrl == ""}
+                            >
                                 <GitHubIcon />
-                            </Link>
+                            </IconButton>
                         </Stack>
                     </Stack>
                 </Stack>

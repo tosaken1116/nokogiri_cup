@@ -1,20 +1,29 @@
-import AddIcon from "@mui/icons-material/Add";
-import { Box, Stack } from "@mui/material";
-import Link from "next/link";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { Box, IconButton, Stack } from "@mui/material";
+import { useRouter } from "next/router";
 import Header from "../Header/Header";
 import Sidebar from "./Sidebar";
 type LayoutProps = {
     children: React.ReactNode;
 };
 export default function Layout({ children }: LayoutProps) {
+    const router = useRouter();
+    console.log(router.pathname);
     return (
         <Box sx={{ position: "relative" }}>
-            <Link
+            <IconButton
                 href="./AddArticle"
-                className="absolute right-10 top-20 scale-150 rounded-full border-2 w-[36px] h-[36px] border-black text-center"
+                sx={{
+                    position: "absolute",
+                    right: "5%",
+                    bottom: "10%",
+                    display:
+                        router.pathname === "/AddArticle" ? "none" : "block",
+                }}
             >
-                <AddIcon />
-            </Link>
+                <AddCircleIcon fontSize="large" />
+            </IconButton>
+
             <Stack>
                 <Header></Header>
                 <Stack direction="row">
