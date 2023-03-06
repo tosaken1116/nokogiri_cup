@@ -13,7 +13,11 @@ export default function MarkdownArticle({
 }: ArticleProps) {
     return (
         <Paper
-            sx={{ width: "-webkit-fill-available" }}
+            sx={{
+                width: "-webkit-fill-available",
+                maxHeight: "75vh",
+                overflow: "auto",
+            }}
             className="markdown-preview"
         >
             <Stack p={2}>
