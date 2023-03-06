@@ -51,14 +51,6 @@ export default function AddArticle() {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
     const handleUpload = () => {
-        console.log({
-            title: input.title,
-            caption: input.caption,
-            authorId: input.authorId,
-            createdAt: input.createdAt,
-            githubUrl: input.githubUrl,
-            fileId: "",
-        });
         uploadArticle({
             variables: {
                 title: input.title,

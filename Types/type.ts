@@ -10,6 +10,10 @@ export type ArticleProps = {
     createdAt: string;
     githubUrl: string;
     fileId?: string;
+    user?: User;
+};
+type User = {
+    userName: string;
 };
 export type SearchWordProps = {
     searchWord: string;

@@ -171,7 +171,6 @@ export const useDebounceSearch = ({
 
 export const useHomeArticle = () => {
     const { data, loading } = useQuery(getHomeArticleDoc);
-    console.log(data);
     return { articles: data?.article, isLoading: loading };
 };
 export const useUserStatus = (userId: string) => {
