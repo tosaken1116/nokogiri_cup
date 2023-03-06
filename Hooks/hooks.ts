@@ -110,6 +110,7 @@ export const useImageUpload = () => {
 const getSearchResultDoc = gql`
     query test($_ilike: String!) {
         article(where: { title: { _ilike: $_ilike } }, limit: 10) {
+            articleId
             title
             githubUrl
             fileId
@@ -126,13 +127,14 @@ export const useSearch = () => {
         keyword: searchWord,
         timeOutMillSec: 1000,
     });
-    const { data } = useQuery(getSearchResultDoc, {
+    const { data, loading } = useQuery(getSearchResultDoc, {
         variables: {
             _ilike: debouncedKeyword == "" ? "" : `%${debouncedKeyword}%`,
         },
     });
     return {
         article: data?.article,
+        isLoading: loading,
     };
 };
 export const useSearchParams = () => {
@@ -226,4 +228,21 @@ export const useDebounceSearch = ({
         };
     }, [keyword, timeOutMillSec]);
     return { debouncedKeyword };
+};
+const getHomeArticleDoc = gql`
+    query test {
+        article(limit: 10, orderBy: { id: DESC }) {
+            articleId
+            title
+            githubUrl
+            fileId
+            createdAt
+            caption
+            authorId
+        }
+    }
+`;
+export const useHomeArticle = () => {
+    const { data, loading } = useQuery(getHomeArticleDoc);
+    return { articles: data?.article, isLoading: loading };
 };
