@@ -11,12 +11,14 @@ import {
 } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import {
     getArticleByIdDoc,
     getHomeArticleDoc,
     getSearchResultDoc,
     uploadDoc,
 } from "../gqlDocument/document";
+import { userStatus } from "../state/state";
 import { DebounceExecuteProps, SearchWordProps } from "../Types/type";
 export const useUploadArticle = () => {
     const [uploadArticle, { loading }] = useMutation(uploadDoc);
@@ -39,11 +41,18 @@ export const useAuthentication = () => {
     const app = initializeApp(firebaseConfig);
     const { setLocalStorage } = useLocalStorage();
     const auth = getAuth(app);
+    const [, setUserStatus] = useRecoilState(userStatus);
     const login = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider);
         onAuthStateChanged(auth, (user) => {
+            console.log(user);
             if (user) {
+                setUserStatus({
+                    userId: user.uid,
+                    isLogin: true,
+                    userName: String(user.displayName),
+                });
                 user.getIdToken().then((token) => {
                     setIdToken(token);
                     setLocalStorage({ authToken: token });
@@ -54,13 +63,9 @@ export const useAuthentication = () => {
 
     const logout = () => {
         signOut(auth);
-
+        console.log("logout");
         onAuthStateChanged(auth, (user) => {
-            if (user) {
-                user.getIdToken().then((token) => {
-                    setIdToken(token);
-                });
-            }
+            setUserStatus({ userId: "", isLogin: false, userName: "" });
         });
     };
     return { login, logout, idToken };

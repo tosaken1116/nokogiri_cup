@@ -8,7 +8,6 @@ export type LayoutProps = {
 };
 export default function Layout({ children }: LayoutProps) {
     const router = useRouter();
-    console.log(router.pathname);
     return (
         <Box sx={{ position: "relative" }}>
             <IconButton
