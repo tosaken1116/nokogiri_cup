@@ -147,8 +147,8 @@ export const useLocalStorage = () => {
         return null;
     };
     const setLocalStorage = (setValue: object) => {
-        Object.keys(setValue).forEach((key: string) => {
-            localStorage.setItem(key, setValue[key]);
+        Object.entries(setValue).map(([key, value]) => {
+            localStorage.setItem(key, value);
         });
     };
     return { getLocalStorage, setLocalStorage };

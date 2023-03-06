@@ -53,7 +53,7 @@ export default function ArticleRow({
                                         sx={{ alignSelf: "center" }}
                                         px={1}
                                     >
-                                        {user.userName}
+                                        {user?.userName}
                                     </Typography>
                                 </Stack>
                                 <Date dateString={createdAt}></Date>
