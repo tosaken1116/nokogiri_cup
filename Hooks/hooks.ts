@@ -1,4 +1,4 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { BlobServiceClient, ContainerClient } from "@azure/storage-blob";
 
 import { initializeApp } from "firebase/app";
@@ -11,34 +11,15 @@ import {
 } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import {
+    getArticleByIdDoc,
+    getHomeArticleDoc,
+    getSearchResultDoc,
+    uploadDoc,
+} from "../gqlDocument/document";
 import { DebounceExecuteProps, SearchWordProps } from "../Types/type";
 export const useUploadArticle = () => {
-    const uploadDocument = gql`
-        mutation uploadArticle(
-            $title: String!
-            $caption: String!
-            $authorId: String!
-            $createdAt: timestamptz!
-            $githubUrl: String!
-            $fileId: String!
-        ) {
-            insertArticle(
-                objects: {
-                    title: $title
-                    caption: $caption
-                    authorId: $authorId
-                    createdAt: $createdAt
-                    githubUrl: $githubUrl
-                    fileId: $fileId
-                }
-            ) {
-                returning {
-                    id
-                }
-            }
-        }
-    `;
-    const [uploadArticle, { loading }] = useMutation(uploadDocument);
+    const [uploadArticle, { loading }] = useMutation(uploadDoc);
     return { uploadArticle, loading };
 };
 
@@ -107,19 +88,6 @@ export const useImageUpload = () => {
     return { uploadBlob, uploadFileId };
 };
 
-const getSearchResultDoc = gql`
-    query test($_ilike: String!) {
-        article(where: { title: { _ilike: $_ilike } }, limit: 10) {
-            articleId
-            title
-            githubUrl
-            fileId
-            createdAt
-            caption
-            authorId
-        }
-    }
-`;
 export const useSearch = () => {
     const router = useRouter();
     const searchWord = String(router.query.searchWord);
@@ -152,30 +120,6 @@ export const useSearchParams = () => {
     };
 };
 
-export const getPortFolioByIdDoc = gql`
-    query getPortFolioById($userId: String!) {
-        article(where: { authorId: { _eq: $userId } }) {
-            fileId
-            githubUrl
-            title
-            createdAt
-            id
-        }
-    }
-`;
-const getArticleByIdDoc = gql`
-    query getArticleById($articleId: uuid!) {
-        article(where: { articleId: { _eq: $articleId } }, limit: 1) {
-            authorId
-            caption
-            createdAt
-            fileId
-            githubUrl
-            id
-            title
-        }
-    }
-`;
 export const useArticle = () => {
     const router = useRouter();
     const articleId = router.query.articleId;
@@ -229,19 +173,7 @@ export const useDebounceSearch = ({
     }, [keyword, timeOutMillSec]);
     return { debouncedKeyword };
 };
-const getHomeArticleDoc = gql`
-    query test {
-        article(limit: 10, orderBy: { id: DESC }) {
-            articleId
-            title
-            githubUrl
-            fileId
-            createdAt
-            caption
-            authorId
-        }
-    }
-`;
+
 export const useHomeArticle = () => {
     const { data, loading } = useQuery(getHomeArticleDoc);
     return { articles: data?.article, isLoading: loading };
