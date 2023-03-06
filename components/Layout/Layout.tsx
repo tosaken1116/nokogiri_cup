@@ -3,7 +3,7 @@ import { Box, IconButton, Stack } from "@mui/material";
 import { useRouter } from "next/router";
 import Header from "../Header/Header";
 import Sidebar from "./Sidebar";
-type LayoutProps = {
+export type LayoutProps = {
     children: React.ReactNode;
 };
 export default function Layout({ children }: LayoutProps) {
