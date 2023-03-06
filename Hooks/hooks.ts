@@ -3,22 +3,23 @@ import { BlobServiceClient, ContainerClient } from "@azure/storage-blob";
 
 import { initializeApp } from "firebase/app";
 import {
+    browserSessionPersistence,
     getAuth,
     GoogleAuthProvider,
     onAuthStateChanged,
+    setPersistence,
     signInWithPopup,
     signOut,
 } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
 import {
     getArticleByIdDoc,
     getHomeArticleDoc,
     getSearchResultDoc,
+    getUserStatusDoc,
     uploadDoc,
 } from "../gqlDocument/document";
-import { userStatus } from "../state/state";
 import { DebounceExecuteProps, SearchWordProps } from "../Types/type";
 export const useUploadArticle = () => {
     const [uploadArticle, { loading }] = useMutation(uploadDoc);
@@ -41,21 +42,15 @@ export const useAuthentication = () => {
     const app = initializeApp(firebaseConfig);
     const { setLocalStorage } = useLocalStorage();
     const auth = getAuth(app);
-    const [, setUserStatus] = useRecoilState(userStatus);
+    setPersistence(auth, browserSessionPersistence);
     const login = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider);
         onAuthStateChanged(auth, (user) => {
-            console.log(user);
             if (user) {
-                setUserStatus({
-                    userId: user.uid,
-                    isLogin: true,
-                    userName: String(user.displayName),
-                });
                 user.getIdToken().then((token) => {
                     setIdToken(token);
-                    setLocalStorage({ authToken: token });
+                    setLocalStorage({ authToken: token, userId: user.uid });
                 });
             }
         });
@@ -63,10 +58,6 @@ export const useAuthentication = () => {
 
     const logout = () => {
         signOut(auth);
-        console.log("logout");
-        onAuthStateChanged(auth, (user) => {
-            setUserStatus({ userId: "", isLogin: false, userName: "" });
-        });
     };
     return { login, logout, idToken };
 };
@@ -156,10 +147,9 @@ export const useLocalStorage = () => {
         return null;
     };
     const setLocalStorage = (setValue: object) => {
-        localStorage.setItem(
-            Object.keys(setValue)[0],
-            Object.values(setValue)[0]
-        );
+        Object.keys(setValue).forEach((key: string) => {
+            localStorage.setItem(key, setValue[key]);
+        });
     };
     return { getLocalStorage, setLocalStorage };
 };
@@ -181,5 +171,17 @@ export const useDebounceSearch = ({
 
 export const useHomeArticle = () => {
     const { data, loading } = useQuery(getHomeArticleDoc);
+    console.log(data);
     return { articles: data?.article, isLoading: loading };
+};
+export const useUserStatus = (userId: string) => {
+    const { data, loading, error } = useQuery(getUserStatusDoc, {
+        variables: {
+            userId: userId,
+        },
+    });
+    return {
+        user: data?.users[0],
+        isLoading: loading,
+    };
 };

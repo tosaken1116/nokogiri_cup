@@ -12,7 +12,7 @@ const config: CodegenConfig = {
             },
         },
     ],
-    documents: "Hooks/hooks.ts",
+    documents: ["Hooks/hooks.ts", "gqlDocument/document.ts"],
     generates: {
         "src/gql/": {
             preset: "client",

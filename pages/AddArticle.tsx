@@ -13,11 +13,16 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import MarkdownArticle from "../components/Article/MarkdownArticle";
-import { useImageUpload, useUploadArticle } from "../Hooks/hooks";
+import {
+    useImageUpload,
+    useLocalStorage,
+    useUploadArticle,
+} from "../Hooks/hooks";
 export default function AddArticle() {
     const router = useRouter();
     const { uploadBlob, uploadFileId } = useImageUpload();
     const { uploadArticle, loading } = useUploadArticle();
+    const { getLocalStorage } = useLocalStorage();
     const now = new Date();
     const today = `${now.getFullYear()}-${("0" + (now.getMonth() + 1)).slice(
         -2
@@ -30,6 +35,7 @@ export default function AddArticle() {
         githubUrl: "",
         createdAt: String(today),
         fileId: "",
+        authorId: getLocalStorage("userId"),
     };
     const [input, setInput] = useState({
         title: "",
@@ -37,6 +43,7 @@ export default function AddArticle() {
         githubUrl: "",
         createdAt: String(today),
         fileId: "",
+        authorId: getLocalStorage("userId"),
     });
     const setData = (e: any) => {
         e.preventDefault();
@@ -44,11 +51,19 @@ export default function AddArticle() {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
     const handleUpload = () => {
+        console.log({
+            title: input.title,
+            caption: input.caption,
+            authorId: input.authorId,
+            createdAt: input.createdAt,
+            githubUrl: input.githubUrl,
+            fileId: "",
+        });
         uploadArticle({
             variables: {
                 title: input.title,
                 caption: input.caption,
-                authorId: "2",
+                authorId: input.authorId,
                 createdAt: input.createdAt,
                 githubUrl: input.githubUrl,
                 fileId: "",
@@ -59,7 +74,7 @@ export default function AddArticle() {
             return <CircularProgress />;
         }
         setInput(initialInputValue);
-        router.push("./");
+        // router.push("./");
     };
     return (
         <Box p={3}>

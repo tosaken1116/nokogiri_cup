@@ -26,7 +26,7 @@ export const uploadDoc = gql`
     }
 `;
 export const getSearchResultDoc = gql`
-    query test($_ilike: String!) {
+    query getSearchResult($_ilike: String!) {
         article(where: { title: { _ilike: $_ilike } }, limit: 10) {
             articleId
             title
@@ -35,6 +35,9 @@ export const getSearchResultDoc = gql`
             createdAt
             caption
             authorId
+            user {
+                userName
+            }
         }
     }
 `;
@@ -50,7 +53,7 @@ export const getPortFolioByIdDoc = gql`
     }
 `;
 export const getHomeArticleDoc = gql`
-    query test {
+    query getHomeArticle {
         article(limit: 10, orderBy: { id: DESC }) {
             articleId
             title
@@ -59,6 +62,9 @@ export const getHomeArticleDoc = gql`
             createdAt
             caption
             authorId
+            user {
+                userName
+            }
         }
     }
 `;
@@ -72,6 +78,17 @@ export const getArticleByIdDoc = gql`
             githubUrl
             id
             title
+            user {
+                userName
+            }
+        }
+    }
+`;
+export const getUserStatusDoc = gql`
+    query getUserStatus($userId: String!) {
+        users(where: { id: { _eq: $userId } }) {
+            userName
+            email
         }
     }
 `;

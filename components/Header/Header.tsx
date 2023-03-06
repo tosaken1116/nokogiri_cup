@@ -1,17 +1,24 @@
+import { Paper } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { useRecoilState } from "recoil";
-import { useAuthentication } from "../../Hooks/hooks";
-import { userStatus } from "../../state/state";
+import {
+    useAuthentication,
+    useLocalStorage,
+    useUserStatus,
+} from "../../Hooks/hooks";
 
 export default function Header() {
-    const [userState] = useRecoilState(userStatus);
     const { logout, login } = useAuthentication();
-    console.log(userState);
+    const { getLocalStorage } = useLocalStorage();
+    const userId = getLocalStorage("userId");
+    const { user, isLoading } = useUserStatus(userId ?? "");
+    if (isLoading) {
+        return <></>;
+    }
     return (
         <Box sx={{ height: "12vh" }}>
             <AppBar position="static" sx={{ bgcolor: "#EEEEEE" }}>
@@ -28,7 +35,7 @@ export default function Header() {
                         </Typography>
                     </Box>
                     <Box flexGrow={1}></Box>
-                    {!userState.isLogin ? (
+                    {!user?.userName ? (
                         <Stack
                             direction="row"
                             spacing={2}
@@ -40,7 +47,9 @@ export default function Header() {
                         </Stack>
                     ) : (
                         <Stack direction="row">
-                            {/* <Typography>{userState.userName}</Typography> */}
+                            <Paper sx={{ padding: 2 }}>
+                                <Typography>{user?.userName}</Typography>
+                            </Paper>
                             <Button onClick={() => logout()}>log out</Button>
                         </Stack>
                     )}

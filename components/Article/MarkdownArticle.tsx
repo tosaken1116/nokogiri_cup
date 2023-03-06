@@ -10,6 +10,7 @@ export default function MarkdownArticle({
     authorId,
     createdAt,
     githubUrl,
+    user,
 }: ArticleProps) {
     return (
         <Paper
@@ -36,7 +37,9 @@ export default function MarkdownArticle({
                     <Stack spacing={1} direction="row">
                         <Box sx={{ flexGrow: 1 }}></Box>
                         <Date dateString={createdAt}></Date>
-                        <Typography variant="caption">{authorId}</Typography>
+                        <Typography variant="caption">
+                            {user?.userName}
+                        </Typography>
                     </Stack>
                 </Stack>
                 <ReactMarkdown remarkPlugins={[gfm]} unwrapDisallowed={false}>

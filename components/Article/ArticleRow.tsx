@@ -20,6 +20,7 @@ export default function ArticleRow({
     authorId,
     articleId,
     caption,
+    user,
     fileId = "",
 }: ArticleProps) {
     const { setArticleParams } = useArticle();
@@ -52,7 +53,7 @@ export default function ArticleRow({
                                         sx={{ alignSelf: "center" }}
                                         px={1}
                                     >
-                                        {authorId}
+                                        {user.userName}
                                     </Typography>
                                 </Stack>
                                 <Date dateString={createdAt}></Date>
