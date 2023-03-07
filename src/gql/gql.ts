@@ -18,7 +18,7 @@ const documents = {
     "\n    query getPortFolioById($userId: String!) {\n        article(where: { authorId: { _eq: $userId } }) {\n            fileId\n            githubUrl\n            title\n            createdAt\n            id\n        }\n    }\n": types.GetPortFolioByIdDocument,
     "\n    query getHomeArticle {\n        article(limit: 10, orderBy: { id: DESC }) {\n            articleId\n            title\n            githubUrl\n            fileId\n            createdAt\n            caption\n            authorId\n            user {\n                userName\n            }\n        }\n    }\n": types.GetHomeArticleDocument,
     "\n    query getArticleById($articleId: uuid!) {\n        article(where: { articleId: { _eq: $articleId } }, limit: 1) {\n            authorId\n            caption\n            createdAt\n            fileId\n            githubUrl\n            id\n            title\n            user {\n                userName\n            }\n        }\n    }\n": types.GetArticleByIdDocument,
-    "\n    query getUserStatus($userId: String!) {\n        users(where: { id: { _eq: $userId } }) {\n            userName\n            email\n        }\n    }\n": types.GetUserStatusDocument,
+    "\n    query getUserStatus($userId: String!) {\n        users(where: { id: { _eq: $userId } }) {\n            email\n            userName\n            iconPath\n        }\n    }\n": types.GetUserStatusDocument,
 };
 
 /**
@@ -58,7 +58,7 @@ export function graphql(source: "\n    query getArticleById($articleId: uuid!) {
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n    query getUserStatus($userId: String!) {\n        users(where: { id: { _eq: $userId } }) {\n            userName\n            email\n        }\n    }\n"): (typeof documents)["\n    query getUserStatus($userId: String!) {\n        users(where: { id: { _eq: $userId } }) {\n            userName\n            email\n        }\n    }\n"];
+export function graphql(source: "\n    query getUserStatus($userId: String!) {\n        users(where: { id: { _eq: $userId } }) {\n            email\n            userName\n            iconPath\n        }\n    }\n"): (typeof documents)["\n    query getUserStatus($userId: String!) {\n        users(where: { id: { _eq: $userId } }) {\n            email\n            userName\n            iconPath\n        }\n    }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
