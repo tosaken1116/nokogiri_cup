@@ -3,9 +3,11 @@ import { BlobServiceClient, ContainerClient } from "@azure/storage-blob";
 
 import { initializeApp } from "firebase/app";
 import {
+    browserSessionPersistence,
     getAuth,
     GoogleAuthProvider,
     onAuthStateChanged,
+    setPersistence,
     signInWithPopup,
     signOut,
 } from "firebase/auth";
@@ -15,6 +17,7 @@ import {
     getArticleByIdDoc,
     getHomeArticleDoc,
     getSearchResultDoc,
+    getUserStatusDoc,
     uploadDoc,
 } from "../gqlDocument/document";
 import { DebounceExecuteProps, SearchWordProps } from "../Types/type";
@@ -39,6 +42,7 @@ export const useAuthentication = () => {
     const app = initializeApp(firebaseConfig);
     const { setLocalStorage } = useLocalStorage();
     const auth = getAuth(app);
+    setPersistence(auth, browserSessionPersistence);
     const login = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider);
@@ -46,7 +50,7 @@ export const useAuthentication = () => {
             if (user) {
                 user.getIdToken().then((token) => {
                     setIdToken(token);
-                    setLocalStorage({ authToken: token });
+                    setLocalStorage({ authToken: token, userId: user.uid });
                 });
             }
         });
@@ -54,14 +58,6 @@ export const useAuthentication = () => {
 
     const logout = () => {
         signOut(auth);
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                user.getIdToken().then((token) => {
-                    setIdToken(token);
-                });
-            }
-        });
     };
     return { login, logout, idToken };
 };
@@ -151,10 +147,9 @@ export const useLocalStorage = () => {
         return null;
     };
     const setLocalStorage = (setValue: object) => {
-        localStorage.setItem(
-            Object.keys(setValue)[0],
-            Object.values(setValue)[0]
-        );
+        Object.entries(setValue).map(([key, value]) => {
+            localStorage.setItem(key, value);
+        });
     };
     return { getLocalStorage, setLocalStorage };
 };
@@ -177,4 +172,15 @@ export const useDebounceSearch = ({
 export const useHomeArticle = () => {
     const { data, loading } = useQuery(getHomeArticleDoc);
     return { articles: data?.article, isLoading: loading };
+};
+export const useUserStatus = (userId: string) => {
+    const { data, loading, error } = useQuery(getUserStatusDoc, {
+        variables: {
+            userId: userId,
+        },
+    });
+    return {
+        user: data?.users[0],
+        isLoading: loading,
+    };
 };

@@ -27,6 +27,8 @@ export type Article = {
   githubUrl?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   title: Scalars['String'];
+  /** An object relationship */
+  user: Users;
 };
 
 /** aggregated selection of "article" */
@@ -78,6 +80,7 @@ export type ArticleBoolExp = {
   githubUrl?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<IntComparisonExp>;
   title?: InputMaybe<StringComparisonExp>;
+  user?: InputMaybe<UsersBoolExp>;
 };
 
 /** unique or primary key constraints on table "article" */
@@ -101,6 +104,7 @@ export type ArticleInsertInput = {
   githubUrl?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['Int']>;
   title?: InputMaybe<Scalars['String']>;
+  user?: InputMaybe<UsersObjRelInsertInput>;
 };
 
 /** aggregate max on columns */
@@ -155,6 +159,7 @@ export type ArticleOrderBy = {
   githubUrl?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   title?: InputMaybe<OrderBy>;
+  user?: InputMaybe<UsersOrderBy>;
 };
 
 /** primary key columns input for table: article */
@@ -764,6 +769,7 @@ export type Users = {
   __typename?: 'Users';
   email: Scalars['String'];
   id: Scalars['String'];
+  userName?: Maybe<Scalars['String']>;
 };
 
 /** aggregated selection of "users" */
@@ -795,6 +801,7 @@ export type UsersBoolExp = {
   _or?: InputMaybe<Array<UsersBoolExp>>;
   email?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
+  userName?: InputMaybe<StringComparisonExp>;
 };
 
 /** unique or primary key constraints on table "users" */
@@ -807,6 +814,7 @@ export enum UsersConstraint {
 export type UsersInsertInput = {
   email?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
+  userName?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
@@ -814,6 +822,7 @@ export type UsersMaxFields = {
   __typename?: 'UsersMaxFields';
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
+  userName?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
@@ -821,6 +830,7 @@ export type UsersMinFields = {
   __typename?: 'UsersMinFields';
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
+  userName?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "users" */
@@ -830,6 +840,13 @@ export type UsersMutationResponse = {
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<Users>;
+};
+
+/** input type for inserting object relation for remote table "users" */
+export type UsersObjRelInsertInput = {
+  data: UsersInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<UsersOnConflict>;
 };
 
 /** on_conflict condition type for table "users" */
@@ -843,6 +860,7 @@ export type UsersOnConflict = {
 export type UsersOrderBy = {
   email?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  userName?: InputMaybe<OrderBy>;
 };
 
 /** primary key columns input for table: users */
@@ -855,13 +873,16 @@ export enum UsersSelectColumn {
   /** column name */
   Email = 'email',
   /** column name */
-  Id = 'id'
+  Id = 'id',
+  /** column name */
+  UserName = 'userName'
 }
 
 /** input type for updating data in table "users" */
 export type UsersSetInput = {
   email?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
+  userName?: InputMaybe<Scalars['String']>;
 };
 
 /** Streaming cursor of the table "users" */
@@ -876,6 +897,7 @@ export type UsersStreamCursorInput = {
 export type UsersStreamCursorValueInput = {
   email?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
+  userName?: InputMaybe<Scalars['String']>;
 };
 
 /** update columns of table "users" */
@@ -883,7 +905,9 @@ export enum UsersUpdateColumn {
   /** column name */
   Email = 'email',
   /** column name */
-  Id = 'id'
+  Id = 'id',
+  /** column name */
+  UserName = 'userName'
 }
 
 export type UsersUpdates = {
@@ -1443,12 +1467,12 @@ export type UploadArticleMutationVariables = Exact<{
 
 export type UploadArticleMutation = { __typename?: 'mutation_root', insertArticle?: { __typename?: 'ArticleMutationResponse', returning: Array<{ __typename?: 'Article', id: number }> } | null };
 
-export type TestQueryVariables = Exact<{
+export type GetSearchResultQueryVariables = Exact<{
   _ilike: Scalars['String'];
 }>;
 
 
-export type TestQuery = { __typename?: 'query_root', article: Array<{ __typename?: 'Article', articleId?: any | null, title: string, githubUrl?: string | null, fileId?: string | null, createdAt?: any | null, caption: string, authorId: string }> };
+export type GetSearchResultQuery = { __typename?: 'query_root', article: Array<{ __typename?: 'Article', articleId?: any | null, title: string, githubUrl?: string | null, fileId?: string | null, createdAt?: any | null, caption: string, authorId: string, user: { __typename?: 'Users', userName?: string | null } }> };
 
 export type GetPortFolioByIdQueryVariables = Exact<{
   userId: Scalars['String'];
@@ -1457,15 +1481,29 @@ export type GetPortFolioByIdQueryVariables = Exact<{
 
 export type GetPortFolioByIdQuery = { __typename?: 'query_root', article: Array<{ __typename?: 'Article', fileId?: string | null, githubUrl?: string | null, title: string, createdAt?: any | null, id: number }> };
 
+export type GetHomeArticleQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetHomeArticleQuery = { __typename?: 'query_root', article: Array<{ __typename?: 'Article', articleId?: any | null, title: string, githubUrl?: string | null, fileId?: string | null, createdAt?: any | null, caption: string, authorId: string, user: { __typename?: 'Users', userName?: string | null } }> };
+
 export type GetArticleByIdQueryVariables = Exact<{
   articleId: Scalars['uuid'];
 }>;
 
 
-export type GetArticleByIdQuery = { __typename?: 'query_root', article: Array<{ __typename?: 'Article', authorId: string, caption: string, createdAt?: any | null, fileId?: string | null, githubUrl?: string | null, id: number, title: string }> };
+export type GetArticleByIdQuery = { __typename?: 'query_root', article: Array<{ __typename?: 'Article', authorId: string, caption: string, createdAt?: any | null, fileId?: string | null, githubUrl?: string | null, id: number, title: string, user: { __typename?: 'Users', userName?: string | null } }> };
+
+export type GetUserStatusQueryVariables = Exact<{
+  userId: Scalars['String'];
+}>;
+
+
+export type GetUserStatusQuery = { __typename?: 'query_root', users: Array<{ __typename?: 'Users', userName?: string | null, email: string }> };
 
 
 export const UploadArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"uploadArticle"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"caption"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"authorId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createdAt"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"timestamptz"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"githubUrl"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"fileId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insertArticle"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"objects"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"caption"},"value":{"kind":"Variable","name":{"kind":"Name","value":"caption"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"authorId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"authorId"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"createdAt"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createdAt"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"githubUrl"},"value":{"kind":"Variable","name":{"kind":"Name","value":"githubUrl"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"fileId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"fileId"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"returning"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<UploadArticleMutation, UploadArticleMutationVariables>;
-export const TestDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"test"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"_ilike"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"article"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_ilike"},"value":{"kind":"Variable","name":{"kind":"Name","value":"_ilike"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"10"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"articleId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"fileId"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"authorId"}}]}}]}}]} as unknown as DocumentNode<TestQuery, TestQueryVariables>;
+export const GetSearchResultDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getSearchResult"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"_ilike"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"article"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_ilike"},"value":{"kind":"Variable","name":{"kind":"Name","value":"_ilike"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"10"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"articleId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"fileId"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"authorId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userName"}}]}}]}}]}}]} as unknown as DocumentNode<GetSearchResultQuery, GetSearchResultQueryVariables>;
 export const GetPortFolioByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getPortFolioById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"article"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"authorId"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fileId"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<GetPortFolioByIdQuery, GetPortFolioByIdQueryVariables>;
-export const GetArticleByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getArticleById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"article"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"articleId"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"authorId"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"fileId"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<GetArticleByIdQuery, GetArticleByIdQueryVariables>;
+export const GetHomeArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getHomeArticle"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"article"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"10"}},{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"EnumValue","value":"DESC"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"articleId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"fileId"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"authorId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userName"}}]}}]}}]}}]} as unknown as DocumentNode<GetHomeArticleQuery, GetHomeArticleQueryVariables>;
+export const GetArticleByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getArticleById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"article"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"articleId"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"authorId"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"fileId"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userName"}}]}}]}}]}}]} as unknown as DocumentNode<GetArticleByIdQuery, GetArticleByIdQueryVariables>;
+export const GetUserStatusDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getUserStatus"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]} as unknown as DocumentNode<GetUserStatusQuery, GetUserStatusQueryVariables>;
