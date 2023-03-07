@@ -87,8 +87,9 @@ export const getArticleByIdDoc = gql`
 export const getUserStatusDoc = gql`
     query getUserStatus($userId: String!) {
         users(where: { id: { _eq: $userId } }) {
-            userName
             email
+            userName
+            iconPath
         }
     }
 `;

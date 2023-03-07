@@ -10,6 +10,7 @@ import {
     useLocalStorage,
     useUserStatus,
 } from "../../Hooks/hooks";
+import Icon from "../common/Icon";
 
 export default function Header() {
     const { logout, login } = useAuthentication();
@@ -47,8 +48,14 @@ export default function Header() {
                         </Stack>
                     ) : (
                         <Stack direction="row">
-                            <Paper sx={{ padding: 2 }}>
-                                <Typography>{user?.userName}</Typography>
+                            <Paper sx={{ paddingX: 2, paddingY: 1 }}>
+                                <Stack direction="row">
+                                    <Icon
+                                        iconPath={user?.iconPath}
+                                        size="m"
+                                    ></Icon>
+                                    <Typography>{user?.userName}</Typography>
+                                </Stack>
                             </Paper>
                             <Button onClick={() => logout()}>log out</Button>
                         </Stack>
