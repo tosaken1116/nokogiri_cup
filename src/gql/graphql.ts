@@ -767,9 +767,17 @@ export type UserProfileUpdates = {
 /** columns and relationships of "users" */
 export type Users = {
   __typename?: 'Users';
+  age?: Maybe<Scalars['String']>;
+  customUrl?: Maybe<Scalars['String']>;
+  developmentAge?: Maybe<Scalars['String']>;
   email: Scalars['String'];
+  githubUrl?: Maybe<Scalars['String']>;
   iconPath?: Maybe<Scalars['String']>;
   id: Scalars['String'];
+  job?: Maybe<Scalars['String']>;
+  language?: Maybe<Scalars['String']>;
+  selfIntroduction?: Maybe<Scalars['String']>;
+  twitterUrl?: Maybe<Scalars['String']>;
   userName?: Maybe<Scalars['String']>;
 };
 
@@ -800,9 +808,17 @@ export type UsersBoolExp = {
   _and?: InputMaybe<Array<UsersBoolExp>>;
   _not?: InputMaybe<UsersBoolExp>;
   _or?: InputMaybe<Array<UsersBoolExp>>;
+  age?: InputMaybe<StringComparisonExp>;
+  customUrl?: InputMaybe<StringComparisonExp>;
+  developmentAge?: InputMaybe<StringComparisonExp>;
   email?: InputMaybe<StringComparisonExp>;
+  githubUrl?: InputMaybe<StringComparisonExp>;
   iconPath?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
+  job?: InputMaybe<StringComparisonExp>;
+  language?: InputMaybe<StringComparisonExp>;
+  selfIntroduction?: InputMaybe<StringComparisonExp>;
+  twitterUrl?: InputMaybe<StringComparisonExp>;
   userName?: InputMaybe<StringComparisonExp>;
 };
 
@@ -814,27 +830,51 @@ export enum UsersConstraint {
 
 /** input type for inserting data into table "users" */
 export type UsersInsertInput = {
+  age?: InputMaybe<Scalars['String']>;
+  customUrl?: InputMaybe<Scalars['String']>;
+  developmentAge?: InputMaybe<Scalars['String']>;
   email?: InputMaybe<Scalars['String']>;
+  githubUrl?: InputMaybe<Scalars['String']>;
   iconPath?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
+  job?: InputMaybe<Scalars['String']>;
+  language?: InputMaybe<Scalars['String']>;
+  selfIntroduction?: InputMaybe<Scalars['String']>;
+  twitterUrl?: InputMaybe<Scalars['String']>;
   userName?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type UsersMaxFields = {
   __typename?: 'UsersMaxFields';
+  age?: Maybe<Scalars['String']>;
+  customUrl?: Maybe<Scalars['String']>;
+  developmentAge?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
+  githubUrl?: Maybe<Scalars['String']>;
   iconPath?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
+  job?: Maybe<Scalars['String']>;
+  language?: Maybe<Scalars['String']>;
+  selfIntroduction?: Maybe<Scalars['String']>;
+  twitterUrl?: Maybe<Scalars['String']>;
   userName?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type UsersMinFields = {
   __typename?: 'UsersMinFields';
+  age?: Maybe<Scalars['String']>;
+  customUrl?: Maybe<Scalars['String']>;
+  developmentAge?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
+  githubUrl?: Maybe<Scalars['String']>;
   iconPath?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
+  job?: Maybe<Scalars['String']>;
+  language?: Maybe<Scalars['String']>;
+  selfIntroduction?: Maybe<Scalars['String']>;
+  twitterUrl?: Maybe<Scalars['String']>;
   userName?: Maybe<Scalars['String']>;
 };
 
@@ -863,9 +903,17 @@ export type UsersOnConflict = {
 
 /** Ordering options when selecting data from "users". */
 export type UsersOrderBy = {
+  age?: InputMaybe<OrderBy>;
+  customUrl?: InputMaybe<OrderBy>;
+  developmentAge?: InputMaybe<OrderBy>;
   email?: InputMaybe<OrderBy>;
+  githubUrl?: InputMaybe<OrderBy>;
   iconPath?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  job?: InputMaybe<OrderBy>;
+  language?: InputMaybe<OrderBy>;
+  selfIntroduction?: InputMaybe<OrderBy>;
+  twitterUrl?: InputMaybe<OrderBy>;
   userName?: InputMaybe<OrderBy>;
 };
 
@@ -877,20 +925,44 @@ export type UsersPkColumnsInput = {
 /** select columns of table "users" */
 export enum UsersSelectColumn {
   /** column name */
+  Age = 'age',
+  /** column name */
+  CustomUrl = 'customUrl',
+  /** column name */
+  DevelopmentAge = 'developmentAge',
+  /** column name */
   Email = 'email',
+  /** column name */
+  GithubUrl = 'githubUrl',
   /** column name */
   IconPath = 'iconPath',
   /** column name */
   Id = 'id',
+  /** column name */
+  Job = 'job',
+  /** column name */
+  Language = 'language',
+  /** column name */
+  SelfIntroduction = 'selfIntroduction',
+  /** column name */
+  TwitterUrl = 'twitterUrl',
   /** column name */
   UserName = 'userName'
 }
 
 /** input type for updating data in table "users" */
 export type UsersSetInput = {
+  age?: InputMaybe<Scalars['String']>;
+  customUrl?: InputMaybe<Scalars['String']>;
+  developmentAge?: InputMaybe<Scalars['String']>;
   email?: InputMaybe<Scalars['String']>;
+  githubUrl?: InputMaybe<Scalars['String']>;
   iconPath?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
+  job?: InputMaybe<Scalars['String']>;
+  language?: InputMaybe<Scalars['String']>;
+  selfIntroduction?: InputMaybe<Scalars['String']>;
+  twitterUrl?: InputMaybe<Scalars['String']>;
   userName?: InputMaybe<Scalars['String']>;
 };
 
@@ -904,20 +976,44 @@ export type UsersStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type UsersStreamCursorValueInput = {
+  age?: InputMaybe<Scalars['String']>;
+  customUrl?: InputMaybe<Scalars['String']>;
+  developmentAge?: InputMaybe<Scalars['String']>;
   email?: InputMaybe<Scalars['String']>;
+  githubUrl?: InputMaybe<Scalars['String']>;
   iconPath?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
+  job?: InputMaybe<Scalars['String']>;
+  language?: InputMaybe<Scalars['String']>;
+  selfIntroduction?: InputMaybe<Scalars['String']>;
+  twitterUrl?: InputMaybe<Scalars['String']>;
   userName?: InputMaybe<Scalars['String']>;
 };
 
 /** update columns of table "users" */
 export enum UsersUpdateColumn {
   /** column name */
+  Age = 'age',
+  /** column name */
+  CustomUrl = 'customUrl',
+  /** column name */
+  DevelopmentAge = 'developmentAge',
+  /** column name */
   Email = 'email',
+  /** column name */
+  GithubUrl = 'githubUrl',
   /** column name */
   IconPath = 'iconPath',
   /** column name */
   Id = 'id',
+  /** column name */
+  Job = 'job',
+  /** column name */
+  Language = 'language',
+  /** column name */
+  SelfIntroduction = 'selfIntroduction',
+  /** column name */
+  TwitterUrl = 'twitterUrl',
   /** column name */
   UserName = 'userName'
 }
@@ -1512,6 +1608,28 @@ export type GetUserStatusQueryVariables = Exact<{
 
 export type GetUserStatusQuery = { __typename?: 'query_root', users: Array<{ __typename?: 'Users', email: string, userName?: string | null, iconPath?: string | null }> };
 
+export type UpdateUserProfileMutationVariables = Exact<{
+  id: Scalars['String'];
+  age?: InputMaybe<Scalars['String']>;
+  job?: InputMaybe<Scalars['String']>;
+  language?: InputMaybe<Scalars['String']>;
+  selfIntroduction?: InputMaybe<Scalars['String']>;
+  userName?: InputMaybe<Scalars['String']>;
+  developmentAge?: InputMaybe<Scalars['String']>;
+  twitterUrl?: InputMaybe<Scalars['String']>;
+  customUrl?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type UpdateUserProfileMutation = { __typename?: 'mutation_root', updateUsersByPk?: { __typename?: 'Users', email: string } | null };
+
+export type GetUserProfileByIdQueryVariables = Exact<{
+  userId: Scalars['String'];
+}>;
+
+
+export type GetUserProfileByIdQuery = { __typename?: 'query_root', usersByPk?: { __typename?: 'Users', age?: string | null, iconPath?: string | null, job?: string | null, language?: string | null, selfIntroduction?: string | null, userName?: string | null, developmentAge?: string | null, githubUrl?: string | null, twitterUrl?: string | null, customUrl?: string | null } | null };
+
 
 export const UploadArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"uploadArticle"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"caption"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"authorId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createdAt"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"timestamptz"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"githubUrl"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"fileId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insertArticle"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"objects"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"caption"},"value":{"kind":"Variable","name":{"kind":"Name","value":"caption"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"authorId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"authorId"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"createdAt"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createdAt"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"githubUrl"},"value":{"kind":"Variable","name":{"kind":"Name","value":"githubUrl"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"fileId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"fileId"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"returning"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<UploadArticleMutation, UploadArticleMutationVariables>;
 export const GetSearchResultDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getSearchResult"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"_ilike"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"article"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_ilike"},"value":{"kind":"Variable","name":{"kind":"Name","value":"_ilike"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"10"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"articleId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"fileId"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"authorId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userName"}}]}}]}}]}}]} as unknown as DocumentNode<GetSearchResultQuery, GetSearchResultQueryVariables>;
@@ -1519,3 +1637,5 @@ export const GetPortFolioByIdDocument = {"kind":"Document","definitions":[{"kind
 export const GetHomeArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getHomeArticle"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"article"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"10"}},{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"EnumValue","value":"DESC"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"articleId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"fileId"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"authorId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userName"}}]}}]}}]}}]} as unknown as DocumentNode<GetHomeArticleQuery, GetHomeArticleQueryVariables>;
 export const GetArticleByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getArticleById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"article"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"articleId"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"authorId"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"fileId"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userName"}}]}}]}}]}}]} as unknown as DocumentNode<GetArticleByIdQuery, GetArticleByIdQueryVariables>;
 export const GetUserStatusDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getUserStatus"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"userName"}},{"kind":"Field","name":{"kind":"Name","value":"iconPath"}}]}}]}}]} as unknown as DocumentNode<GetUserStatusQuery, GetUserStatusQueryVariables>;
+export const UpdateUserProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateUserProfile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"age"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"job"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"language"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"selfIntroduction"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userName"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"developmentAge"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"twitterUrl"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"customUrl"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateUsersByPk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"age"},"value":{"kind":"Variable","name":{"kind":"Name","value":"age"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"job"},"value":{"kind":"Variable","name":{"kind":"Name","value":"job"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"language"},"value":{"kind":"Variable","name":{"kind":"Name","value":"language"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"selfIntroduction"},"value":{"kind":"Variable","name":{"kind":"Name","value":"selfIntroduction"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"userName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userName"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"developmentAge"},"value":{"kind":"Variable","name":{"kind":"Name","value":"developmentAge"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"twitterUrl"},"value":{"kind":"Variable","name":{"kind":"Name","value":"twitterUrl"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"customUrl"},"value":{"kind":"Variable","name":{"kind":"Name","value":"customUrl"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]} as unknown as DocumentNode<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>;
+export const GetUserProfileByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getUserProfileById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"usersByPk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"age"}},{"kind":"Field","name":{"kind":"Name","value":"iconPath"}},{"kind":"Field","name":{"kind":"Name","value":"job"}},{"kind":"Field","name":{"kind":"Name","value":"language"}},{"kind":"Field","name":{"kind":"Name","value":"selfIntroduction"}},{"kind":"Field","name":{"kind":"Name","value":"userName"}},{"kind":"Field","name":{"kind":"Name","value":"developmentAge"}},{"kind":"Field","name":{"kind":"Name","value":"githubUrl"}},{"kind":"Field","name":{"kind":"Name","value":"twitterUrl"}},{"kind":"Field","name":{"kind":"Name","value":"customUrl"}}]}}]}}]} as unknown as DocumentNode<GetUserProfileByIdQuery, GetUserProfileByIdQueryVariables>;

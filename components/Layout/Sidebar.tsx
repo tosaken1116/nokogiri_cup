@@ -40,7 +40,7 @@ export default function Sidebar() {
                         }}
                     >
                         <Grid item>
-                            <Link href="Home">
+                            <Link href="/Home">
                                 {router.pathname == "/Home" ? (
                                     <HomeIcon />
                                 ) : (
@@ -49,7 +49,7 @@ export default function Sidebar() {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="Search">
+                            <Link href="/Search">
                                 {router.pathname == "/Search" ? (
                                     <SearchIcon />
                                 ) : (
@@ -59,8 +59,8 @@ export default function Sidebar() {
                         </Grid>
 
                         <Grid item>
-                            <Link href="/Profile">
-                                {router.pathname == "/Profile" ? (
+                            <Link href="/Profile/my">
+                                {router.pathname == "/Profile/[id]" ? (
                                     <AccountCircleIcon />
                                 ) : (
                                     <AccountCircleOutlinedIcon />
@@ -77,7 +77,7 @@ export default function Sidebar() {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="./Comments">
+                            <Link href="/Comments">
                                 {router.pathname == "/Comments" ? (
                                     <InsertCommentIcon />
                                 ) : (

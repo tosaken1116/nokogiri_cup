@@ -30,3 +30,12 @@ export type DebounceExecuteProps = {
 export type TimeProps = {
     dateString: string;
 };
+export type UserProfile = {
+    id: string;
+    userName?: string;
+    age?: string;
+    developmentAge?: string;
+    selfIntroduction?: string;
+    job?: string;
+    language?: string;
+};
