@@ -6,14 +6,15 @@ export type ArticleProps = {
     title: string;
     articleId: string;
     caption: string;
-    authorId: string;
+    authorId?: string;
     createdAt: string;
     githubUrl: string;
     fileId?: string;
     user?: User;
 };
-type User = {
-    userName: string;
+export type User = {
+    userName?: string;
+    iconPath?: string;
 };
 export type SearchWordProps = {
     searchWord: string;

@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import { ArticleProps } from "../../Types/type";
 import Date from "../common/Date";
+import UserCard from "../common/UserCard";
 export default function MarkdownArticle({
     title,
     caption,
@@ -37,9 +38,7 @@ export default function MarkdownArticle({
                     <Stack spacing={1} direction="row">
                         <Box sx={{ flexGrow: 1 }}></Box>
                         <Date dateString={createdAt}></Date>
-                        <Typography variant="caption">
-                            {user?.userName}
-                        </Typography>
+                        <UserCard {...user} authorId={authorId}></UserCard>
                     </Stack>
                 </Stack>
                 <ReactMarkdown remarkPlugins={[gfm]} unwrapDisallowed={false}>

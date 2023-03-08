@@ -1,68 +1,77 @@
-import { Paper, Popover, Stack, Typography } from "@mui/material";
-import Image from "next/image";
+import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined";
+import {
+    Box,
+    CircularProgress,
+    IconButton,
+    Paper,
+    Popover,
+    Stack,
+    Typography,
+} from "@mui/material";
 import Link from "next/link";
-import { ProfilePopOverProps } from "../../Types/type";
+import { useUserPopoverProps } from "../../Hooks/hooks";
+import { ArticleProps, ProfilePopOverProps } from "../../Types/type";
 import Icon from "../common/Icon";
-
-export default function ProfilePopOver({
+export function ProfilePopOver({
     anchorElement,
     closePopOver,
-}: ProfilePopOverProps) {
-    const userData = {
-        userName: "testuser",
-        icon: "https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png",
-        lebel: "https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png",
-
-        language: "Piet",
-        career: "10",
-        occupation: "student",
-    };
+    authorId,
+}: ProfilePopOverProps & Pick<ArticleProps, "authorId">) {
+    const { user, isLoading } = useUserPopoverProps(authorId ?? "");
+    if (isLoading) {
+        return <CircularProgress />;
+    }
     return (
         <Popover
             open={Boolean(anchorElement)}
             onClose={closePopOver}
             anchorEl={anchorElement}
             anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "right",
+                vertical: "top",
+                horizontal: "left",
             }}
             transformOrigin={{
                 vertical: "bottom",
-                horizontal: "right",
+                horizontal: "left",
             }}
         >
-            <Link href="./Login">
-                <Paper sx={{ width: "240px", height: "140px" }}>
-                    <Stack direction="row" p={2} spacing={2}>
-                        <Stack spacing={1}>
-                            <Icon iconPath={userData.icon} size="medium" />
-                            <Image
-                                width={20}
-                                height={20}
-                                src={userData.lebel}
-                                alt=""
-                                className="rounded-full"
-                            ></Image>
-                        </Stack>
-                        <Stack spacing={1}>
-                            <Typography variant="h6">
-                                {userData.userName}
-                            </Typography>
-                            <Stack spacing={0.5} pl={0.5}>
-                                <Typography variant="caption">
-                                    使用言語:{userData.language}
+            <Box sx={{ position: "relative" }}>
+                <IconButton
+                    onClick={closePopOver}
+                    sx={{
+                        position: "absolute",
+                        right: 0,
+                        top: 0,
+                    }}
+                >
+                    <HighlightOffOutlinedIcon />
+                </IconButton>
+                <Link href="./Login">
+                    <Paper sx={{ width: "240px", height: "140px" }}>
+                        <Stack direction="row" p={2} spacing={2}>
+                            <Stack spacing={1}>
+                                <Icon iconPath={user.iconPath} size="m" />
+                            </Stack>
+                            <Stack spacing={1}>
+                                <Typography variant="h6">
+                                    {user.userName}
                                 </Typography>
-                                <Typography variant="caption">
-                                    開発歴:{userData.career}
-                                </Typography>
-                                <Typography variant="caption">
-                                    職業:{userData.occupation}
-                                </Typography>
+                                <Stack spacing={0.5} pl={0.5}>
+                                    <Typography variant="caption">
+                                        使用言語:{user.language}
+                                    </Typography>
+                                    <Typography variant="caption">
+                                        開発歴:{user.developmentAge}
+                                    </Typography>
+                                    <Typography variant="caption">
+                                        職業:{user.job}
+                                    </Typography>
+                                </Stack>
                             </Stack>
                         </Stack>
-                    </Stack>
-                </Paper>
-            </Link>
+                    </Paper>
+                </Link>
+            </Box>
         </Popover>
     );
 }

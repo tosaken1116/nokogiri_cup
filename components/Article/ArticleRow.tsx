@@ -11,7 +11,7 @@ import Image from "next/image";
 import { useArticle } from "../../Hooks/hooks";
 import { ArticleProps } from "../../Types/type";
 import Date from "../common/Date";
-import Icon from "../common/Icon";
+import UserCard from "../common/UserCard";
 
 export default function ArticleRow({
     createdAt,
@@ -44,18 +44,8 @@ export default function ArticleRow({
                         <Typography variant="h5">{title}</Typography>
                         <Stack direction="row">
                             <Stack>
-                                <Stack direction="row">
-                                    <Icon
-                                        iconPath="https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png"
-                                        size="medium"
-                                    />
-                                    <Typography
-                                        sx={{ alignSelf: "center" }}
-                                        px={1}
-                                    >
-                                        {user?.userName}
-                                    </Typography>
-                                </Stack>
+                                <UserCard {...user} authorId={authorId} />
+
                                 <Date dateString={createdAt}></Date>
                             </Stack>
                             <IconButton

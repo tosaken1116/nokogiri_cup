@@ -37,6 +37,7 @@ export const getSearchResultDoc = gql`
             authorId
             user {
                 userName
+                iconPath
             }
         }
     }
@@ -64,6 +65,7 @@ export const getHomeArticleDoc = gql`
             authorId
             user {
                 userName
+                iconPath
             }
         }
     }
@@ -80,6 +82,7 @@ export const getArticleByIdDoc = gql`
             title
             user {
                 userName
+                iconPath
             }
         }
     }
@@ -135,6 +138,17 @@ export const getUserProfileByIdDoc = gql`
             githubUrl
             twitterUrl
             customUrl
+        }
+    }
+`;
+export const getUserPopoverPropsDoc = gql`
+    query getUserPopoverProps($userId: String!) {
+        usersByPk(id: $userId) {
+            userName
+            iconPath
+            developmentAge
+            job
+            language
         }
     }
 `;
