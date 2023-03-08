@@ -203,11 +203,18 @@ export const useUpdateUserProfile = () => {
 };
 
 export const useGetUserProfile = (userId: string) => {
-    console.log(userId);
     const { data, loading, error } = useQuery(getUserProfileByIdDoc, {
         variables: { userId: userId },
     });
-    console.log(error);
+    return {
+        user: data?.usersByPk,
+        isLoading: loading,
+    };
+};
+export const useUserPopoverProps = (userId: string) => {
+    const { data, loading, error } = useQuery(getUserProfileByIdDoc, {
+        variables: { userId: userId },
+    });
     return {
         user: data?.usersByPk,
         isLoading: loading,

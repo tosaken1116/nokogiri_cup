@@ -8,7 +8,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
 import { useState } from "react";
-import ProfilePopOver from "../Profile/ProfilePopover";
+import { ProfilePopOver } from "../Profile/ProfilePopover";
 
 const status = 1;
 export default function PortfolioHeader() {

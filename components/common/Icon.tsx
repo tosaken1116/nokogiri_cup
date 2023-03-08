@@ -6,7 +6,7 @@ type IconProps = {
 export default function Icon({ iconPath, size }: IconProps) {
     const iconSize =
         size == "s"
-            ? 16
+            ? 24
             : size == "m"
             ? 32
             : size == "l"
@@ -20,7 +20,7 @@ export default function Icon({ iconPath, size }: IconProps) {
             alt={iconPath}
             width={iconSize}
             height={iconSize}
-            className="rounded-full"
+            style={{ borderRadius: "50%", height: iconSize, width: iconSize }}
         ></Image>
     );
 }
