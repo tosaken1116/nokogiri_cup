@@ -17,10 +17,16 @@ import {
     getArticleByIdDoc,
     getHomeArticleDoc,
     getSearchResultDoc,
+    getUserProfileByIdDoc,
     getUserStatusDoc,
+    updateUserProfileDoc,
     uploadDoc,
 } from "../gqlDocument/document";
-import { DebounceExecuteProps, SearchWordProps } from "../Types/type";
+import {
+    DebounceExecuteProps,
+    SearchWordProps,
+    UserProfile,
+} from "../Types/type";
 export const useUploadArticle = () => {
     const [uploadArticle, { loading }] = useMutation(uploadDoc);
     return { uploadArticle, loading };
@@ -181,6 +187,29 @@ export const useUserStatus = (userId: string) => {
     });
     return {
         user: data?.users[0],
+        isLoading: loading,
+    };
+};
+export const useUpdateUserProfile = () => {
+    const [updateUserProfile, { error, loading }] =
+        useMutation(updateUserProfileDoc);
+    const handleUpdateUserProfile = async (updateValues: UserProfile) => {
+        const result = await updateUserProfile({
+            variables: { ...updateValues },
+        });
+        return result;
+    };
+    return { handleUpdateUserProfile, loading };
+};
+
+export const useGetUserProfile = (userId: string) => {
+    console.log(userId);
+    const { data, loading, error } = useQuery(getUserProfileByIdDoc, {
+        variables: { userId: userId },
+    });
+    console.log(error);
+    return {
+        user: data?.usersByPk,
         isLoading: loading,
     };
 };

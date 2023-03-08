@@ -93,3 +93,48 @@ export const getUserStatusDoc = gql`
         }
     }
 `;
+export const updateUserProfileDoc = gql`
+    mutation updateUserProfile(
+        $id: String!
+        $age: String
+        $job: String
+        $language: String
+        $selfIntroduction: String
+        $userName: String
+        $developmentAge: String
+        $twitterUrl: String
+        $customUrl: String
+    ) {
+        updateUsersByPk(
+            pk_columns: { id: $id }
+            _set: {
+                age: $age
+                job: $job
+                language: $language
+                selfIntroduction: $selfIntroduction
+                userName: $userName
+                developmentAge: $developmentAge
+                twitterUrl: $twitterUrl
+                customUrl: $customUrl
+            }
+        ) {
+            email
+        }
+    }
+`;
+export const getUserProfileByIdDoc = gql`
+    query getUserProfileById($userId: String!) {
+        usersByPk(id: $userId) {
+            age
+            iconPath
+            job
+            language
+            selfIntroduction
+            userName
+            developmentAge
+            githubUrl
+            twitterUrl
+            customUrl
+        }
+    }
+`;
