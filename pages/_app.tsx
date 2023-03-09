@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     const authToken = getLocalStorage("authToken");
     const client = initializeApollo(authToken ?? "");
     const theme = createMuiTheme();
+
     return (
         <ApolloProvider client={client}>
             <Head>
