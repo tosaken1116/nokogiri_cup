@@ -21,7 +21,7 @@ export default function Header() {
         return <></>;
     }
     return (
-        <Box sx={{ height: "12vh" }}>
+        <Box sx={{ height: "9vh" }}>
             <AppBar position="static" sx={{ bgcolor: "#EEEEEE" }}>
                 <Toolbar>
                     <Box>

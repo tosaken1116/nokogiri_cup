@@ -26,9 +26,9 @@ export default function Layout({ children }: LayoutProps) {
             </IconButton>
 
             <Stack>
-                <Header></Header>
+                <Header />
                 <Stack direction="row">
-                    <Sidebar></Sidebar>
+                    <Sidebar />
                     <Box flexGrow={2}>{children}</Box>
                     <Box position="absolute">
                         <AddArticle

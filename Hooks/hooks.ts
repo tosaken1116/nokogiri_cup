@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import {
     getArticleByIdDoc,
     getHomeArticleDoc,
+    getPortFolioByIdDoc,
     getSearchResultDoc,
     getUserProfileByIdDoc,
     getUserStatusDoc,
@@ -33,6 +34,7 @@ export const useUploadArticle = () => {
 };
 
 export const useAuthentication = () => {
+    const router = useRouter();
     const firebaseConfig = {
         apiKey: process.env.NEXT_PUBLIC_APIKEY,
         authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
@@ -43,20 +45,20 @@ export const useAuthentication = () => {
         appId: process.env.NEXT_PUBLIC_APPID,
         measurementId: process.env.NEXT_PUBLIC_MEASUREMENTID,
     };
-    const [idToken, setIdToken] = useState("");
 
     const app = initializeApp(firebaseConfig);
     const { setLocalStorage } = useLocalStorage();
     const auth = getAuth(app);
-    setPersistence(auth, browserSessionPersistence);
     const login = () => {
         const provider = new GoogleAuthProvider();
-        signInWithPopup(auth, provider);
+        setPersistence(auth, browserSessionPersistence).then(() => {
+            return signInWithPopup(auth, provider);
+        });
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 user.getIdToken().then((token) => {
-                    setIdToken(token);
                     setLocalStorage({ authToken: token, userId: user.uid });
+                    router.reload();
                 });
             }
         });
@@ -64,8 +66,10 @@ export const useAuthentication = () => {
 
     const logout = () => {
         signOut(auth);
+        setLocalStorage({ authToken: "", userId: "" });
+        router.reload();
     };
-    return { login, logout, idToken };
+    return { login, logout };
 };
 
 export const useImageUpload = () => {
@@ -139,6 +143,7 @@ export const useArticle = () => {
     return {
         article: data?.article[0],
         modalOpen: Boolean(articleId),
+        articleId,
         setArticleParams,
         closeArticle,
         loading,
@@ -219,4 +224,12 @@ export const useUserPopoverProps = (userId: string) => {
         user: data?.usersByPk,
         isLoading: loading,
     };
+};
+export const usePortfolioArticles = () => {
+    const router = useRouter();
+
+    const { data, error, loading } = useQuery(getPortFolioByIdDoc, {
+        variables: { userId: router.query.userId },
+    });
+    return { articles: data?.article, isLoading: loading };
 };

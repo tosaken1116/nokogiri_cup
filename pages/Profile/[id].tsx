@@ -22,6 +22,7 @@ import {
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Icon from "../../components/common/Icon";
+import { ToPortfolioIcon } from "../../components/common/Icon/ToPortfolioIcon";
 import {
     useGetUserProfile,
     useLocalStorage,
@@ -167,6 +168,12 @@ export default function Profile() {
                         />
                     </Stack>
                 </Stack>
+                <Button
+                    startIcon={<ToPortfolioIcon />}
+                    href={`/Portfolio/${userId}`}
+                >
+                    ポートフォリオへ
+                </Button>
             </Stack>
             <List>
                 <ListItem disablePadding>
