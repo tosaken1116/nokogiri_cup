@@ -1,6 +1,8 @@
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { Box, IconButton, Stack } from "@mui/material";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import AddArticle from "../Article/AddArticle";
 import Header from "../Header/Header";
 import Sidebar from "./Sidebar";
 export type LayoutProps = {
@@ -8,16 +10,16 @@ export type LayoutProps = {
 };
 export default function Layout({ children }: LayoutProps) {
     const router = useRouter();
+    const [isAddArticleMode, setIsAddArticleMode] = useState(false);
     return (
         <Box sx={{ position: "relative" }}>
             <IconButton
-                href="./AddArticle"
+                onClick={() => setIsAddArticleMode(true)}
                 sx={{
                     position: "absolute",
                     right: "5%",
                     bottom: "10%",
-                    display:
-                        router.pathname === "/AddArticle" ? "none" : "block",
+                    display: isAddArticleMode ? "none" : "block",
                 }}
             >
                 <AddCircleIcon fontSize="large" />
@@ -28,6 +30,14 @@ export default function Layout({ children }: LayoutProps) {
                 <Stack direction="row">
                     <Sidebar></Sidebar>
                     <Box flexGrow={2}>{children}</Box>
+                    <Box position="absolute">
+                        <AddArticle
+                            isAddArticleMode={isAddArticleMode}
+                            closeAddArticleMode={() =>
+                                setIsAddArticleMode(false)
+                            }
+                        />
+                    </Box>
                 </Stack>
             </Stack>
         </Box>

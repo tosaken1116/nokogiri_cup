@@ -49,22 +49,20 @@ export function ProfilePopOver({
                 <Link href="./Login">
                     <Paper sx={{ width: "240px", height: "140px" }}>
                         <Stack direction="row" p={2} spacing={2}>
-                            <Stack spacing={1}>
-                                <Icon iconPath={user.iconPath} size="m" />
-                            </Stack>
+                            <Icon iconPath={user?.iconPath} size="m" />
                             <Stack spacing={1}>
                                 <Typography variant="h6">
-                                    {user.userName}
+                                    {user?.userName}
                                 </Typography>
                                 <Stack spacing={0.5} pl={0.5}>
                                     <Typography variant="caption">
-                                        使用言語:{user.language}
+                                        使用言語:{user?.language}
                                     </Typography>
                                     <Typography variant="caption">
-                                        開発歴:{user.developmentAge}
+                                        開発歴:{user?.developmentAge}
                                     </Typography>
                                     <Typography variant="caption">
-                                        職業:{user.job}
+                                        職業:{user?.job}
                                     </Typography>
                                 </Stack>
                             </Stack>
