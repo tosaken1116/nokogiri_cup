@@ -8,10 +8,11 @@ import {
     Stack,
     Typography,
 } from "@mui/material";
-import Link from "next/link";
 import { useUserPopoverProps } from "../../Hooks/hooks";
 import { ArticleProps, ProfilePopOverProps } from "../../Types/type";
 import Icon from "../common/Icon";
+import { ToPortfolioIcon } from "../common/Icon/ToPortfolioIcon";
+import { ToProfileIcon } from "../common/Icon/ToProfileIcon";
 export function ProfilePopOver({
     anchorElement,
     closePopOver,
@@ -46,29 +47,37 @@ export function ProfilePopOver({
                 >
                     <HighlightOffOutlinedIcon />
                 </IconButton>
-                <Link href="./Login">
-                    <Paper sx={{ width: "240px", height: "140px" }}>
-                        <Stack direction="row" p={2} spacing={2}>
+                <Paper sx={{ width: "240px", height: "140px" }}>
+                    <Stack direction="row" p={2} spacing={2}>
+                        <Stack spacing={0.5}>
                             <Icon iconPath={user?.iconPath} size="m" />
-                            <Stack spacing={1}>
-                                <Typography variant="h6">
-                                    {user?.userName}
-                                </Typography>
-                                <Stack spacing={0.5} pl={0.5}>
-                                    <Typography variant="caption">
-                                        使用言語:{user?.language}
-                                    </Typography>
-                                    <Typography variant="caption">
-                                        開発歴:{user?.developmentAge}
-                                    </Typography>
-                                    <Typography variant="caption">
-                                        職業:{user?.job}
-                                    </Typography>
-                                </Stack>
+                            <Stack spacing={0}>
+                                <IconButton href={`/Portfolio/${authorId}`}>
+                                    <ToPortfolioIcon />
+                                </IconButton>
+                                <IconButton href={`/Profile/${authorId}`}>
+                                    <ToProfileIcon />
+                                </IconButton>
                             </Stack>
                         </Stack>
-                    </Paper>
-                </Link>
+                        <Stack spacing={1}>
+                            <Typography variant="h6">
+                                {user?.userName}
+                            </Typography>
+                            <Stack spacing={0.5} pl={0.5}>
+                                <Typography variant="caption">
+                                    使用言語:{user?.language}
+                                </Typography>
+                                <Typography variant="caption">
+                                    開発歴:{user?.developmentAge}
+                                </Typography>
+                                <Typography variant="caption">
+                                    職業:{user?.job}
+                                </Typography>
+                            </Stack>
+                        </Stack>
+                    </Stack>
+                </Paper>
             </Box>
         </Popover>
     );

@@ -1,12 +1,14 @@
 import { Box } from "@mui/material";
-import Articles from "../../components/Article/PortfolioArticles";
 import PortfolioHeader from "../../components/Header/PortfolioHeader";
+import PortfolioArticleModal from "../../components/Portfolio/PortfolioArticleModal";
+import PortfolioArticles from "../../components/Portfolio/PortfolioArticles";
 
 export default function Portfolio() {
     return (
         <Box>
             <PortfolioHeader />
-            <Articles />
+            <PortfolioArticles />
+            <PortfolioArticleModal />
         </Box>
     );
 }

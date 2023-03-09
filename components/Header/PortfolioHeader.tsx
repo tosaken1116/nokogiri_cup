@@ -1,77 +1,61 @@
-import HomeIcon from "@mui/icons-material/Home";
-import { Avatar } from "@mui/material";
+import { CircularProgress, Stack } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import { useUserStatus } from "../../Hooks/hooks";
+import Icon from "../common/Icon";
+import { ToProfileIcon } from "../common/Icon/ToProfileIcon";
 import { ProfilePopOver } from "../Profile/ProfilePopover";
 
 const status = 1;
 export default function PortfolioHeader() {
+    const router = useRouter();
     const [anchorElement, setAnchorElement] =
         useState<HTMLButtonElement | null>(null);
-
-    const handleOpenProfilePopOver = (
-        event: React.MouseEvent<HTMLButtonElement>
-    ) => {
-        setAnchorElement(event.currentTarget);
-    };
+    const userId = String(router.query.userId);
+    const { user, isLoading } = useUserStatus(userId);
+    if (isLoading) {
+        return <CircularProgress />;
+    }
     return (
         <Box sx={{ height: "12vh" }}>
             <AppBar position="static" sx={{ bgcolor: "#EEEEEE" }}>
                 <Toolbar>
-                    <Box sx={{ display: "flex" }}>
+                    <Stack direction="row" sx={{ flexGrow: 1 }}>
                         <Typography
                             variant="h6"
                             sx={{
                                 color: "black",
-                                width: "-webkit-fill-available",
                             }}
                         >
-                            {/* name */}さんのポートフォリオ
+                            {user.userName}さんのポートフォリオ
                         </Typography>
-                        <Avatar sx={{ ml: 2 }}>
-                            <Button sx={{}} onClick={handleOpenProfilePopOver}>
-                                \
+                        <Box>
+                            <Button
+                                onClick={(
+                                    e: React.MouseEvent<HTMLButtonElement>
+                                ) => setAnchorElement(e.currentTarget)}
+                            >
+                                <Icon iconPath={user.iconPath} size="s" />
                             </Button>
                             <ProfilePopOver
                                 anchorElement={anchorElement}
                                 closePopOver={() => setAnchorElement(null)}
+                                authorId={userId}
                             />
-                        </Avatar>
-                    </Box>
-                    <Box flexGrow={1}></Box>
-                    <Link href="../">
-                        <HomeIcon color="primary" />
-                    </Link>
-                    {status ? (
-                        <Stack
-                            direction="row"
-                            spacing={2}
-                            sx={{ alignItems: "center" }}
+                        </Box>
+                        <Box flexGrow={1} />
+                        <Button
+                            href={`/Profile/${userId}`}
+                            startIcon={<ToProfileIcon />}
                         >
-                            <Button
-                                variant="contained"
-                                sx={{
-                                    color: "grey",
-                                    height: "8vh",
-                                    ":hover": { background: "grey" },
-                                }}
-                            >
-                                並び替え
-                            </Button>
-                        </Stack>
-                    ) : (
-                        <Button variant="contained">
-                            <Typography sx={{ flexGrow: 1, color: "black" }}>
-                                Username
-                            </Typography>
+                            プロフィールへ
                         </Button>
-                    )}
+                    </Stack>
                 </Toolbar>
             </AppBar>
         </Box>

@@ -40,3 +40,7 @@ export type UserProfile = {
     job?: string;
     language?: string;
 };
+export type PortfolioArticlesCardProps = Pick<
+    ArticleProps,
+    "articleId" | "title" | "createdAt" | "githubUrl" | "fileId"
+>;

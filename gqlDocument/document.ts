@@ -42,17 +42,7 @@ export const getSearchResultDoc = gql`
         }
     }
 `;
-export const getPortFolioByIdDoc = gql`
-    query getPortFolioById($userId: String!) {
-        article(where: { authorId: { _eq: $userId } }) {
-            fileId
-            githubUrl
-            title
-            createdAt
-            id
-        }
-    }
-`;
+
 export const getHomeArticleDoc = gql`
     query getHomeArticle {
         article(limit: 10, orderBy: { id: DESC }) {
@@ -149,6 +139,17 @@ export const getUserPopoverPropsDoc = gql`
             developmentAge
             job
             language
+        }
+    }
+`;
+export const getPortFolioByIdDoc = gql`
+    query getPortFolioById($userId: String!) {
+        article(where: { authorId: { _eq: $userId } }) {
+            fileId
+            githubUrl
+            title
+            createdAt
+            articleId
         }
     }
 `;

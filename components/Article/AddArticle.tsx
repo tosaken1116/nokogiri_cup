@@ -36,7 +36,7 @@ export default function AddArticle({
     )}-${("0" + now.getDate()).slice(-2)} ${("0" + now.getHours()).slice(
         -2
     )}:${("0" + now.getMinutes()).slice(-2)}`;
-    const userId = getLocalStorage("userid");
+    const userId = getLocalStorage("userId");
     const initialInputValue = {
         title: "",
         caption: "",
