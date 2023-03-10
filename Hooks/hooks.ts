@@ -8,7 +8,7 @@ import {
     GoogleAuthProvider,
     onAuthStateChanged,
     setPersistence,
-    signInWithPopup,
+    signInWithRedirect,
     signOut,
 } from "firebase/auth";
 import { useRouter } from "next/router";
@@ -27,6 +27,7 @@ import {
     DebounceExecuteProps,
     SearchWordProps,
     UserProfile,
+    UseUserStatusProps,
 } from "../Types/type";
 export const useUploadArticle = () => {
     const [uploadArticle, { loading }] = useMutation(uploadDoc);
@@ -52,8 +53,9 @@ export const useAuthentication = () => {
     const login = () => {
         const provider = new GoogleAuthProvider();
         setPersistence(auth, browserSessionPersistence).then(() => {
-            return signInWithPopup(auth, provider);
+            return signInWithRedirect(auth, provider);
         });
+
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 user.getIdToken().then((token) => {
@@ -184,12 +186,25 @@ export const useHomeArticle = () => {
     const { data, loading } = useQuery(getHomeArticleDoc);
     return { articles: data?.article, isLoading: loading };
 };
-export const useUserStatus = (userId: string) => {
+export const useUserStatus = ({
+    userId,
+    loginRequired,
+}: UseUserStatusProps) => {
+    const { login } = useAuthentication();
+    const { getLocalStorage } = useLocalStorage();
     const { data, loading, error } = useQuery(getUserStatusDoc, {
         variables: {
             userId: userId,
         },
     });
+    if (
+        (error?.graphQLErrors[0].extensions.code == "invalid-headers" ||
+            error?.graphQLErrors[0].extensions.code == "invalid-jwt") &&
+        getLocalStorage("authToken") != "" &&
+        loginRequired
+    ) {
+        login();
+    }
     return {
         user: data?.users[0],
         isLoading: loading,
@@ -233,3 +248,5 @@ export const usePortfolioArticles = () => {
     });
     return { articles: data?.article, isLoading: loading };
 };
+
+export const usePortfolioHeaderProps = () => {};

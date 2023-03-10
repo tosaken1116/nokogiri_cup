@@ -25,40 +25,43 @@ export default function ArticleRow({
 }: ArticleProps) {
     const { setArticleParams } = useArticle();
     return (
-        <Button
-            onClick={() => setArticleParams(articleId)}
-            sx={{ textTransform: "none" }}
-        >
-            <Box>
-                <Stack direction="row" p={2} spacing={3}>
-                    <Image
-                        width={100}
-                        height={60}
-                        src={
-                            "https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png"
-                        }
-                        alt=""
-                        className="rounded-md"
-                    ></Image>
-                    <Stack spacing={2}>
+        <Box>
+            <Stack direction="row" p={2} spacing={3}>
+                <Image
+                    width={100}
+                    height={60}
+                    src={
+                        "https://hackznokogiritosaken1116.blob.core.windows.net/hackznokogiricontainer/cat.png"
+                    }
+                    alt=""
+                    style={{ borderRadius: "15px" }}
+                ></Image>
+                <Stack spacing={2}>
+                    <Button
+                        onClick={() => setArticleParams(articleId)}
+                        sx={{ textTransform: "none", p: 0 }}
+                    >
                         <Typography variant="h5">{title}</Typography>
-                        <Stack direction="row">
-                            <Stack>
-                                <UserCard {...user} authorId={authorId} />
+                    </Button>
 
-                                <Date dateString={createdAt}></Date>
-                            </Stack>
+                    <Stack direction="row">
+                        <Stack>
+                            <UserCard {...user} authorId={authorId} />
+
+                            <Date dateString={createdAt}></Date>
+                        </Stack>
+                        <Box>
                             <IconButton
                                 href={githubUrl ?? ""}
                                 disabled={githubUrl == ""}
                             >
                                 <GitHubIcon />
                             </IconButton>
-                        </Stack>
+                        </Box>
                     </Stack>
                 </Stack>
-                <Divider variant="fullWidth" />
-            </Box>
-        </Button>
+            </Stack>
+            <Divider variant="fullWidth" />
+        </Box>
     );
 }

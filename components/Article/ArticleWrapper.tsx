@@ -6,9 +6,9 @@ import ArticleRow from "./ArticleRow";
 
 export function ArticleList({ articles }: { articles: ArticleProps[] }) {
     return (
-        <List sx={{ maxHeight: "70vh", overflow: "auto" }}>
+        <List sx={{ maxHeight: "83vh", overflow: "auto" }}>
             {articles?.map((articleProps, index: number) => (
-                <ListItem key={index}>
+                <ListItem key={index} sx={{ justifyContent: "center" }}>
                     <ArticleRow {...articleProps} />
                 </ListItem>
             ))}

@@ -8,86 +8,64 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { Box, Grid, Paper, Slide } from "@mui/material";
-import Link from "next/link";
+import { IconButton, Paper, Stack } from "@mui/material";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useLocalStorage } from "../../Hooks/hooks";
 export default function Sidebar() {
     const router = useRouter();
-    const [isHover, setIsHover] = useState(false);
+    const { getLocalStorage } = useLocalStorage();
     return (
-        <Box
-            sx={{
-                height: "95vh",
-                width: "60px",
-                transitionDelay: "300",
-                msTransitionDelay: "2000",
-                animationDuration: "300",
-                transition: "width 1s ease-in-out 0s",
-            }}
-            onMouseOver={() => setIsHover(true)}
-            onMouseLeave={() => setIsHover(false)}
-        >
-            <Slide direction="right" in={isHover}>
-                <Paper>
-                    <Grid
-                        container
-                        spacing={5}
-                        sx={{
-                            height: "95vh",
-                            alignItems: "center",
-                            justifyContent: "center",
-                        }}
-                    >
-                        <Grid item>
-                            <Link href="/Home">
-                                {router.pathname == "/Home" ? (
-                                    <HomeIcon />
-                                ) : (
-                                    <HomeOutlinedIcon />
-                                )}
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="/Search">
-                                {router.pathname == "/Search" ? (
-                                    <SearchIcon />
-                                ) : (
-                                    <SearchOutlinedIcon />
-                                )}
-                            </Link>
-                        </Grid>
+        <Paper>
+            <Stack
+                direction="column"
+                sx={{
+                    height: "calc(100vh - 9vh)",
+                    width: "80px",
+                    flexShrink: 1,
+                    alignItems: "center",
+                    justifyContent: "space-around",
+                }}
+            >
+                <IconButton href="/Home">
+                    {router.pathname == "/Home" ? (
+                        <HomeIcon />
+                    ) : (
+                        <HomeOutlinedIcon />
+                    )}
+                </IconButton>
+                <IconButton href="/Search">
+                    {router.pathname == "/Search" ? (
+                        <SearchIcon />
+                    ) : (
+                        <SearchOutlinedIcon />
+                    )}
+                </IconButton>
 
-                        <Grid item>
-                            <Link href="/Profile/my">
-                                {router.pathname == "/Profile/[id]" ? (
-                                    <AccountCircleIcon />
-                                ) : (
-                                    <AccountCircleOutlinedIcon />
-                                )}
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="/Notifications">
-                                {router.pathname == "/Notifications" ? (
-                                    <NotificationsIcon />
-                                ) : (
-                                    <NotificationsNoneOutlinedIcon />
-                                )}
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="/Comments">
-                                {router.pathname == "/Comments" ? (
-                                    <InsertCommentIcon />
-                                ) : (
-                                    <InsertCommentOutlinedIcon />
-                                )}
-                            </Link>
-                        </Grid>
-                    </Grid>
-                </Paper>
-            </Slide>
-        </Box>
+                <IconButton
+                    href="/Profile/my"
+                    disabled={!Boolean(getLocalStorage("authToken"))}
+                >
+                    {router.pathname == "/Profile/[id]" ? (
+                        <AccountCircleIcon />
+                    ) : (
+                        <AccountCircleOutlinedIcon />
+                    )}
+                </IconButton>
+                <IconButton href="/Notifications">
+                    {router.pathname == "/Notifications" ? (
+                        <NotificationsIcon />
+                    ) : (
+                        <NotificationsNoneOutlinedIcon />
+                    )}
+                </IconButton>
+                <IconButton href="/Comments">
+                    {router.pathname == "/Comments" ? (
+                        <InsertCommentIcon />
+                    ) : (
+                        <InsertCommentOutlinedIcon />
+                    )}
+                </IconButton>
+            </Stack>
+        </Paper>
     );
 }

@@ -10,6 +10,7 @@ import {
     Stack,
     TextareaAutosize,
     TextField,
+    useMediaQuery,
 } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useState } from "react";
@@ -27,6 +28,7 @@ export default function AddArticle({
     isAddArticleMode,
     closeAddArticleMode,
 }: AddArticleProps) {
+    const matches = useMediaQuery("(min-width: 800px)");
     const { uploadBlob, uploadFileId } = useImageUpload();
     const { uploadArticle, loading } = useUploadArticle();
     const { getLocalStorage } = useLocalStorage();
@@ -74,19 +76,20 @@ export default function AddArticle({
             return <CircularProgress />;
         }
         setInput(initialInputValue);
-        // router.push("./");
     };
     return (
         <Slide direction="up" in={isAddArticleMode} mountOnEnter unmountOnExit>
             <Box
                 p={3}
+                flexGrow={1}
                 sx={{
-                    width: "95vw",
-                    height: "100%",
-                    flexGrow: "1",
+                    width: matches ? "92vw" : "100vw",
+                    height: matches ? "calc(100vh-80px)" : "83vh",
                     backgroundColor: "white",
+                    overflow: "auto",
+                    minHeight: "calc(100vh-80px)",
                     zIndex: 1000,
-                    ml: "70px",
+                    ml: matches ? "70px" : "",
                     position: "relative",
                 }}
             >
@@ -97,7 +100,7 @@ export default function AddArticle({
                     <HighlightOffOutlinedIcon fontSize="large" />
                 </IconButton>
                 <Stack
-                    direction="row"
+                    direction={matches ? "row" : "column"}
                     spacing={2}
                     pt={4}
                     sx={{
@@ -163,7 +166,10 @@ export default function AddArticle({
                             onClick={() => handleUpload()}
                             className="animate-bounce"
                         >
-                            <ArrowCircleRightIcon fontSize="large" />
+                            <ArrowCircleRightIcon
+                                sx={{ rotate: matches ? "" : "90deg" }}
+                                fontSize="large"
+                            />
                         </IconButton>
                     </Box>
                     <MarkdownArticle

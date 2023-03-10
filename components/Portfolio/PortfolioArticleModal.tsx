@@ -1,9 +1,10 @@
-import { CircularProgress, Modal } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import { useArticle } from "../../Hooks/hooks";
-import MarkdownArticle from "../Article/MarkdownArticle";
+import { MarkdownModal } from "../Layout/MarkdownLayout";
 
 export default function PortfolioArticleModal() {
-    const { article, articleId, closeArticle, loading } = useArticle();
+    const { article, articleId, closeArticle, loading, modalOpen } =
+        useArticle();
     if (articleId == undefined) {
         return <></>;
     }
@@ -11,8 +12,11 @@ export default function PortfolioArticleModal() {
         return <CircularProgress />;
     }
     return (
-        <Modal open={articleId != ""} onClose={closeArticle}>
-            <MarkdownArticle {...article} />
-        </Modal>
+        <MarkdownModal
+            article={article}
+            closeArticle={closeArticle}
+            loading={loading}
+            modalOpen={modalOpen}
+        />
     );
 }

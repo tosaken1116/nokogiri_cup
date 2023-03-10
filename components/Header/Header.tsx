@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material";
+import { CircularProgress, Paper } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -16,12 +16,13 @@ export default function Header() {
     const { logout, login } = useAuthentication();
     const { getLocalStorage } = useLocalStorage();
     const userId = getLocalStorage("userId");
-    const { user, isLoading } = useUserStatus(userId ?? "");
-    if (isLoading) {
-        return <></>;
-    }
+    const { user, isLoading } = useUserStatus({
+        userId: userId ?? "",
+        loginRequired: true,
+    });
+
     return (
-        <Box sx={{ height: "9vh" }}>
+        <Box sx={{ height: "8vh" }}>
             <AppBar position="static" sx={{ bgcolor: "#EEEEEE" }}>
                 <Toolbar>
                     <Box>
@@ -36,7 +37,9 @@ export default function Header() {
                         </Typography>
                     </Box>
                     <Box flexGrow={1}></Box>
-                    {!user?.userName ? (
+                    {isLoading ? (
+                        <CircularProgress />
+                    ) : !user?.userName ? (
                         <Stack
                             direction="row"
                             spacing={2}
@@ -48,15 +51,24 @@ export default function Header() {
                         </Stack>
                     ) : (
                         <Stack direction="row">
-                            <Paper sx={{ paddingX: 2, paddingY: 1 }}>
-                                <Stack direction="row">
-                                    <Icon
-                                        iconPath={user?.iconPath}
-                                        size="m"
-                                    ></Icon>
-                                    <Typography>{user?.userName}</Typography>
-                                </Stack>
-                            </Paper>
+                            <Button
+                                sx={{
+                                    textTransform: "none",
+                                }}
+                                href="/Profile/my"
+                            >
+                                <Paper sx={{ paddingX: 2, paddingY: 1 }}>
+                                    <Stack direction="row">
+                                        <Icon
+                                            iconPath={user?.iconPath}
+                                            size="m"
+                                        ></Icon>
+                                        <Typography>
+                                            {user?.userName}
+                                        </Typography>
+                                    </Stack>
+                                </Paper>
+                            </Button>
                             <Button onClick={() => logout()}>log out</Button>
                         </Stack>
                     )}
