@@ -187,126 +187,128 @@ export default function Profile() {
                     ポートフォリオへ
                 </Button>
             </Stack>
-            <List>
-                <ListItem disablePadding>
-                    <ListItemAvatar>
-                        <Avatar>
-                            <WorkIcon />
-                        </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary="職業"
-                        secondary={
-                            <TextField
-                                name="job"
-                                onChange={handleChange}
-                                value={editValue.job}
-                                disabled={!isEditMode}
-                                variant="standard"
-                                InputProps={{
-                                    disableUnderline: true,
-                                }}
-                            />
-                        }
-                    />
-                </ListItem>
+            <Box>
+                <List sx={{ width: "100vw", display: "contents" }}>
+                    <ListItem disablePadding>
+                        <ListItemAvatar>
+                            <Avatar>
+                                <WorkIcon />
+                            </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary="職業"
+                            secondary={
+                                <TextField
+                                    name="job"
+                                    onChange={handleChange}
+                                    value={editValue.job}
+                                    disabled={!isEditMode}
+                                    variant="standard"
+                                    InputProps={{
+                                        disableUnderline: true,
+                                    }}
+                                />
+                            }
+                        />
+                    </ListItem>
 
-                <ListItem disablePadding>
-                    <ListItemAvatar>
-                        <Avatar></Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary="年齢"
-                        secondary={
-                            <TextField
-                                name="age"
-                                onChange={handleChange}
-                                value={editValue.age}
-                                disabled={!isEditMode}
-                                variant="standard"
-                                InputProps={{
-                                    disableUnderline: true,
-                                }}
-                            />
-                        }
-                    />
-                </ListItem>
-
-                <ListItem disablePadding>
-                    <ListItemAvatar>
-                        <Avatar>
-                            <CodeIcon />
-                        </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary="主要言語"
-                        secondary={
-                            <TextField
-                                name="language"
-                                onChange={handleChange}
-                                value={editValue.language}
-                                disabled={!isEditMode}
-                                variant="standard"
-                                InputProps={{
-                                    disableUnderline: true,
-                                }}
-                            />
-                        }
-                    />
-                </ListItem>
-
-                <ListItem disablePadding>
-                    <ListItemAvatar>
-                        <Avatar>
-                            <ComputerIcon />
-                        </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary="開発歴"
-                        secondary={
-                            <TextField
-                                name="developmentAge"
-                                onChange={handleChange}
-                                value={editValue.developmentAge}
-                                disabled={!isEditMode}
-                                variant="standard"
-                                InputProps={{
-                                    disableUnderline: true,
-                                }}
-                            />
-                        }
-                    />
-                </ListItem>
-
-                <ListItem disablePadding>
-                    <ListItemAvatar sx={{ alignSelf: "start", mt: 2 }}>
-                        <Box>
+                    <ListItem disablePadding>
+                        <ListItemAvatar>
                             <Avatar></Avatar>
-                        </Box>
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary="自己紹介"
-                        secondary={
-                            <TextField
-                                onChange={handleChange}
-                                value={editValue.selfIntroduction}
-                                multiline
-                                name="selfIntroduction"
-                                sx={{
-                                    width: "500px",
-                                    maxHeight: "170px",
-                                    overflow: "auto",
-                                }}
-                                disabled={!isEditMode}
-                                variant="standard"
-                                InputProps={{
-                                    disableUnderline: true,
-                                }}
-                            />
-                        }
-                    />
-                </ListItem>
-            </List>
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary="年齢"
+                            secondary={
+                                <TextField
+                                    name="age"
+                                    onChange={handleChange}
+                                    value={editValue.age}
+                                    disabled={!isEditMode}
+                                    variant="standard"
+                                    InputProps={{
+                                        disableUnderline: true,
+                                    }}
+                                />
+                            }
+                        />
+                    </ListItem>
+
+                    <ListItem disablePadding>
+                        <ListItemAvatar>
+                            <Avatar>
+                                <CodeIcon />
+                            </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary="主要言語"
+                            secondary={
+                                <TextField
+                                    name="language"
+                                    onChange={handleChange}
+                                    value={editValue.language}
+                                    disabled={!isEditMode}
+                                    variant="standard"
+                                    InputProps={{
+                                        disableUnderline: true,
+                                    }}
+                                />
+                            }
+                        />
+                    </ListItem>
+
+                    <ListItem disablePadding>
+                        <ListItemAvatar>
+                            <Avatar>
+                                <ComputerIcon />
+                            </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary="開発歴"
+                            secondary={
+                                <TextField
+                                    name="developmentAge"
+                                    onChange={handleChange}
+                                    value={editValue.developmentAge}
+                                    disabled={!isEditMode}
+                                    variant="standard"
+                                    InputProps={{
+                                        disableUnderline: true,
+                                    }}
+                                />
+                            }
+                        />
+                    </ListItem>
+
+                    <ListItem disablePadding>
+                        <ListItemAvatar sx={{ alignSelf: "start", mt: 2 }}>
+                            <Box>
+                                <Avatar></Avatar>
+                            </Box>
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary="自己紹介"
+                            secondary={
+                                <TextField
+                                    onChange={handleChange}
+                                    value={editValue.selfIntroduction}
+                                    multiline
+                                    name="selfIntroduction"
+                                    sx={{
+                                        width: "100%",
+                                        maxHeight: "170px",
+                                        overflow: "auto",
+                                    }}
+                                    disabled={!isEditMode}
+                                    variant="standard"
+                                    InputProps={{
+                                        disableUnderline: true,
+                                    }}
+                                />
+                            }
+                        />
+                    </ListItem>
+                </List>
+            </Box>
         </Stack>
     );
 }

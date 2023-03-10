@@ -57,11 +57,11 @@ export default function Header() {
                                 }}
                                 href="/Profile/my"
                             >
-                                <Paper sx={{ paddingX: 2, paddingY: 1 }}>
-                                    <Stack direction="row">
+                                <Paper sx={{ paddingX: 2, paddingY: 2 }}>
+                                    <Stack direction="row" spacing={1}>
                                         <Icon
                                             iconPath={user?.iconPath}
-                                            size="m"
+                                            size="s"
                                         ></Icon>
                                         <Typography>
                                             {user?.userName}

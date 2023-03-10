@@ -10,10 +10,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { useRouter } from "next/router";
-import { useLocalStorage } from "../../Hooks/hooks";
 export default function BottomBar() {
     const router = useRouter();
-    const { getLocalStorage } = useLocalStorage();
     return (
         <BottomNavigation
             sx={{ position: "fixed", bottom: 0, width: "100%" }}
@@ -44,7 +42,6 @@ export default function BottomBar() {
             />
             <BottomNavigationAction
                 label="Profile"
-                disabled={!Boolean(getLocalStorage("authToken"))}
                 icon={
                     router.pathname == "/Profile/[id]" ? (
                         <AccountCircleIcon />
@@ -55,6 +52,7 @@ export default function BottomBar() {
                 href="/Profile/my"
             />
             <BottomNavigationAction
+                disabled
                 label="Notifications"
                 icon={
                     router.pathname == "/Notifications" ? (
@@ -67,6 +65,7 @@ export default function BottomBar() {
             />
             <BottomNavigationAction
                 label="DM"
+                disabled
                 icon={
                     router.pathname == "/Comments" ? (
                         <InsertCommentIcon />

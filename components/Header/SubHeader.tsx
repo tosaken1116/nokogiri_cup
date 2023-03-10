@@ -15,7 +15,7 @@ export default function SubHeader() {
             <Stack p={2}>
                 <Box>
                     {router.pathname == "/Search" ? (
-                        <Box>
+                        <Stack direction="row">
                             <TextField
                                 label="検索"
                                 value={searchWord}
@@ -26,8 +26,10 @@ export default function SubHeader() {
                                     handleSearchWord(e);
                                 }}
                             ></TextField>
-                            <SearchIcon />
-                        </Box>
+                            <Box alignSelf="center">
+                                <SearchIcon />
+                            </Box>
+                        </Stack>
                     ) : (
                         <></>
                     )}
