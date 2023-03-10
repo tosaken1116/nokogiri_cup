@@ -51,14 +51,14 @@ export default function Sidebar() {
                         <AccountCircleOutlinedIcon />
                     )}
                 </IconButton>
-                <IconButton href="/Notifications">
+                <IconButton href="/Notifications" disabled>
                     {router.pathname == "/Notifications" ? (
                         <NotificationsIcon />
                     ) : (
                         <NotificationsNoneOutlinedIcon />
                     )}
                 </IconButton>
-                <IconButton href="/Comments">
+                <IconButton href="/Comments" disabled>
                     {router.pathname == "/Comments" ? (
                         <InsertCommentIcon />
                     ) : (

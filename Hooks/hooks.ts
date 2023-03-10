@@ -48,7 +48,7 @@ export const useAuthentication = () => {
     };
 
     const app = initializeApp(firebaseConfig);
-    const { setLocalStorage } = useLocalStorage();
+    const { clearLocalStorage, setLocalStorage } = useLocalStorage();
     const auth = getAuth(app);
     const login = () => {
         const provider = new GoogleAuthProvider();
@@ -68,7 +68,7 @@ export const useAuthentication = () => {
 
     const logout = () => {
         signOut(auth);
-        setLocalStorage({ authToken: "", userId: "" });
+        clearLocalStorage();
         router.reload();
     };
     return { login, logout };
@@ -164,7 +164,10 @@ export const useLocalStorage = () => {
             localStorage.setItem(key, value);
         });
     };
-    return { getLocalStorage, setLocalStorage };
+    const clearLocalStorage = () => {
+        localStorage.clear();
+    };
+    return { getLocalStorage, setLocalStorage, clearLocalStorage };
 };
 export const useDebounceSearch = ({
     keyword,
