@@ -44,3 +44,13 @@ export type PortfolioArticlesCardProps = Pick<
     ArticleProps,
     "articleId" | "title" | "createdAt" | "githubUrl" | "fileId"
 >;
+export type MarkdownModalProps = {
+    modalOpen: boolean;
+    closeArticle: () => void;
+    loading: boolean;
+    article: ArticleProps;
+};
+export type UseUserStatusProps = {
+    userId: string;
+    loginRequired: boolean;
+};

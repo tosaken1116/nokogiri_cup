@@ -16,9 +16,10 @@ export default function MarkdownArticle({
     return (
         <Paper
             sx={{
-                width: "-webkit-fill-available",
-                maxHeight: "75vh",
+                flexGrow: 1,
+                minHeight: "75vh",
                 overflow: "auto",
+                border: "0.5px solid",
             }}
             className="markdown-preview"
         >

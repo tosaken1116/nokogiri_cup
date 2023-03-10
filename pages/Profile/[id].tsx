@@ -18,6 +18,7 @@ import {
     ListItemText,
     Stack,
     TextField,
+    useMediaQuery,
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -31,6 +32,7 @@ import {
 
 export default function Profile() {
     const router = useRouter();
+    const matches = useMediaQuery("(min-width: 800px)");
     const [isEditMode, setIsEditMode] = useState(false);
     const { getLocalStorage } = useLocalStorage();
     const { handleUpdateUserProfile } = useUpdateUserProfile();
@@ -41,20 +43,30 @@ export default function Profile() {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEditValue({ ...editValue, [event.target.name]: event.target.value });
     };
+    if (router.query.id == "my" && !Boolean(getLocalStorage("userId"))) {
+        router.push("/Home");
+    }
     useEffect(() => {
         setEditValue({ ...user });
     }, [user]);
+
     if (isLoading) {
         return <CircularProgress />;
     }
 
     return (
-        <Stack direction="row" sx={{ position: "relative" }} spacing={3}>
+        <Stack
+            direction={matches ? "row" : "column"}
+            sx={{ position: "relative", alignItems: "center" }}
+            spacing={3}
+        >
             <IconButton
                 onClick={() => setIsEditMode(!isEditMode)}
                 sx={{
                     position: "absolute",
                     right: "10%",
+                    top: "10%",
+                    zIndex: 10000,
                     animation: isEditMode ? "spin 2s ease infinite" : "",
                     "@keyframes spin": {
                         "0%": {

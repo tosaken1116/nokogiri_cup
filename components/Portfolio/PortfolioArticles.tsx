@@ -9,20 +9,22 @@ export default function PortfolioArticles() {
         return <CircularProgress />;
     }
     return (
-        <Grid
-            sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                placeContent: "center",
-                maxHeight: "85vh",
-                overflow: "scroll",
-            }}
-        >
-            {articles?.map((article: PortfolioArticlesCardProps) => (
-                <Box key={article.articleId}>
-                    <PortfolioArticlesCard {...article} />
-                </Box>
-            ))}
-        </Grid>
+        <Box>
+            <Grid
+                sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    overflow: "auto",
+                    maxHeight: "80vh",
+                    justifyContent: "center",
+                }}
+            >
+                {articles?.map((article: PortfolioArticlesCardProps) => (
+                    <Box key={article.articleId}>
+                        <PortfolioArticlesCard {...article} />
+                    </Box>
+                ))}
+            </Grid>
+        </Box>
     );
 }

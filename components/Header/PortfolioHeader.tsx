@@ -11,18 +11,17 @@ import Icon from "../common/Icon";
 import { ToProfileIcon } from "../common/Icon/ToProfileIcon";
 import { ProfilePopOver } from "../Profile/ProfilePopover";
 
-const status = 1;
 export default function PortfolioHeader() {
     const router = useRouter();
     const [anchorElement, setAnchorElement] =
         useState<HTMLButtonElement | null>(null);
     const userId = String(router.query.userId);
-    const { user, isLoading } = useUserStatus(userId);
+    const { user, isLoading } = useUserStatus({ userId, loginRequired: true });
     if (isLoading) {
         return <CircularProgress />;
     }
     return (
-        <Box sx={{ height: "12vh" }}>
+        <Box sx={{ height: "9vh" }}>
             <AppBar position="static" sx={{ bgcolor: "#EEEEEE" }}>
                 <Toolbar>
                     <Stack direction="row" sx={{ flexGrow: 1 }}>
