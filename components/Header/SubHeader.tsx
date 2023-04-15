@@ -1,9 +1,10 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, Stack, TextField } from "@mui/material";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useSearchParams } from "../../Hooks/hooks";
-import { NowPageProps } from "../../Types/type";
-export default function SubHeader({ nowPage }: Pick<NowPageProps, "nowPage">) {
+export default function SubHeader() {
+    const router = useRouter();
     const [searchWord, setSearchWord] = useState("");
     const { setMediaFilterParams } = useSearchParams();
     const handleSearchWord = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,10 +14,8 @@ export default function SubHeader({ nowPage }: Pick<NowPageProps, "nowPage">) {
         <Box>
             <Stack p={2}>
                 <Box>
-                    {nowPage == "home" ? (
-                        <></>
-                    ) : nowPage == "search" ? (
-                        <Box>
+                    {router.pathname == "/Search" ? (
+                        <Stack direction="row">
                             <TextField
                                 label="検索"
                                 value={searchWord}
@@ -27,8 +26,10 @@ export default function SubHeader({ nowPage }: Pick<NowPageProps, "nowPage">) {
                                     handleSearchWord(e);
                                 }}
                             ></TextField>
-                            <SearchIcon />
-                        </Box>
+                            <Box alignSelf="center">
+                                <SearchIcon />
+                            </Box>
+                        </Stack>
                     ) : (
                         <></>
                     )}
